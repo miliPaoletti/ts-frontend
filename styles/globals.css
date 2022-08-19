@@ -1,16 +1,353 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg active:scale-95 active:bg-gray-100 transition transform duration-100 ease-out;
+  }
+
+  .header-text {
+    @apply text-sm lg:text-base cursor-pointer;
+  }
+
+  
+
+  header {
+    @apply  sticky top-0 z-[999] bg-white shadow-lg p-5 ;
+  }
+  
+  .header {
+    @apply flex h-10 items-center px-3 sm:px-12;
+  }
+
+  header svg {
+    @apply cursor-pointer h-fit w-[200px]
+  }
+
+  footer .logo {
+    @apply cursor-pointer h-fit w-[250px]
+  }
+
+  
+  .title {
+    @apply text-4xl font-semibold pb-5;
+  }
+
+  .star {
+    @apply h-5 text-orange-950;
+  }
+
+  section {
+    @apply pt-16 pb-8 ;
+  }
+
+  .container-general{
+    @apply container mx-auto px-5 lg:px-0
+  }
+  input,textarea{
+    @apply block border-b border-b-gray-200 w-full
+  }
+
+  input:focus-visible,  textarea:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+  }
+
+  .reactLightboxCloseButtonContainer {
+    z-index: 99999;
+  }
+
+  .remove-selection::-moz-selection {
+    /* Code for Firefox */
+    background: transparent;
+    text: transparent;
+    
+  }
+
+  .remove-selection {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .remove-selection::selection {
+    background: transparent;
+    text: transparent;
+    
+    
+  }
+
+  .animation {
+    animation: move 20s forwards ease-in;
+  }
+
+  .height-carousel {
+    @apply h-[300px] sm:h-[300px] md:h-[400px] lg:h-[600px]
+  
+  }
+  .slider-container {
+    @apply height-carousel relative overflow-hidden;
+    /* aca creo que se tendria que acomodar la transicion del carousle */
+  }
+  .active {
+    @apply block opacity-100;
+    /* transition-opacity duration-1000 ease-in */
+  }
+  .inactive {
+    @apply block opacity-0;
+    /* transition-opacity duration-1000 ease-out; */
+  }
+
+  .slides {
+    @apply height-carousel w-full relative ;
+  }
+
+  .slide-image {
+    @apply w-full h-full absolute object-cover remove-selection;
+  }
+
+  .prev,
+  .next {
+    @apply remove-selection cursor-pointer z-50 text-white absolute top-[43%] w-auto p-3 text-7xl font-bold opacity-0 md:group-hover:opacity-100 transition-all duration-1000 ease-in-out;
+  }
+
+  .next {
+    @apply right-0;
+  }
+  .slide-title,
+  .slide-text {
+    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 remove-selection w-full font-bold cursor-default text-white text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[25%] z-10 font-['Rubik'] uppercase sm:left-[10%];
+  }
+
+  .slide-text {
+    @apply font-[400] break-words normal-case text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl top-[52%] sm:top-[58%] md:top-[50%];
+  }
+
+  .slide-text-destination{ 
+    @apply absolute  top-[52%] sm:top-[58%] md:top-[50%] remove-selection w-full text-white  cursor-default break-words capitalize font-bold text-2xl md:text-3xl 2xl:text-5xl z-10 font-['Rubik'] left-[10%]
+  }
+
+  .separator {
+    @apply overflow-hidden md:before:content-[''] md:before:absolute md:before:top-0 md:before:right-0 md:before:bottom-0 md:before:h-full md:before:-skew-x-6	md:before:border md:before:border-transparent md:before:border-r-gray-200;
+  }
+
+  .icon {
+    @apply ml-5 text-gray-950;
+  }
+
+  .icon-footer {
+    @apply h-5;
+  }
+
+  .icon-social-media {
+    @apply text-2xl cursor-pointer;
+  }
+  .opacity-imgs {
+    @apply before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:bg-black-970 before:z-10;
+  }
+
+  .about-us {
+    @apply relative  flex flex-col items-center justify-center bg-about-us bg-cover bg-center opacity-imgs w-full before:bg-black-960;
+  }
+
+  .about-us-container {
+    @apply flex items-center space-x-2 justify-center lg:justify-start;
+  }
+
+  .about-us-icons {
+    @apply text-xl md:text-3xl;
+  }
+
+  .about-us-text {
+    @apply text-sm sm:text-base xl:text-xl font-bold;
+  }
+
+  .icon-info-card {
+    @apply text-xl mr-2
+  }
+
+  .travel-resume {
+    @apply border-r-2 border-gray-300 p-5 flex justify-center items-center flex-col space-y-3 
+  }
+
+  .icon-destination {
+    @apply text-3xl text-gray-800
+  }
+
+  .first-letter-capitalize{
+    @apply first-letter:capitalize
+  }
+
+  .container-modal{
+    
+    background-color: rgba(255,255,255, .8);
+    
+  }
+
+  .page-container {
+    @apply relative min-h-screen
+  
+  }
+  
+  .content-wrap {
+    @apply pb-[30rem] lg:pb-[20rem]
+    /* Footer height */
+  }
+
+  .container-search {
+    @apply bg-search-img bg-cover bg-center opacity-imgs before:bg-black-960 h-[200px] md:h-[300px] relative
+  }
+  
+  footer {
+    @apply absolute bottom-0 w-full h-[30rem] lg:h-[20rem] flex items-center
+          /* Footer height */
+  }
+
+  .form-error{
+    @apply text-red-600 text-sm mt-1 block
+    
+  }
+
+  .button-primary {
+    @apply bg-orange-950 text-white p-2 px-5 rounded-md hover:shadow-lg transition transform duration-200 ease-out font-semibold uppercase text-xl justify-center
+  }
+
+
+  .gradient{
+    background-image: linear-gradient(to right top, #cccccc, #d9d9d9, #e5e5e5, #f2f2f2, #ffffff);
+  }
+
+
+.notifications-colors-success {
+  @apply text-white bg-[#0d8951] 
+
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+  .notifications-colors-dark {
+    @apply text-[#0be881] bg-[#17312a] border border-[#0d8951]
+
+  }
+
+  /* .notifications-colors {
+    @apply text-black-950 bg-gray-300 border border-black-950
+  } */
+
+  .notifications-colors-loading {
+    @apply text-black-950 bg-gray-300 
+  }
+
+  .notifications-colors-fail {
+    @apply text-white bg-[#ff4d4f]
+  }
+
+  .notification-fail{
+  @apply items-center animationIn rounded-xl fixed z-40 font-medium notifications-colors-fail px-5 py-2 mt-11 cursor-default right-10
+  }
+
+  .notification-loading {
+    @apply items-center animationInLoading rounded-xl fixed z-40 font-medium notifications-colors-loading px-5 py-3 mt-11 cursor-default right-10
+  }
+
+  .notification-success {
+    @apply animationIn rounded-xl fixed z-40 font-medium notifications-colors-success px-5 py-3 mt-11 cursor-default right-10
+  }
+
+  .animationInLoading {
+    animation-duration: 2s;
+    animation-name: slideinLoading;
+    animation-fill-mode:forwards;
+  }
+
+  @keyframes slideinLoading {
+
+    0% {
+      margin-right: -400px;
+    }
+    
+    100% {
+      margin-right: 0px;
+ 
+    }
+
+  }
+
+  .animationIn {
+    animation-duration: 10s;
+    animation-name: slidein;
+    animation-fill-mode:forwards;
+    
+  }
+  
+  @keyframes slidein {
+
+    0% {
+      margin-right: -400px;
+    }
+    8.33%, 25% {
+      margin-right: 0px;
+    }
+    33.33%, 50% {
+      margin-right: 0px;
+    }
+    58.33%, 75% {
+      margin-right: 0px;
+    }
+    83.33%, 100% {
+      margin-right: -400px;
+
+    }
+
+  }
+
+  .loader {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid #FFF;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-left: 4px solid #ff7700;
+    border-bottom: 4px solid transparent;
+    animation: rotation 0.5s linear infinite reverse;
+  }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+ 
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+  input[type=number] { -moz-appearance:textfield; }
+  
+  @keyframes move {
+    0% {
+      transform-origin: 0% 0% 0px;
+    }
+    100% {
+      transform: translate3d(0, 0px, 0px) scale(1.1, 1.1);
+    }
+  }
 }
 
-* {
-  box-sizing: border-box;
-}
+
+
