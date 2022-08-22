@@ -14,7 +14,7 @@ jobs:
 
     env:
       NEXT_PUBLIC_BASE_PATH: /ts-frontend
-      FIREBASE_CREDENTIALS: '${{ secrets.FIREBASE_CONFIG_DEV }}'
+      FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CONFIG_DEV }}
 
     strategy:
       matrix:
