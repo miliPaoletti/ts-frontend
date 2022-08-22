@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      NEXT_PUBLIC_BASE_PATH: /ts-frontend
+      NEXT_PUBLIC_BASE_PATH: ${{ secrets.BASE_PATH }}
       FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CONFIG_DEV }}
 
     strategy:
