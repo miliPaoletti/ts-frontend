@@ -25,7 +25,7 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
   const router = useRouter();
   const [selectedDestination, setSelectedDestination] = useState(destination);
   const [selectedMonth, setSelectedMonth] = useState(month);
-  console.log("selectedMonth");
+  console.log("selectedMonth 123");
   console.log(selectedMonth);
 
   const [listDestinations, setListDestinations] = useState([destination]);
