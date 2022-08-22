@@ -13,15 +13,19 @@ const SliderContent = ({
       {sliderImage?.map((slide, index) => (
         <div
           key={index}
-          className={index === activeIndex ? "slides active  " : "inactive"}
+          className={index === activeIndex ? "slides  active  " : "inactive"}
         >
-          <img
-            className={
-              index === activeIndex ? "slide-image animation " : "slide-image"
-            }
-            src={slide.images}
-            alt=""
-          />
+          <picture>
+            <source srcSet={slide.images} type="image" />
+            <img
+              className={
+                index === activeIndex ? "slide-image animation " : "slide-image"
+              }
+              src={slide.images}
+              alt=""
+            />
+          </picture>
+
           <p className="slide-title" style={{ textShadow: "0 0 2px #333" }}>
             {slide.title}
           </p>

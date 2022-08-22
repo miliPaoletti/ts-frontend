@@ -67,3 +67,58 @@ export const fetchDestinationsNamesAndMonths = (destinations) => {
 
   return orderObject(obj);
 };
+
+export const getSpecificDestination = async (month, destination) => {
+  let snapshot = [];
+  let ret = [];
+  if (month === ALL && destination === ALL) {
+    snapshot = await getDocs(collectionRef(PATH_DESTINATIONS));
+    ret = getAllIdAndData(snapshot);
+  }
+
+  // else if (month !== ALL && destination !== ALL) {
+  //   // console.log("entre a destino y month especifico");
+  //   const q = query(
+  //     collectionRef(CEARA),
+  //     where("departures", "array-contains", month)
+  //   );
+
+  //   const snapshot = await getDocs(q);
+
+  //   let resultado_final = [];
+  //   snapshot.docs.map((doc) => {
+  //     let title = doc.data()["title"];
+  //     if (title.includes(destination)) {
+  //       let obj = {};
+  //       obj["id"] = doc.id;
+  //       obj["data"] = doc.data();
+  //       resultado_final.push(obj);
+  //     }
+
+  //     return resultado_final;
+  //   });
+  //   ret = resultado_final;
+  // } else if (month !== ALL) {
+  //   // console.log("entre a todos -> con month especifico");
+  //   const q = query(
+  //     collectionRef(CEARA),
+  //     where("departures", "array-contains", month)
+  //   );
+
+  //   const snapshot = await getDocs(q);
+
+  //   ret = get_arr_with_id_and_data(snapshot);
+  // } else {
+  //   // console.log("entre a todos -> con destino especifico");
+
+  //   const q = query(
+  //     collectionRef(CEARA),
+  //     where("destinations_names", "array-contains", destination)
+  //   );
+
+  //   const snapshot = await getDocs(q);
+  //   // console.log(snapshot);
+  //   ret = get_arr_with_id_and_data(snapshot);
+  // }
+  return ret;
+};

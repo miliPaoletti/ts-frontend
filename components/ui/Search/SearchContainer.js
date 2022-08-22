@@ -8,11 +8,11 @@ import { GoCalendar } from "react-icons/go";
 import InputContainer from "components/ui/Search/InputContainer";
 import ListBoxSearch from "components/ui/Search/ListBoxSearch";
 
-const get_destinations_names = (destinations) => {
+const getDestinationNames = (destinations) => {
   return Object.keys(destinations);
 };
 
-const get_months_of_dest = (destinations, destination) => {
+const getMonthsOfDest = (destinations, destination) => {
   let months = [];
   let todos = [ALL];
   let result_months = destinations[destination];
@@ -22,6 +22,7 @@ const get_months_of_dest = (destinations, destination) => {
 };
 
 const SearchBar = ({ destinationsNames, months, destination, month }) => {
+  // console.log(destination);
   const router = useRouter();
   const [selectedDestination, setSelectedDestination] = useState(destination);
   const [selectedMonth, setSelectedMonth] = useState(month);
@@ -32,9 +33,9 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
   const [skipCount, setSkipCount] = useState(true);
 
   useEffect(() => {
-    setListDestinations(get_destinations_names(destinationsNames));
+    setListDestinations(getDestinationNames(destinationsNames));
     if (selectedDestination !== ALL) {
-      setListMonths(get_months_of_dest(destinationsNames, selectedDestination));
+      setListMonths(getMonthsOfDest(destinationsNames, selectedDestination));
     } else {
       setListMonths(months);
     }
@@ -43,6 +44,9 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
       setSelectedMonth(ALL);
     }
   }, [selectedDestination, months, skipCount, destinationsNames]);
+
+  console.log("selectedDestination");
+  console.log(selectedDestination);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

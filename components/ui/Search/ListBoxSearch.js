@@ -3,6 +3,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { BsCheck } from "react-icons/bs";
 import { TbSelector } from "react-icons/tb";
 const ListBoxSearch = ({ data, separator, icon, onChange, text, selected }) => {
+  console.log(selected);
   const onChangeSetSelected = (q) => {
     onChange(q);
   };

@@ -90,7 +90,7 @@
     /* aca creo que se tendria que acomodar la transicion del carousle */
   }
   .active {
-    @apply block opacity-100;
+    @apply block opacity-100 ;
     /* transition-opacity duration-1000 ease-in */
   }
   .inactive {

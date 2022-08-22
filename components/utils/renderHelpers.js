@@ -72,7 +72,7 @@ export const getData = (destinations, destinationImages) => {
 };
 
 export const sortByMonth = (arr) => {
-  arr.sort(function (a, b) {
+  arr?.sort(function (a, b) {
     return months.indexOf(a.toLowerCase()) - months.indexOf(b.toLowerCase());
   });
   return arr;
