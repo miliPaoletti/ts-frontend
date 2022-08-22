@@ -21,7 +21,7 @@ module.exports = {
       },
       backgroundImage: {
         "about-us": "url(https://i.postimg.cc/nVW9QPbV/158835.jpg)",
-        "search-img": `/url(/${process.env.NEXT_PUBLIC_BASE_PATH}/search_img.jpeg)"`,
+        "search-img": `url(/${process.env.NEXT_PUBLIC_BASE_PATH}/search_img.jpeg)`,
       },
     },
   },
