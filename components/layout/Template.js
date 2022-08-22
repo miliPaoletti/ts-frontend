@@ -8,7 +8,10 @@ const Template = ({ content }) => {
     <div>
       <Head>
         <title>Turismo Serrano</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          href={`${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.ico`}
+        />
       </Head>
       <div className="page-container">
         <main className="content-wrap ">
