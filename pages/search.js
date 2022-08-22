@@ -17,14 +17,16 @@ function Search() {
 
   const { query, isReady } = useRouter();
   const [destination, setDestination] = useState("");
+  const [month, setMonth] = useState("");
   //   const router = useRouter();
   useEffect(() => {
     if (!isReady) return;
     else {
       setDestination(query.destination);
+      setMonth(query.month);
     }
     // codes using router.query
-  }, [isReady, query.destination]);
+  }, [isReady, query.destination, query.month]);
 
   const showMoreItems = () => {
     setVisible(visible + RESULTS_SEARCH);
@@ -65,7 +67,7 @@ function Search() {
           list_destinations={getData(destinations, destinationImages)}
           showMoreItems={showMoreItems}
           destination={destination}
-          month={"todos"}
+          month={month}
           visible={visible}
           months={months}
           destinationsNames={destinationsNames}

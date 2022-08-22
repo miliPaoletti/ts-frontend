@@ -14,6 +14,9 @@ const SearchContent = ({
 }) => {
   const [dest, setDest] = useState(list_destinations);
   const [textDropdown, setTextDropdown] = useState("Ordernar por");
+
+  console.log("MONTH");
+  console.log(month);
   useEffect(() => {
     setDest(list_destinations);
     setTextDropdown("Ordernar por");
@@ -56,9 +59,9 @@ const SearchContent = ({
   }
   return (
     <div className="">
-      <div className="items-center  text-center  ">
-        <div className="container-search "></div>
-        <p className="top-[4%] md:top[6%] lg:top-[8%] w-full font-medium text-2xl md:text-4xl text-white z-40 absolute remove-selection">
+      <div className="items-center text-center relative">
+        <div className="container-search"></div>
+        <p className="top-[28%] lg:top-[40%] w-full font-medium text-2xl md:text-4xl text-white z-40 absolute remove-selection">
           ¿Buscás otro destino?
         </p>
         <SearchBar

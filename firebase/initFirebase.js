@@ -10,8 +10,12 @@ function createFirebaseApp(config) {
   }
 }
 
-const firebaseApp = createFirebaseApp(
-  JSON.parse(process.env.FIREBASE_CREDENTIALS)
-);
+let firebaseApp;
+if (process.env.NEXT_PUBLIC_FIREBASE_CREDENTIALS !== undefined) {
+  firebaseApp = createFirebaseApp(
+    JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CREDENTIALS)
+    // FIREBASE_CREDENTIALS
+  );
+}
 
 export const database = getFirestore(firebaseApp);

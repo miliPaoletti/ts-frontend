@@ -22,15 +22,20 @@ const getMonthsOfDest = (destinations, destination) => {
 };
 
 const SearchBar = ({ destinationsNames, months, destination, month }) => {
-  // console.log(destination);
   const router = useRouter();
   const [selectedDestination, setSelectedDestination] = useState(destination);
   const [selectedMonth, setSelectedMonth] = useState(month);
+  console.log("selectedMonth");
+  console.log(selectedMonth);
 
   const [listDestinations, setListDestinations] = useState([destination]);
   const [listMonths, setListMonths] = useState([month]);
 
   const [skipCount, setSkipCount] = useState(true);
+
+  useEffect(() => {
+    setSelectedDestination(destination);
+  }, [destination]);
 
   useEffect(() => {
     setListDestinations(getDestinationNames(destinationsNames));
@@ -44,9 +49,6 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
       setSelectedMonth(ALL);
     }
   }, [selectedDestination, months, skipCount, destinationsNames]);
-
-  console.log("selectedDestination");
-  console.log(selectedDestination);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
