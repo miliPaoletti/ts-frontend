@@ -10,6 +10,6 @@ function createFirebaseApp(config) {
   }
 }
 
-const firebaseApp = createFirebaseApp(process.env.FIREBASE_CREDENTIALS_DEV);
+const firebaseApp = createFirebaseApp(process.env.FIREBASE_CREDENTIALS);
 
 export const database = getFirestore(firebaseApp);
