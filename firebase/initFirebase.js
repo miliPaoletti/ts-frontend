@@ -11,7 +11,7 @@ function createFirebaseApp(config) {
 }
 
 const firebaseApp = createFirebaseApp(
-  JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CREDENTIALS)
+  JSON.parse(process.env.FIREBASE_CREDENTIALS)
 );
 
 export const database = getFirestore(firebaseApp);
