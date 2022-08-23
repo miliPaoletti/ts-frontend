@@ -97,28 +97,24 @@ export const getSpecificDestination = async (month, destination) => {
       });
       ret = resultado_final;
     }
+  } else if (month !== ALL) {
+    if (month !== undefined) {
+      const q = query(
+        collectionRef(PATH_DESTINATIONS),
+        where("departures", "array-contains", month)
+      );
+      const snapshot = await getDocs(q);
+      ret = getAllIdAndData(snapshot);
+    }
+  } else {
+    if (month !== destination) {
+      const q = query(
+        collectionRef(PATH_DESTINATIONS),
+        where("destinations_names", "array-contains", destination)
+      );
+      const snapshot = await getDocs(q);
+      ret = getAllIdAndData(snapshot);
+    }
   }
-  // } else if (month !== ALL) {
-  //   // console.log("entre a todos -> con month especifico");
-  //   const q = query(
-  //     collectionRef(CEARA),
-  //     where("departures", "array-contains", month)
-  //   );
-
-  //   const snapshot = await getDocs(q);
-
-  //   ret = get_arr_with_id_and_data(snapshot);
-  // } else {
-  //   // console.log("entre a todos -> con destino especifico");
-
-  //   const q = query(
-  //     collectionRef(CEARA),
-  //     where("destinations_names", "array-contains", destination)
-  //   );
-
-  //   const snapshot = await getDocs(q);
-  //   // console.log(snapshot);
-  //   ret = get_arr_with_id_and_data(snapshot);
-  // }
   return ret;
 };
