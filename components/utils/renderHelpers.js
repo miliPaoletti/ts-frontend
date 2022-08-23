@@ -5,6 +5,8 @@ export const getCurrency = (currency) => {
   let local_currency = "";
   if (currency == "pesos") {
     local_currency = "$";
+  } else if (currency == "dolares") {
+    local_currency = "U$D";
   }
   return local_currency;
 };

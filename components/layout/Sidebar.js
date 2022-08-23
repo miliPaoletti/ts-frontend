@@ -15,6 +15,7 @@ const Sidebar = ({
   departures,
   includes,
   dataForConsult,
+  list_boarding,
 }) => {
   let list_includes = [];
   if (includes !== undefined) {
@@ -50,6 +51,7 @@ const Sidebar = ({
             icon={<MdDepartureBoard />}
             text={text_boarding}
             data={boarding}
+            list_boarding={list_boarding}
           />
         )}
 

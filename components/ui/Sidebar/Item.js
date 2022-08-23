@@ -2,7 +2,7 @@ import React from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import PopoverUi from "components/ui/Popover/PopoverUi";
 
-const Item = ({ text, icon, data }) => {
+const Item = ({ text, icon, data, list_boarding }) => {
   return (
     <div className="flex items-center space-x-2 border border-gray-300 text-md relative ">
       {icon && (
@@ -10,11 +10,13 @@ const Item = ({ text, icon, data }) => {
       )}
       <div className="first-letter-capitalize w-full">{text}</div>
 
-      {data && (
+      {list_boarding && data.length > 0 ? (
         <PopoverUi
           button={<BsPlusCircleFill className="text-orange-950 text-lg" />}
           data={data}
         />
+      ) : (
+        ""
       )}
     </div>
   );

@@ -31,7 +31,7 @@ const ListBoxSearch = ({
           >
             <Listbox.Button className="remove-selection text-left whitespace-nowrap flex items-center text-ellipsis overflow-hidden w-full  capitalize border-none focus:ring-0 text-md md:text-xl leading-5 text-black bg-transparent ">
               {icon}{" "}
-              <p className="mx-2 text-md md:text-lg text-gray-950 remove-selection">
+              <p className="mx-2 text-md md:text-lg text-gray-950 remove-selection w-[70px] md:w-auto">
                 {text}:{" "}
               </p>{" "}
               {selected}

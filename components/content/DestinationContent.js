@@ -34,8 +34,16 @@ const DestinationContent = ({
   const { notification } = useContext(NotificationContext);
 
   let text_boarding = "Tandil y zona";
+  let list_boarding = true;
   if (boarding.includes("mar del plata y zona")) {
     text_boarding = "Mar del Plata y zona";
+    list_boarding = false;
+  } else if (boarding.includes("aeroparque")) {
+    text_boarding = "Aeroparque";
+    list_boarding = false;
+  } else if (boarding.includes("ezeiza")) {
+    text_boarding = "Ezeiza";
+    list_boarding = false;
   }
   return (
     <div className="bg-white ">
@@ -68,6 +76,7 @@ const DestinationContent = ({
               boarding={getStyledData(boarding)}
               includes={includes}
               dataForConsult={dataForConsult}
+              list_boarding={list_boarding}
             />
           </div>
           <div className=" w-[100%] lg:w-[75%] block py-5 px-5">
