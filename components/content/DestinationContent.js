@@ -5,7 +5,12 @@ import NotificationSucess from "components/ui/Notifications/NotificationSuccess"
 import Image from "next/image";
 import NotificationContext from "context/NotificationContext";
 import { useContext } from "react";
-import { FAIL, LOADING, SUCCESS } from "components/utils/constants";
+import {
+  FAIL,
+  IMG_DEFAULT,
+  LOADING,
+  SUCCESS,
+} from "components/utils/constants";
 import {
   getDeparturesOrder,
   getStyledData,
@@ -63,14 +68,16 @@ const DestinationContent = ({
           </div>
           <div className=" w-[100%] lg:w-[75%] block py-5 px-5">
             {destinations_names.map((destination, index) => {
-              let getImages = [];
+              let getImages = [IMG_DEFAULT];
               let getDescription = "";
               if (img_res.length > 0) {
                 let data = img_res?.find(
-                  (dest) => dest.destination_names === destination
+                  (dest) => dest?.destination_names === destination
                 );
-                getImages = data["data"]["images"];
-                getDescription = data["data"]["description"];
+                if (data !== undefined) {
+                  getImages = data["data"]["images"];
+                  getDescription = data["data"]["description"];
+                }
               }
 
               return (
