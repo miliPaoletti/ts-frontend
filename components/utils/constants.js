@@ -20,3 +20,4 @@ export const RESULTS_SEARCH = 6;
 export const LOADING = "LOADING";
 export const SUCCESS = "SUCCESS";
 export const FAIL = "FAIL";
+export const URL_WHATSAPP = "https://wa.me/+5492494563653";

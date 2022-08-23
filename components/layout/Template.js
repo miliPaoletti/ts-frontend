@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import Footer from "components/layout/Footer";
 import Header from "./Header";
+import Whatsapp from "components/ui/Links/Whatsapp";
 
 const Template = ({ content, title }) => {
   return (
@@ -19,6 +20,7 @@ const Template = ({ content, title }) => {
           {content}
         </main>
         <Footer />
+        <Whatsapp />
       </div>
     </div>
   );

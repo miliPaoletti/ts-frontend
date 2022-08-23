@@ -190,8 +190,12 @@
   }
   
   .content-wrap {
-    @apply pb-[30rem] lg:pb-[20rem]
+    @apply pb-[26rem] lg:pb-[16rem]
     /* Footer height */
+  }
+
+  .footer{
+    @apply py-8 bg-black-900  text-white h-[30rem] lg:h-[20rem]
   }
 
   .container-search {
