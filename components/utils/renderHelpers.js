@@ -89,3 +89,24 @@ export const orderObject = (object_to_sort) => {
 
   return sorted;
 };
+
+export const getStyledData = (data) => {
+  let len = data.length - 1;
+
+  let dataStyled = data.map((item, index) => (
+    <span className="capitalize " key={index}>
+      {item}
+      {index !== len ? ", " : ""}
+    </span>
+  ));
+
+  return dataStyled;
+};
+
+export const getDeparturesOrder = (departures) => {
+  let sorted = sortByMonth(departures);
+  let abrev = sorted.map((departure) => {
+    return departure.substring(0, 3);
+  });
+  return getStyledData(abrev);
+};

@@ -118,3 +118,16 @@ export const getSpecificDestination = async (month, destination) => {
   }
   return ret;
 };
+
+export const fetchDestDocumentId = async (title) => {
+  if (title.length !== 0) {
+    const q = query(
+      collectionRef(PATH_DESTINATIONS),
+      where(documentId(), "==", title)
+    );
+
+    const snapshot = await getDocs(q);
+
+    return getAllIdAndData(snapshot);
+  }
+};
