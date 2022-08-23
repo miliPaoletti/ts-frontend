@@ -15,8 +15,6 @@ const SearchContent = ({
   const [dest, setDest] = useState(list_destinations);
   const [textDropdown, setTextDropdown] = useState("Ordernar por");
 
-  console.log("MONTH");
-  console.log(month);
   useEffect(() => {
     setDest(list_destinations);
     setTextDropdown("Ordernar por");

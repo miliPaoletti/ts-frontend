@@ -75,26 +75,28 @@ export const getSpecificDestination = async (month, destination) => {
     snapshot = await getDocs(collectionRef(PATH_DESTINATIONS));
     ret = getAllIdAndData(snapshot);
   } else if (month !== ALL && destination !== ALL) {
-    const q = query(
-      collectionRef(PATH_DESTINATIONS),
-      where("departures", "array-contains", month)
-    );
+    if (month !== undefined) {
+      const q = query(
+        collectionRef(PATH_DESTINATIONS),
+        where("departures", "array-contains", month)
+      );
 
-    const snapshot = await getDocs(q);
+      const snapshot = await getDocs(q);
 
-    let resultado_final = [];
-    snapshot.docs.map((doc) => {
-      let title = doc.data()["title"];
-      if (title.includes(destination)) {
-        let obj = {};
-        obj["id"] = doc.id;
-        obj["data"] = doc.data();
-        resultado_final.push(obj);
-      }
+      let resultado_final = [];
+      snapshot.docs.map((doc) => {
+        let title = doc.data()["title"];
+        if (title.includes(destination)) {
+          let obj = {};
+          obj["id"] = doc.id;
+          obj["data"] = doc.data();
+          resultado_final.push(obj);
+        }
 
-      return resultado_final;
-    });
-    ret = resultado_final;
+        return resultado_final;
+      });
+      ret = resultado_final;
+    }
   }
   // } else if (month !== ALL) {
   //   // console.log("entre a todos -> con month especifico");

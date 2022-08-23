@@ -25,30 +25,27 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
   const router = useRouter();
   const [selectedDestination, setSelectedDestination] = useState(destination);
   const [selectedMonth, setSelectedMonth] = useState(month);
-  console.log("selectedMonth 123");
-  console.log(selectedMonth);
 
   const [listDestinations, setListDestinations] = useState([destination]);
   const [listMonths, setListMonths] = useState([month]);
-
-  const [skipCount, setSkipCount] = useState(true);
 
   useEffect(() => {
     setSelectedDestination(destination);
   }, [destination]);
 
   useEffect(() => {
+    setSelectedMonth(month);
+  }, [month]);
+
+  useEffect(() => {
     setListDestinations(getDestinationNames(destinationsNames));
+
     if (selectedDestination !== ALL) {
       setListMonths(getMonthsOfDest(destinationsNames, selectedDestination));
     } else {
       setListMonths(months);
     }
-    if (skipCount) setSkipCount(false);
-    if (!skipCount) {
-      setSelectedMonth(ALL);
-    }
-  }, [selectedDestination, months, skipCount, destinationsNames]);
+  }, [selectedDestination, months, destinationsNames]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -60,6 +57,7 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
       },
     });
   };
+
   return (
     <div className="relative mt-0 md:flex md:items-center md:justify-center md:w-full md:left-0 z-[100] md:mt-[-120px]">
       <div className=" shadow-[0_0_15px_0px] shadow-orange-400">
@@ -73,6 +71,7 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
                 icon={<GoLocation className="icon" size={20} />}
                 text="Destino"
                 selected={selectedDestination}
+                updateMonths={setSelectedMonth}
               />
             }
           />

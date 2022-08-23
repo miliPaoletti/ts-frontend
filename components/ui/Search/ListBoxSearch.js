@@ -2,9 +2,21 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { BsCheck } from "react-icons/bs";
 import { TbSelector } from "react-icons/tb";
-const ListBoxSearch = ({ data, separator, icon, onChange, text, selected }) => {
+import { ALL } from "components/utils/constants";
+const ListBoxSearch = ({
+  data,
+  separator,
+  icon,
+  onChange,
+  text,
+  selected,
+  updateMonths,
+}) => {
   const onChangeSetSelected = (q) => {
     onChange(q);
+    if (updateMonths) {
+      updateMonths(ALL);
+    }
   };
   return (
     <div className="w-full md:w-72 lg:w-96 remove-selection">
