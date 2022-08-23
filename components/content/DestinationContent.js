@@ -20,10 +20,10 @@ const DestinationContent = ({
   currency,
   price,
   departures,
+  includes,
   img_res,
   boarding,
   destinations_names,
-  includes,
   dataForConsult,
 }) => {
   const { notification } = useContext(NotificationContext);

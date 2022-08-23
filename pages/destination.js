@@ -61,8 +61,8 @@ const Destination = () => {
 
   let departures = destino["departures"];
   let sheet = destino["sheet"];
-  let days = Object.values(destino["duration"])[0];
-  let nights = Object.values(destino["duration"])[1];
+
+  let days = destino["duration"]["days"];
   let regimen = destino["meal_regimen"];
   let boarding = destino["boarding"];
   let includes = destino["includes"];
@@ -76,7 +76,7 @@ const Destination = () => {
   const dataForConsult = `Destino: ${title},
       URL: http://localhost:3000/destination?destinationId=${destination},
       PRECIO: ${destino["lowest_price"][0]} ${destino["lowest_price"][1]}
-      NOCHES: ${nights},
+      NOCHES: ${destino["duration"]["nights"]},
       NOMBRES DE LOS DESTINOS: ${destination_names},
       REGIMEN: ${regimen},
       BOARDING: ${boarding} `;
@@ -90,13 +90,11 @@ const Destination = () => {
             title={title}
             sheet={sheet}
             days={days}
-            regimen={regimen}
             currency={getCurrency(destino["lowest_price"]["currency"])}
             price={destino["lowest_price"]["price"]}
             departures={departures}
             includes={includes}
             img_res={dataImages}
-            nights={nights}
             boarding={boarding}
             destinations_names={destination_names}
             dataForConsult={dataForConsult}
