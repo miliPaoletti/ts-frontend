@@ -102,6 +102,7 @@ const Destination = () => {
             dataForConsult={dataForConsult}
           />
         }
+        title={`${title} - Turismo Serrano`}
       />
     </NotificationProvider>
   );

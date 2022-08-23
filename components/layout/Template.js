@@ -3,11 +3,11 @@ import React from "react";
 import Footer from "components/layout/Footer";
 import Header from "./Header";
 
-const Template = ({ content }) => {
+const Template = ({ content, title }) => {
   return (
     <div>
       <Head>
-        <title>Turismo Serrano</title>
+        <title>{title}</title>
         <link
           rel="icon"
           href={`${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.ico`}

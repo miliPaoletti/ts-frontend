@@ -73,6 +73,7 @@ function Search() {
           destinationsNames={destinationsNames}
         />
       }
+      title="Turismo Serrano"
     />
   );
 }

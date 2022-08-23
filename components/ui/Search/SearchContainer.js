@@ -1,10 +1,8 @@
 import { ALL } from "components/utils/constants";
 import { sortByMonth } from "components/utils/renderHelpers";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { GoLocation } from "react-icons/go";
 import { GoCalendar } from "react-icons/go";
-
 import InputContainer from "components/ui/Search/InputContainer";
 import ListBoxSearch from "components/ui/Search/ListBoxSearch";
 import Link from "next/link";
@@ -23,7 +21,6 @@ const getMonthsOfDest = (destinations, destination) => {
 };
 
 const SearchBar = ({ destinationsNames, months, destination, month }) => {
-  const router = useRouter();
   const [selectedDestination, setSelectedDestination] = useState(destination);
   const [selectedMonth, setSelectedMonth] = useState(month);
 
