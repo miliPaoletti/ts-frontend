@@ -33,6 +33,10 @@ const DestinationContent = ({
 }) => {
   const { notification } = useContext(NotificationContext);
 
+  let text_boarding = "Tandil y zona";
+  if (boarding.includes("mar del plata y zona")) {
+    text_boarding = "Mar del Plata y zona";
+  }
   return (
     <div className="bg-white ">
       {notification === LOADING ? <NotificationLoading /> : ""}
@@ -60,7 +64,7 @@ const DestinationContent = ({
               currency={currency}
               price={price}
               departures={getDeparturesOrder(departures)}
-              text_boarding="Tandil y Zona"
+              text_boarding={text_boarding}
               boarding={getStyledData(boarding)}
               includes={includes}
               dataForConsult={dataForConsult}
