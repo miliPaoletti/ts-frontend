@@ -19,7 +19,6 @@ const Destination = () => {
     if (!isReady) return;
     else {
       setDestination(query.destinationId);
-      //   setMonth(query.month);
     }
   }, [isReady, query.destinationId]);
 
@@ -66,7 +65,7 @@ const Destination = () => {
   let regimen = destino["meal_regimen"];
   let boarding = destino["boarding"];
   let includes = destino["includes"];
-
+  let provider = destino["provider"];
   if (typeof includes === "string") {
     includes = [includes];
   }
@@ -79,7 +78,9 @@ const Destination = () => {
       NOCHES: ${destino["duration"]["nights"]},
       NOMBRES DE LOS DESTINOS: ${destination_names},
       REGIMEN: ${regimen},
-      BOARDING: ${boarding} `;
+      BOARDING: ${boarding}, 
+      PROVIDER: ${provider}
+      `;
 
   return (
     <NotificationProvider>

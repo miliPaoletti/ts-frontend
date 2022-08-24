@@ -4,6 +4,7 @@ import { BsFillCalendarEventFill } from "react-icons/bs";
 import { MdDepartureBoard, MdWatchLater } from "react-icons/md";
 import { GiMeal } from "react-icons/gi";
 import { ModalConsult } from "components/ui/Modals/ModalConsult";
+import { ButtonPrimary } from "components/ui/Buttons/ButtonPrimary";
 
 const Sidebar = ({
   days,
@@ -67,7 +68,10 @@ const Sidebar = ({
         )}
       </div>
 
-      <ModalConsult dataForConsult={dataForConsult} />
+      <ModalConsult
+        dataForConsult={dataForConsult}
+        trigger={<ButtonPrimary />}
+      />
     </div>
   );
 };

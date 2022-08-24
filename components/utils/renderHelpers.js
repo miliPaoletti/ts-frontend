@@ -67,6 +67,7 @@ export const getData = (destinations, destinationImages) => {
         hotels={destino.hotel}
         pathname="/destination"
         destinationId={key}
+        provider={destino.provider}
       />
     );
   }

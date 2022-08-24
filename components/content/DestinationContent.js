@@ -5,12 +5,7 @@ import NotificationSucess from "components/ui/Notifications/NotificationSuccess"
 import Image from "next/image";
 import NotificationContext from "context/NotificationContext";
 import { useContext } from "react";
-import {
-  FAIL,
-  IMG_DEFAULT,
-  LOADING,
-  SUCCESS,
-} from "components/utils/constants";
+import { FAIL, LOADING, SUCCESS } from "components/utils/constants";
 import {
   getDeparturesOrder,
   getStyledData,
@@ -81,7 +76,7 @@ const DestinationContent = ({
           </div>
           <div className=" w-[100%] lg:w-[75%] block py-5 px-5">
             {destinations_names.map((destination, index) => {
-              let getImages = [IMG_DEFAULT];
+              let getImages = [];
               let getDescription = "";
               if (img_res.length > 0) {
                 let data = img_res?.find(
@@ -93,33 +88,15 @@ const DestinationContent = ({
                 }
               }
 
-              return (
+              return getImages.length > 0 && getDescription !== "" ? (
                 <div key={index} className="space-y-5">
                   <TitleDestination text={destination} />{" "}
                   <WrapperPrimary list={getImages} />
-                  <div className="text-justify">
-                    Al contrario del pensamiento popular, el texto de Lorem
-                    Ipsum no es simplemente texto aleatorio. Tiene sus raices en
-                    una pieza clsica de la literatura del Latin, que data del
-                    año 45 antes de Cristo, haciendo que este adquiera mas de
-                    2000 años de antiguedad. Richard McClintock, un profesor de
-                    Latin de la Universidad de Hampden-Sydney en Virginia,
-                    encontró una de las palabras más oscuras de la lengua del
-                    latín, consecteur, en un pasaje de Lorem Ipsum, y al seguir
-                    leyendo distintos textos del latín, descubrió la fuente
-                    indudable. Lorem Ipsum viene de las secciones 1.10.32 y
-                    1.10.33 de de Finnibus Bonorum et Malorum (Los Extremos del
-                    Bien y El Mal) por Cicero, escrito en el año 45 antes de
-                    Cristo. Este libro es un tratado de teoría de éticas, muy
-                    popular durante el Renacimiento. La primera linea del Lorem
-                    Ipsum, Lorem ipsum dolor sit amet.., viene de una linea en
-                    la sección 1.10.32 El trozo de texto estándar de Lorem Ipsum
-                    usado desde el año 1500 es reproducido debajo para aquellos
-                    interesados. Las secciones 1.10.32 y 1.10.33 de de Finibus
-                    Bonorum et Malorum por Cicero son también reproducidas en su
-                    forma original exacta, acompañadas por versiones en Inglés
-                    de la traducción realizada en 1914 por H. Rackham.
-                  </div>
+                  <div className="text-justify">{getDescription}</div>
+                </div>
+              ) : (
+                <div className="mt-11">
+                  No hay información disponible en estos momentos
                 </div>
               );
             })}

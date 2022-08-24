@@ -6,7 +6,13 @@ import { FaPhoneAlt, FaUser } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import NotificationContext from "context/NotificationContext";
-import { FAIL, SUCCESS, LOADING } from "components/utils/constants";
+import {
+  FAIL,
+  SUCCESS,
+  LOADING,
+  MEDIUM_CARD,
+  INFO_NOT_UPLOADED,
+} from "components/utils/constants";
 
 function validateEmail(value) {
   let error;
@@ -58,7 +64,7 @@ const initialValues = {
   consult: "",
 };
 
-export default function ContactForm({ setIsOpen, dataForConsult }) {
+export default function ContactForm({ setIsOpen, dataForConsult, section }) {
   const { setNotification } = useContext(NotificationContext);
 
   return (
@@ -84,6 +90,7 @@ export default function ContactForm({ setIsOpen, dataForConsult }) {
         {({ errors, isSubmitting, touched }) => (
           <Form className="form space-y-5 my-7">
             <div className="text-center text-2xl font-medium"> CONSULTAR</div>
+            {section === MEDIUM_CARD && <div>{INFO_NOT_UPLOADED}</div>}
             <ItemContact
               icon={<FaUser />}
               text={

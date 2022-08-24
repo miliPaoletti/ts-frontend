@@ -1,9 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import ContactForm from "components/contact/ContactFormik";
+import { MEDIUM_CARD } from "components/utils/constants";
 import { Fragment, useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 
-export const ModalConsult = ({ dataForConsult }) => {
+export const ModalConsult = ({ dataForConsult, trigger, section }) => {
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
@@ -15,14 +16,12 @@ export const ModalConsult = ({ dataForConsult }) => {
 
   return (
     <>
-      <div>
-        <button
-          className="button-primary w-full"
-          onClick={openModal}
-          type="button"
-        >
-          Consultar
-        </button>
+      <div
+        className={`${section === MEDIUM_CARD ? "medium-card" : ""}`}
+        // className={`about-us-container ${href ? " cursor-pointer" : ""} `}
+        onClick={openModal}
+      >
+        {trigger}
       </div>
 
       <Transition
@@ -35,7 +34,7 @@ export const ModalConsult = ({ dataForConsult }) => {
           }
         }}
       >
-        <Dialog as="div" className="relative z-10">
+        <Dialog as="div" className="relative z-[999999]">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -63,6 +62,7 @@ export const ModalConsult = ({ dataForConsult }) => {
                     <ContactForm
                       setIsOpen={setIsOpen}
                       dataForConsult={dataForConsult}
+                      section={section}
                     />
                   </div>
 
