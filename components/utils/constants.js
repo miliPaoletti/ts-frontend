@@ -14,8 +14,13 @@ export const months = [
   "noviembre",
   "diciembre",
 ];
-export const IMG_DEFAULT = `${process.env.NEXT_PUBLIC_BASE_PATH}/default_img.jpg`;
-// "search-img": `url(${process.env.NEXT_PUBLIC_BASE_PATH}/search_img.jpeg)`,
+
+export const IMG_DEFAULT = `${
+  process.env.NEXT_PUBLIC_BASE_PATH === undefined
+    ? "default_img.jpg"
+    : `url(${process.env.NEXT_PUBLIC_BASE_PATH}/default_img.jpg)`
+}`;
+
 export const RESULTS_SEARCH = 6;
 export const LOADING = "LOADING";
 export const SUCCESS = "SUCCESS";

@@ -86,7 +86,7 @@ export const getSpecificDestination = async (month, destination) => {
       let resultado_final = [];
       snapshot.docs.map((doc) => {
         let title = doc.data()["title"];
-        if (title.includes(destination)) {
+        if (title.toLowerCase().includes(destination.toLowerCase())) {
           let obj = {};
           obj["id"] = doc.id;
           obj["data"] = doc.data();
