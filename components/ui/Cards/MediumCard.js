@@ -20,7 +20,7 @@ export function MediumCard({
       {promotions ? (
         <div className="absolute top-[15px]  right-[15px] bg-yellow-500 text-white rounded-lg py-2 px-4 text-center">
           <div className="font-bold text-xl">
-            50% <span className="text-base font-bold">OFF</span>
+            {promotions}% <span className="text-base font-bold">OFF</span>
           </div>
           <div className="text-[11px] font-bold">2do pasajero</div>
         </div>
@@ -39,7 +39,7 @@ export function MediumCard({
         <div className="font-bold text-2xl sm:text-3xl xl:text-2xl 2xl:text-3xl mb-2 capitalize">
           {title}
         </div>
-        <div className="text-base sm:text-xl xl:text-base 2xl:text-xl mb-2 first-letter-capitalize ">
+        <div className="text-base sm:text-xl xl:text-base 2xl:text-xl mb-2 ">
           {months}
         </div>
       </div>

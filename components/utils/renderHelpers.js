@@ -40,22 +40,16 @@ export const getData = (destinations, destinationImages) => {
       duration = durationDest.days;
     }
     let promotion = false;
+
     if (promotionDest !== undefined) {
-      if (
-        promotionDest.includes("segundo pasajero") &&
-        promotionDest.includes("50%")
-      ) {
-        promotion = true;
+      if (promotionDest.includes("segundo pasajero")) {
+        let amount = promotionDest.split(" ")[3].slice(0, -1);
+        promotion = 100 - amount;
       }
     }
 
-    let months = "";
-    if (destino.sheet) {
-      months = destino.sheet;
-    } else {
-      let months_local = sortByMonth(destino.departures);
-      months = getStyledData(months_local);
-    }
+    let months_local = sortByMonth(destino.departures);
+    let months = getStyledData(months_local);
 
     listDestinations.push(
       <MediumCard
