@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "components/ui/Search/SearchContainer";
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
 import { DropdownOrderBy } from "components/ui/Dropdown/DropdownOrderBy";
+import { RESULTS_SEARCH } from "components/utils/constants";
 const SearchContent = ({
   list_destinations,
-  showMoreItems,
-  visible,
   destination,
   month,
   months,
@@ -13,6 +12,7 @@ const SearchContent = ({
 }) => {
   const [dest, setDest] = useState(list_destinations);
   const [textDropdown, setTextDropdown] = useState("Ordernar por");
+  const [visible, setVisible] = useState(RESULTS_SEARCH);
 
   useEffect(() => {
     setDest(list_destinations);
@@ -24,11 +24,17 @@ const SearchContent = ({
     len_dest = list_destinations.length;
   }
 
+  const showMoreItems = (e) => {
+    e.preventDefault();
+    console.log(e);
+    setVisible(visible + RESULTS_SEARCH);
+  };
+
   const handleOrderAsc = () => {
-    let list_order_desc = list_destinations.sort(
+    let list_order_asc = list_destinations.sort(
       (a, b) => parseFloat(a.props["price"]) - parseFloat(b.props["price"])
     );
-    setDest([...list_order_desc]);
+    setDest([...list_order_asc]);
     setTextDropdown("Precio asc");
   };
 

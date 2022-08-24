@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Template from "components/layout/Template";
 import { useRouter } from "next/router";
-import { RESULTS_SEARCH } from "components/utils/constants";
 import SearchContent from "components/content/SearchContent";
 import {
   fetchAllDestinations,
@@ -13,8 +12,6 @@ import { fetchDestinationsImages, transformListToDict } from "./api/images";
 import { getData } from "components/utils/renderHelpers";
 
 function Search() {
-  const [visible, setVisible] = useState(RESULTS_SEARCH);
-
   const { query, isReady } = useRouter();
   const [destination, setDestination] = useState("");
   const [month, setMonth] = useState("");
@@ -24,12 +21,7 @@ function Search() {
       setDestination(query.destination);
       setMonth(query.month);
     }
-    // codes using router.query
   }, [isReady, query.destination, query.month]);
-
-  const showMoreItems = () => {
-    setVisible(visible + RESULTS_SEARCH);
-  };
 
   const [destinations, setDestinations] = useState([]);
   const [destinationImages, setDestinationImages] = useState([]);
@@ -64,10 +56,8 @@ function Search() {
       content={
         <SearchContent
           list_destinations={getData(destinations, destinationImages)}
-          showMoreItems={showMoreItems}
           destination={destination}
           month={month}
-          visible={visible}
           months={months}
           destinationsNames={destinationsNames}
         />
