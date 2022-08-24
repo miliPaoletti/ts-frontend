@@ -19,6 +19,7 @@ const DestinationContent = ({
   boarding,
   destinations_names,
   dataForConsult,
+  promotions,
 }) => {
   let text_boarding = "Tandil y zona";
   let list_boarding = true;
@@ -61,6 +62,7 @@ const DestinationContent = ({
               includes={includes}
               dataForConsult={dataForConsult}
               list_boarding={list_boarding}
+              promotions={promotions}
             />
           </div>
           <div className=" w-[100%] lg:w-[75%] block py-5 px-5">

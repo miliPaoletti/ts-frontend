@@ -1,7 +1,10 @@
 import DestinationContent from "components/content/DestinationContent";
 import Template from "components/layout/Template";
 import { IMG_DEFAULT } from "components/utils/constants";
-import { getCurrency } from "components/utils/renderHelpers";
+import {
+  getCurrency,
+  getPromotionsValue,
+} from "components/utils/renderHelpers";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchDestDocumentId } from "./api/destinations";
@@ -64,6 +67,7 @@ const Destination = () => {
   let boarding = destino["boarding"];
   let includes = destino["includes"];
   let provider = destino["provider"];
+  let promotion = destino["promotions"];
   if (typeof includes === "string") {
     includes = [includes];
   }
@@ -96,6 +100,7 @@ const Destination = () => {
           boarding={boarding}
           destinations_names={destination_names}
           dataForConsult={dataForConsult}
+          promotions={getPromotionsValue(promotion)}
         />
       }
       title={`${title} - Turismo Serrano`}

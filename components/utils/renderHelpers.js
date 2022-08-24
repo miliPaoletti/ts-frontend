@@ -39,14 +39,6 @@ export const getData = (destinations, destinationImages) => {
     if (durationDest !== undefined) {
       duration = durationDest.days;
     }
-    let promotion = false;
-
-    if (promotionDest !== undefined) {
-      if (promotionDest.includes("segundo pasajero")) {
-        let amount = promotionDest.split(" ")[3].slice(0, -1);
-        promotion = 100 - amount;
-      }
-    }
 
     let months_local = sortByMonth(destino.departures);
     let months = getStyledData(months_local);
@@ -57,7 +49,7 @@ export const getData = (destinations, destinationImages) => {
         key={key}
         title={destino.title}
         months={months}
-        promotions={promotion}
+        promotions={getPromotionsValue(promotionDest)}
         currency={getCurrency(destino.lowest_price["currency"])}
         price={destino.lowest_price["price"]}
         days={duration}
@@ -134,4 +126,15 @@ export const filterListDestDolars = (list_destinations) => {
 
 export const filterListDestPesos = (list_destinations) => {
   return list_destinations.filter((dest) => dest.props["currency"] === "$");
+};
+
+export const getPromotionsValue = (promotionDest) => {
+  let promotion = 0;
+  if (promotionDest !== undefined) {
+    if (promotionDest.includes("segundo pasajero")) {
+      let amount = promotionDest.split(" ")[3].slice(0, -1);
+      promotion = 100 - amount;
+    }
+  }
+  return promotion;
 };
