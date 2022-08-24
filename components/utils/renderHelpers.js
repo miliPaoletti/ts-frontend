@@ -53,7 +53,8 @@ export const getData = (destinations, destinationImages) => {
     if (destino.sheet) {
       months = destino.sheet;
     } else {
-      months = getStyledData(sortByMonth(destino.departures));
+      let months_local = sortByMonth(destino.departures);
+      months = getStyledData(months_local);
     }
 
     listDestinations.push(
