@@ -18,7 +18,7 @@ export const months = [
 export const IMG_DEFAULT = `${
   process.env.NEXT_PUBLIC_BASE_PATH === undefined
     ? "default_img.jpg"
-    : `url(${process.env.NEXT_PUBLIC_BASE_PATH}/default_img.jpg)`
+    : `${process.env.NEXT_PUBLIC_BASE_PATH}/default_img.jpg`
 }`;
 
 export const RESULTS_SEARCH = 6;
