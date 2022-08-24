@@ -2,7 +2,6 @@ import DestinationContent from "components/content/DestinationContent";
 import Template from "components/layout/Template";
 import { IMG_DEFAULT } from "components/utils/constants";
 import { getCurrency } from "components/utils/renderHelpers";
-import { NotificationProvider } from "context/NotificationContext";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchDestDocumentId } from "./api/destinations";
@@ -11,7 +10,6 @@ import { fetchDestinationsImages, transformListToDict } from "./api/images";
 const Destination = () => {
   const { query, isReady } = useRouter();
   const [destination, setDestination] = useState("");
-  //   const [month, setMonth] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [destinationImages, setDestinationImages] = useState([]);
 
@@ -83,27 +81,25 @@ const Destination = () => {
       `;
 
   return (
-    <NotificationProvider>
-      <Template
-        content={
-          <DestinationContent
-            img={img}
-            title={title}
-            sheet={sheet}
-            days={days}
-            currency={getCurrency(destino["lowest_price"]["currency"])}
-            price={destino["lowest_price"]["price"]}
-            departures={departures}
-            includes={includes}
-            img_res={dataImages}
-            boarding={boarding}
-            destinations_names={destination_names}
-            dataForConsult={dataForConsult}
-          />
-        }
-        title={`${title} - Turismo Serrano`}
-      />
-    </NotificationProvider>
+    <Template
+      content={
+        <DestinationContent
+          img={img}
+          title={title}
+          sheet={sheet}
+          days={days}
+          currency={getCurrency(destino["lowest_price"]["currency"])}
+          price={destino["lowest_price"]["price"]}
+          departures={departures}
+          includes={includes}
+          img_res={dataImages}
+          boarding={boarding}
+          destinations_names={destination_names}
+          dataForConsult={dataForConsult}
+        />
+      }
+      title={`${title} - Turismo Serrano`}
+    />
   );
 };
 

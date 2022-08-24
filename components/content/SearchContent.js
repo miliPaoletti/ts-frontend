@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "components/ui/Search/SearchContainer";
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
 import { DropdownOrderBy } from "components/ui/Dropdown/DropdownOrderBy";
-import NotificationLoading from "components/ui/Notifications/NotificationLoading";
-import NotificationSucess from "components/ui/Notifications/NotificationSuccess";
-import NotificationFail from "components/ui/Notifications/NotificationFail";
-import NotificationContext from "context/NotificationContext";
-import { useContext } from "react";
-import { FAIL, LOADING, SUCCESS } from "components/utils/constants";
 const SearchContent = ({
   list_destinations,
   showMoreItems,
@@ -19,7 +13,6 @@ const SearchContent = ({
 }) => {
   const [dest, setDest] = useState(list_destinations);
   const [textDropdown, setTextDropdown] = useState("Ordernar por");
-  const { notification } = useContext(NotificationContext);
 
   useEffect(() => {
     setDest(list_destinations);
@@ -63,9 +56,6 @@ const SearchContent = ({
   }
   return (
     <div className="">
-      {notification === LOADING ? <NotificationLoading /> : ""}
-      {notification === SUCCESS ? <NotificationSucess /> : ""}
-      {notification === FAIL ? <NotificationFail /> : ""}
       <div className="items-center text-center relative">
         <div className="container-search"></div>
         <p className="top-[28%] lg:top-[40%] w-full font-medium text-2xl md:text-4xl text-white z-40 absolute remove-selection">

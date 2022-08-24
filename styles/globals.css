@@ -249,15 +249,15 @@
   }
 
   .notification-fail{
-  @apply items-center animationIn rounded-xl fixed z-40 font-medium notifications-colors-fail px-5 py-2 mt-11 cursor-default right-10
+  @apply items-center animationIn rounded-xl fixed z-[99999]  font-medium notifications-colors-fail px-5 py-2 mt-11 cursor-default right-10
   }
 
   .notification-loading {
-    @apply items-center animationInLoading rounded-xl fixed z-40 font-medium notifications-colors-loading px-5 py-3 mt-11 cursor-default right-10
+    @apply items-center animationInLoading rounded-xl fixed z-[99999] font-medium notifications-colors-loading px-5 py-3 mt-11 cursor-default right-10
   }
 
   .notification-success {
-    @apply animationIn rounded-xl fixed z-40 font-medium notifications-colors-success px-5 py-3 mt-11 cursor-default right-10
+    @apply animationIn rounded-xl fixed z-[99999] font-medium notifications-colors-success px-5 py-3 mt-11 cursor-default right-10
   }
 
   .animationInLoading {

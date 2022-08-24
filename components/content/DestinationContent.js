@@ -1,11 +1,5 @@
 import Sidebar from "components/layout/Sidebar";
-import NotificationFail from "components/ui/Notifications/NotificationFail";
-import NotificationLoading from "components/ui/Notifications/NotificationLoading";
-import NotificationSucess from "components/ui/Notifications/NotificationSuccess";
 import Image from "next/image";
-import NotificationContext from "context/NotificationContext";
-import { useContext } from "react";
-import { FAIL, LOADING, SUCCESS } from "components/utils/constants";
 import {
   getDeparturesOrder,
   getStyledData,
@@ -26,8 +20,6 @@ const DestinationContent = ({
   destinations_names,
   dataForConsult,
 }) => {
-  const { notification } = useContext(NotificationContext);
-
   let text_boarding = "Tandil y zona";
   let list_boarding = true;
   if (boarding.includes("mar del plata y zona")) {
@@ -42,9 +34,6 @@ const DestinationContent = ({
   }
   return (
     <div className="bg-white ">
-      {notification === LOADING ? <NotificationLoading /> : ""}
-      {notification === SUCCESS ? <NotificationSucess /> : ""}
-      {notification === FAIL ? <NotificationFail /> : ""}
       <div className="relative slider-container w-100">
         <div className="opacity-imgs">
           <Image

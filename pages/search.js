@@ -11,7 +11,6 @@ import {
 } from "./api/destinations";
 import { fetchDestinationsImages, transformListToDict } from "./api/images";
 import { getData } from "components/utils/renderHelpers";
-import { NotificationProvider } from "context/NotificationContext";
 
 function Search() {
   const [visible, setVisible] = useState(RESULTS_SEARCH);
@@ -61,22 +60,20 @@ function Search() {
   }, []);
 
   return (
-    <NotificationProvider>
-      <Template
-        content={
-          <SearchContent
-            list_destinations={getData(destinations, destinationImages)}
-            showMoreItems={showMoreItems}
-            destination={destination}
-            month={month}
-            visible={visible}
-            months={months}
-            destinationsNames={destinationsNames}
-          />
-        }
-        title="Turismo Serrano"
-      />
-    </NotificationProvider>
+    <Template
+      content={
+        <SearchContent
+          list_destinations={getData(destinations, destinationImages)}
+          showMoreItems={showMoreItems}
+          destination={destination}
+          month={month}
+          visible={visible}
+          months={months}
+          destinationsNames={destinationsNames}
+        />
+      }
+      title="Turismo Serrano"
+    />
   );
 }
 export default Search;
