@@ -55,7 +55,7 @@ function Search() {
     <Template
       content={
         <SearchContent
-          list_destinations={getData(destinations, destinationImages)}
+          listDestinations={getData(destinations, destinationImages)}
           destination={destination}
           month={month}
           months={months}

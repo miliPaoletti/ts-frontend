@@ -3,60 +3,75 @@ import SearchBar from "components/ui/Search/SearchContainer";
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
 import { DropdownOrderBy } from "components/ui/Dropdown/DropdownOrderBy";
 import { RESULTS_SEARCH } from "components/utils/constants";
+import { filterListDestDolars } from "components/utils/renderHelpers";
+import { filterListDestPesos } from "components/utils/renderHelpers";
+import { sortPricesAsc } from "components/utils/renderHelpers";
+import { sortPricesDesc } from "components/utils/renderHelpers";
 const SearchContent = ({
-  list_destinations,
+  listDestinations,
   destination,
   month,
   months,
   destinationsNames,
 }) => {
-  const [dest, setDest] = useState(list_destinations);
+  const [dest, setDest] = useState(listDestinations);
   const [textDropdown, setTextDropdown] = useState("Ordernar por");
   const [visible, setVisible] = useState(RESULTS_SEARCH);
 
   useEffect(() => {
-    setDest(list_destinations);
+    setDest(listDestinations);
     setTextDropdown("Ordernar por");
-  }, [list_destinations]);
+  }, [listDestinations]);
 
-  let len_dest = 0;
-  if (list_destinations !== undefined) {
-    len_dest = list_destinations.length;
+  let lenDest = 0;
+  if (listDestinations !== undefined) {
+    lenDest = listDestinations.length;
   }
 
   const showMoreItems = (e) => {
     e.preventDefault();
-    console.log(e);
     setVisible(visible + RESULTS_SEARCH);
   };
 
   const handleOrderAsc = () => {
-    let list_order_asc = list_destinations.sort(
-      (a, b) => parseFloat(a.props["price"]) - parseFloat(b.props["price"])
+    const sortedListDolars = sortPricesAsc(
+      filterListDestDolars(listDestinations)
     );
-    setDest([...list_order_asc]);
+    const sortedListPesos = sortPricesAsc(
+      filterListDestPesos(listDestinations)
+    );
+
+    let listOrderAsc = sortedListPesos.concat(sortedListDolars);
+
+    setDest([...listOrderAsc]);
     setTextDropdown("Precio asc");
   };
 
   const handleOrderDesc = () => {
-    let list_order_desc = list_destinations.sort(
-      (a, b) => parseFloat(b.props["price"]) - parseFloat(a.props["price"])
+    const sortedListDolars = sortPricesDesc(
+      filterListDestDolars(listDestinations)
     );
-    setDest([...list_order_desc]);
+    const sortedListPesos = sortPricesDesc(
+      filterListDestPesos(listDestinations)
+    );
+
+    let listOrderDesc = sortedListDolars.concat(sortedListPesos);
+
+    setDest([...listOrderDesc]);
     setTextDropdown("Precio desc");
   };
 
   const handleOrderName = () => {
-    let list_order = list_destinations.sort((a, b) =>
+    let listOrder = listDestinations.sort((a, b) =>
       a.props["title"].localeCompare(b.props["title"])
     );
 
-    setDest([...list_order]);
+    setDest([...listOrder]);
     setTextDropdown("Nombre");
   };
   let text = "Destinos";
   let text2 = "encontrados";
-  if (len_dest === 1) {
+  if (lenDest === 1) {
     text = "Destino";
     text2 = "encontrado";
   }
@@ -78,9 +93,9 @@ const SearchContent = ({
       <div className="container-general flex pb-8 px-5 lg:px-0 md:pt-11">
         <div>
           <div className="mb-8 py-2 text-2xl w-full"></div>
-          <TitlePrimary text={len_dest + " " + text} text2={text2} />
+          <TitlePrimary text={lenDest + " " + text} text2={text2} />
 
-          {len_dest > 1 ? (
+          {lenDest > 1 ? (
             <DropdownOrderBy
               handleOrderAsc={handleOrderAsc}
               handleOrderDesc={handleOrderDesc}
@@ -94,7 +109,7 @@ const SearchContent = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
             {dest?.slice(0, visible)}
           </div>
-          {visible < len_dest ? (
+          {visible < lenDest ? (
             <div className="text-right pr-11">
               <button
                 className="bg-orange-950 text-white p-4 rounded-xl hover:shadow-lg transition transform duration-200 ease-out font-semibold uppercase text-xl"

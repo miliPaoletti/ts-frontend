@@ -121,3 +121,23 @@ export const getDeparturesOrder = (departures) => {
   });
   return getStyledData(abrev);
 };
+
+export const sortPricesAsc = (list_destinations) => {
+  return list_destinations.sort(
+    (a, b) => parseFloat(a.props["price"]) - parseFloat(b.props["price"])
+  );
+};
+
+export const sortPricesDesc = (list_destinations) => {
+  return list_destinations.sort(
+    (a, b) => parseFloat(b.props["price"]) - parseFloat(a.props["price"])
+  );
+};
+
+export const filterListDestDolars = (list_destinations) => {
+  return list_destinations.filter((dest) => dest.props["currency"] === "U$D");
+};
+
+export const filterListDestPesos = (list_destinations) => {
+  return list_destinations.filter((dest) => dest.props["currency"] === "$");
+};
