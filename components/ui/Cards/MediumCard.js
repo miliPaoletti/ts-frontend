@@ -39,7 +39,7 @@ export function MediumCard({
         <div className="font-bold text-2xl sm:text-3xl xl:text-2xl 2xl:text-3xl mb-2 capitalize">
           {title}
         </div>
-        <div className="text-base sm:text-xl xl:text-base 2xl:text-xl mb-2  ">
+        <div className="text-base sm:text-xl xl:text-base 2xl:text-xl mb-2 first-letter-capitalize ">
           {months}
         </div>
       </div>

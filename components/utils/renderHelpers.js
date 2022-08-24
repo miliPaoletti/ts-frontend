@@ -49,12 +49,19 @@ export const getData = (destinations, destinationImages) => {
       }
     }
 
+    let months = "";
+    if (destino.sheet) {
+      months = destino.sheet;
+    } else {
+      months = getStyledData(sortByMonth(destino.departures));
+    }
+
     listDestinations.push(
       <MediumCard
         img={first_image}
         key={key}
         title={destino.title}
-        months={destino.sheet}
+        months={months}
         promotions={promotion}
         currency={getCurrency(destino.lowest_price["currency"])}
         price={destino.lowest_price["price"]}
