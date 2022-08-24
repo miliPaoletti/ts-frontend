@@ -12,6 +12,7 @@ import { fetchDestinationsImages, transformListToDict } from "./api/images";
 
 const Destination = () => {
   const { query, isReady } = useRouter();
+  const router = useRouter();
   const [destination, setDestination] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [destinationImages, setDestinationImages] = useState([]);
@@ -24,8 +25,16 @@ const Destination = () => {
   }, [isReady, query.destinationId]);
 
   useEffect(() => {
-    fetchDestDocumentId(destination).then(setSearchResults);
-  }, [destination]);
+    fetchDestDocumentId(destination).then((values) => {
+      if (values !== undefined) {
+        if (values.length === 0) {
+          router.push("/404");
+        } else {
+          setSearchResults(values);
+        }
+      }
+    });
+  }, [destination, router]);
 
   useEffect(() => {
     if (searchResults !== undefined) {
