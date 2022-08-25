@@ -7,6 +7,7 @@ import {
 import TitleDestination from "components/ui/Titles/TitleDestination";
 import WrapperPrimary from "components/ui/WrapperImages/WrapperPrimary";
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
+
 const DestinationContent = ({
   img,
   title,

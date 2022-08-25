@@ -1,5 +1,5 @@
 import React from "react";
-// import { SRLWrapper } from "simple-react-lightbox";
+import { SRLWrapper } from "simple-react-lightbox";
 
 const WrapperPrimary = ({ list }) => {
   let img_container = "";
@@ -9,21 +9,21 @@ const WrapperPrimary = ({ list }) => {
   img_style = "w-full h-full object-cover absolute object-center	";
 
   return (
-    // <SRLWrapper>
-    <div className="space-x-3 flex">
-      {list?.map((item, index) =>
-        index < 3 ? (
-          <a href={item} key={item} className={`${img_container}`}>
-            <img src={item} alt="" className={`${img_style}`} />
-          </a>
-        ) : (
-          <a href={item} key={item} className={`${img_container} hidden`}>
-            <img src={item} alt="" className={`${img_style}`} />
-          </a>
-        )
-      )}
-    </div>
-    // </SRLWrapper>
+    <SRLWrapper>
+      <div className="space-x-3 flex">
+        {list?.map((item, index) =>
+          index < 3 ? (
+            <a href={item} key={item} className={`${img_container}`}>
+              <img src={item} alt="" className={`${img_style}`} />
+            </a>
+          ) : (
+            <a href={item} key={item} className={`${img_container} hidden`}>
+              <img src={item} alt="" className={`${img_style}`} />
+            </a>
+          )
+        )}
+      </div>
+    </SRLWrapper>
   );
 };
 
