@@ -6,6 +6,7 @@ import {
 } from "components/utils/renderHelpers";
 import TitleDestination from "components/ui/Titles/TitleDestination";
 import WrapperPrimary from "components/ui/WrapperImages/WrapperPrimary";
+import TitlePrimary from "components/ui/Titles/TitlePrimary";
 const DestinationContent = ({
   img,
   title,
@@ -20,6 +21,7 @@ const DestinationContent = ({
   destinations_names,
   dataForConsult,
   promotions,
+  destinationsRelated,
 }) => {
   let text_boarding = "Tandil y zona";
   let list_boarding = true;
@@ -91,6 +93,12 @@ const DestinationContent = ({
                 </div>
               );
             })}
+          </div>
+          <div className=" ">
+            <TitlePrimary text="Destinos " text2="Relacionados" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+              {destinationsRelated}
+            </div>
           </div>
         </div>
       </div>

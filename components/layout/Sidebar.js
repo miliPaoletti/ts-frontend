@@ -44,11 +44,16 @@ const Sidebar = ({
         <p className="text-black-950 text-sm italic">en base doble</p>
       </div>
       <div className="space-y-3 block ">
-        <p className="font-bold text-xl">Promoción</p>
-        <Item
-          text={`2do pasajero ${promotions}% OFF`}
-          stylesItem="bg-yellow-500 text-white font-bold text-lg text-center"
-        />
+        {promotions !== 0 && (
+          <>
+            <p className="font-bold text-xl">Promoción</p>
+            <Item
+              text={`2do pasajero ${promotions}% OFF`}
+              stylesItem="bg-yellow-500 text-white font-bold text-lg text-center"
+            />
+          </>
+        )}
+
         <p className="font-bold text-xl">Resumen del viaje</p>
 
         {departures && (

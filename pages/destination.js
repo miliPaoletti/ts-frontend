@@ -3,11 +3,12 @@ import Template from "components/layout/Template";
 import { IMG_DEFAULT } from "components/utils/constants";
 import {
   getCurrency,
+  getData,
   getPromotionsValue,
 } from "components/utils/renderHelpers";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { fetchDestDocumentId } from "./api/destinations";
+import { fetchDestDocumentId, fetchDestRelated } from "./api/destinations";
 import { fetchDestinationsImages, transformListToDict } from "./api/images";
 
 const Destination = () => {
@@ -16,6 +17,8 @@ const Destination = () => {
   const [destination, setDestination] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [destinationImages, setDestinationImages] = useState([]);
+  const [destinationsRelated, setDestinationsRelated] = useState([]);
+  const [imagesDestRelated, setImagesDestRelated] = useState([]);
 
   useEffect(() => {
     if (!isReady) return;
@@ -45,6 +48,29 @@ const Destination = () => {
       });
     }
   }, [searchResults]);
+
+  useEffect(() => {
+    if (searchResults !== undefined) {
+      if (searchResults.length !== 0) {
+        const destino = searchResults[0]["data"];
+        let destinationNames = destino["destinations_names"];
+        fetchDestRelated(destinationNames).then((val) => {
+          let dataFiltered = val.filter((dest) => dest["id"] !== destination);
+          setDestinationsRelated(dataFiltered);
+        });
+      }
+    }
+  }, [searchResults, destination]);
+
+  useEffect(() => {
+    if (destinationsRelated !== undefined) {
+      fetchDestinationsImages(destinationsRelated).then((val) => {
+        transformListToDict(val).then((resp) => {
+          setImagesDestRelated(resp);
+        });
+      });
+    }
+  }, [destinationsRelated]);
 
   if (
     searchResults === undefined ||
@@ -110,6 +136,7 @@ const Destination = () => {
           destinations_names={destination_names}
           dataForConsult={dataForConsult}
           promotions={getPromotionsValue(promotion)}
+          destinationsRelated={getData(destinationsRelated, imagesDestRelated)}
         />
       }
       title={`${title} - Turismo Serrano`}

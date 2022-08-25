@@ -131,3 +131,17 @@ export const fetchDestDocumentId = async (title) => {
     return getAllIdAndData(snapshot);
   }
 };
+
+export const fetchDestRelated = async (destinationsNames) => {
+  if (destinationsNames.length !== 0) {
+    const q = query(
+      collectionRef(PATH_DESTINATIONS),
+      where("destinations_names", "array-contains-any", destinationsNames),
+      limit(4)
+    );
+
+    const snapshot = await getDocs(q);
+
+    return getAllIdAndData(snapshot);
+  }
+};

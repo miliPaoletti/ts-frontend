@@ -90,7 +90,7 @@ const SearchContent = ({
         />
       </div>
 
-      <div className="container-general flex pb-8 px-5 lg:px-0 md:pt-11">
+      <div className="container-general  pb-8 md:pt-11">
         <div>
           <div className="mb-8 py-2 text-2xl w-full"></div>
           <TitlePrimary text={lenDest + " " + text} text2={text2} />
