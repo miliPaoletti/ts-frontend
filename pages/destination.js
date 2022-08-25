@@ -87,10 +87,12 @@ const Destination = () => {
   let first_image = IMG_DEFAULT;
 
   let dataImages = destinationImages[title];
-  if (destinationImages[title].length > 0) {
-    let webInfoDestination = destinationImages[title][0]["data"];
-    if (webInfoDestination !== undefined) {
-      first_image = webInfoDestination["images"][0];
+  if (destinationImages !== undefined) {
+    if (destinationImages[title].length > 0) {
+      let webInfoDestination = destinationImages[title][0]["data"];
+      if (webInfoDestination !== undefined) {
+        first_image = webInfoDestination["images"][0];
+      }
     }
   }
 

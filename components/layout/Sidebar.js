@@ -49,7 +49,7 @@ const Sidebar = ({
             <p className="font-bold text-xl">Promoción</p>
             <Item
               text={`2do pasajero ${promotions}% OFF`}
-              stylesItem="bg-yellow-500 text-white font-bold text-lg text-center"
+              stylesItem="bg-yellow-500 text-black-950 font-bold text-lg text-center p-2 py-4 border-transparent"
             />
           </>
         )}

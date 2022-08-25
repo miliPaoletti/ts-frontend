@@ -95,7 +95,7 @@ const DestinationContent = ({
               );
             })}
           </div>
-          <div className=" ">
+          <div className="px-0 lg:px-5 xl:px-11 pt-32">
             <TitlePrimary text="Destinos " text2="Relacionados" />
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
               {destinationsRelated}

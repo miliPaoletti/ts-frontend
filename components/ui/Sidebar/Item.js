@@ -8,7 +8,7 @@ const Item = ({ text, icon, data, list_boarding, stylesItem }) => {
       {icon && (
         <div className="border-r border-gray-300 p-2 py-4 text-xl">{icon}</div>
       )}
-      <div className={`first-letter-capitalize w-full p-2 py-4 ${stylesItem}`}>
+      <div className={`first-letter-capitalize w-full  ${stylesItem}`}>
         {text}
       </div>
 
