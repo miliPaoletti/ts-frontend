@@ -88,7 +88,7 @@ const Destination = () => {
 
   let dataImages = destinationImages[title];
   if (destinationImages !== undefined) {
-    if (destinationImages[title].length > 0) {
+    if (destinationImages[title]?.length > 0) {
       let webInfoDestination = destinationImages[title][0]["data"];
       if (webInfoDestination !== undefined) {
         first_image = webInfoDestination["images"][0];

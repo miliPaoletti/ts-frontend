@@ -72,7 +72,7 @@ const DestinationContent = ({
             {destinations_names.map((destination, index) => {
               let getImages = [];
               let getDescription = "";
-              if (img_res.length > 0) {
+              if (img_res?.length > 0) {
                 let data = img_res?.find(
                   (dest) => dest?.destination_names === destination
                 );
