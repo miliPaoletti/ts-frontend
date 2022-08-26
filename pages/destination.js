@@ -131,6 +131,7 @@ const Destination = () => {
           days={days}
           currency={getCurrency(destino["lowest_price"]["currency"])}
           price={destino["lowest_price"]["price"]}
+          taxes={destino["lowest_price"]["taxes"]}
           departures={departures}
           includes={includes}
           img_res={dataImages}

@@ -52,6 +52,7 @@ export const getData = (destinations, destinationImages) => {
         promotions={getPromotionsValue(promotionDest)}
         currency={getCurrency(destino.lowest_price["currency"])}
         price={destino.lowest_price["price"]}
+        taxes={destino.lowest_price["taxes"]}
         days={duration}
         cover={destino.includes}
         additional_insurance={destino.additional_insurance}

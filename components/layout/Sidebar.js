@@ -18,6 +18,7 @@ const Sidebar = ({
   dataForConsult,
   list_boarding,
   promotions,
+  taxes,
 }) => {
   let list_includes = [];
   if (includes !== undefined) {
@@ -38,8 +39,10 @@ const Sidebar = ({
     <div className="sticky top-[80px] px-0 lg:px-5 xl:px-11 pt-5 lg:pt-11 pb-0 lg:pb-11 space-y-5 ">
       <div>
         <h2 className="text-black-950 text-sm italic">desde</h2>
-        <p className="text-5xl font-bold text-orange-950">
-          {currency + price}{" "}
+        <p className="text-5xl font-bold text-orange-950 ">
+          {/* items-center flex */}
+          {currency + price}
+          {taxes && <span className="text-sm ">+imp</span>}
         </p>
         <p className="text-black-950 text-sm italic">en base doble</p>
       </div>

@@ -14,6 +14,7 @@ export function MediumCard({
   pathname,
   destinationId,
   provider,
+  taxes,
 }) {
   let content = (
     <>
@@ -47,7 +48,8 @@ export function MediumCard({
         <div className="text-2xl mb-2 uppercase font-bold ">
           <SmallText text="desde" />
           <div className="text-orange-950">
-            {currency} {price}
+            {currency} {price}{" "}
+            {taxes && <span className="lowercase text-sm">+ imp</span>}
           </div>
         </div>
         {days == CONSULT ? (
