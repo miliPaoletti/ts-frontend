@@ -116,7 +116,7 @@
   }
   .slide-title,
   .slide-text {
-    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 remove-selection w-full font-bold cursor-default text-white text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[25%] z-10 font-['Rubik'] uppercase sm:left-[10%];
+    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 w-full font-bold cursor-default text-white text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[25%] z-10 font-['Rubik'] uppercase sm:left-[10%];
   }
 
   .slide-text {
@@ -124,7 +124,7 @@
   }
 
   .slide-text-destination{ 
-    @apply absolute top-[52%] sm:top-[58%] md:top-[50%] remove-selection w-full text-white  cursor-default break-words capitalize font-bold text-2xl md:text-3xl 2xl:text-5xl z-10 font-['Rubik'] left-[5%]
+    @apply absolute top-[52%] sm:top-[58%] md:top-[50%] w-full text-white  cursor-default break-words capitalize font-bold text-2xl md:text-3xl 2xl:text-5xl z-10 font-['Rubik'] left-[5%]
   }
 
   .separator {

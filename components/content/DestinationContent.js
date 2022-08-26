@@ -45,7 +45,7 @@ const DestinationContent = ({
             src={img}
             layout="fill"
             objectFit="cover"
-            className="center z-0 "
+            className="center z-0 remove-selection"
             alt=""
           />
         </div>
