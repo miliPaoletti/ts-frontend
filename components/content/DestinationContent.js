@@ -84,15 +84,11 @@ const DestinationContent = ({
                 }
               }
 
-              return getImages.length > 0 && getDescription !== "" ? (
+              return (
                 <div key={index} className="space-y-5">
                   <TitleDestination text={destination} />{" "}
                   <WrapperPrimary list={getImages} />
                   <div className="text-justify">{getDescription}</div>
-                </div>
-              ) : (
-                <div className="mt-11">
-                  No hay información disponible en estos momentos
                 </div>
               );
             })}
