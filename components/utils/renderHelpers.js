@@ -63,6 +63,7 @@ export const getData = (destinations, destinationImages) => {
         pathname="/destination"
         destinationId={key}
         provider={destino.provider}
+        views={destino.views}
       />
     );
   }
@@ -118,6 +119,12 @@ export const sortPricesAsc = (list_destinations) => {
 export const sortPricesDesc = (list_destinations) => {
   return list_destinations.sort(
     (a, b) => parseFloat(b.props["price"]) - parseFloat(a.props["price"])
+  );
+};
+
+export const sortByViews = (list_destinations) => {
+  return list_destinations.sort(
+    (a, b) => parseFloat(b.props["views"]) - parseFloat(a.props["views"])
   );
 };
 

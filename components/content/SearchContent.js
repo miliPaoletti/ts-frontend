@@ -4,6 +4,7 @@ import TitlePrimary from "components/ui/Titles/TitlePrimary";
 import { DropdownOrderBy } from "components/ui/Dropdown/DropdownOrderBy";
 import { RESULTS_SEARCH } from "components/utils/constants";
 import { filterListDestDolars } from "components/utils/renderHelpers";
+import { sortByViews } from "components/utils/renderHelpers";
 import { filterListDestPesos } from "components/utils/renderHelpers";
 import { sortPricesAsc } from "components/utils/renderHelpers";
 import { sortPricesDesc } from "components/utils/renderHelpers";
@@ -62,12 +63,9 @@ const SearchContent = ({
   };
 
   const handleOrderName = () => {
-    let listOrder = listDestinations.sort((a, b) =>
-      a.props["title"].localeCompare(b.props["title"])
-    );
-
+    let listOrder = sortByViews(listDestinations);
     setDest([...listOrder]);
-    setTextDropdown("Nombre");
+    setTextDropdown("Populares");
   };
   let text = "Destinos";
   let text2 = "encontrados";

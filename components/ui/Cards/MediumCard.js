@@ -3,6 +3,7 @@ import { MdWatchLater } from "react-icons/md";
 import Link from "next/link";
 import { CONSULT, IMG_DEFAULT, MEDIUM_CARD } from "components/utils/constants";
 import { ModalConsult } from "../Modals/ModalConsult";
+import { updateViews } from "pages/api/updateViews";
 export function MediumCard({
   img,
   title,
@@ -82,7 +83,14 @@ export function MediumCard({
     <Link
       href={{ pathname: pathname, query: { destinationId: destinationId } }}
     >
-      <a className="medium-card">{content}</a>
+      <a
+        className="medium-card"
+        onClick={() => {
+          updateViews(destinationId);
+        }}
+      >
+        {content}
+      </a>
     </Link>
   );
 }

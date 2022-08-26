@@ -21,7 +21,9 @@ const getAllIdAndData = (snapshot) => {
 };
 
 export const fetchAllDestinations = async () => {
-  const snapshot = await getDocs(collectionRef(PATH_DESTINATIONS));
+  const q = query(collectionRef(PATH_DESTINATIONS), orderBy("views", "desc"));
+
+  const snapshot = await getDocs(q);
 
   return getAllIdAndData(snapshot);
 };

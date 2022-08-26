@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import Template from "components/layout/Template";
 import { useRouter } from "next/router";
 import SearchContent from "components/content/SearchContent";
-import {
-  fetchAllDestinations,
-  fetchDestinationsNamesAndMonths,
-  getMonths,
-  getSpecificDestination,
-} from "./api/destinations";
+import { fetchAllDestinations } from "./api/destinations";
+import { fetchDestinationsNamesAndMonths } from "./api/destinations";
+import { getMonths } from "./api/destinations";
+import { getSpecificDestination } from "./api/destinations";
 import { fetchDestinationsImages, transformListToDict } from "./api/images";
 import { getData } from "components/utils/renderHelpers";
 
