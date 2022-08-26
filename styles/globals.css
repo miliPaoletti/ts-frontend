@@ -20,13 +20,17 @@
   }
   
   .header {
-    @apply flex h-10 items-center px-3 sm:px-12;
+    @apply flex h-10 items-center px-3 sm:px-12 justify-between;
   }
 
   header svg {
-    @apply cursor-pointer h-fit w-[200px]
+    @apply cursor-pointer h-fit w-[150px] sm:w-[200px]
   }
 
+
+  header ul li:hover{
+    @apply  text-orange-950 cursor-pointer transition-all duration-200 ease-in-out 
+  }
   footer .logo {
     @apply cursor-pointer h-fit w-[250px]
   }

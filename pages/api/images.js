@@ -24,11 +24,9 @@ export const fetchDestinationImages = async (destination) => {
     })
   );
   let output = {};
-  if (imgsDest[0] === undefined) {
-    output[destination_title] = [];
-  } else {
-    output[destination_title] = [].concat.apply([], imgsDest);
-  }
+
+  let dataFiltered = imgsDest.filter((item) => item !== undefined);
+  output[destination_title] = [].concat.apply([], dataFiltered);
 
   return output;
 };
