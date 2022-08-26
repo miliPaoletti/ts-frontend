@@ -49,7 +49,12 @@ const DestinationContent = ({
             alt=""
           />
         </div>
-        <p className="slide-text-destination ">{title}</p>
+        <p
+          className="slide-text-destination "
+          style={{ textShadow: "0 0 2px #333" }}
+        >
+          {title}
+        </p>
       </div>
 
       <div className="container-general ">
