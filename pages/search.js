@@ -6,7 +6,6 @@ import { fetchAllDestinations } from "./api/destinations";
 import { fetchDestinationsNamesAndMonths } from "./api/destinations";
 import { getMonths } from "./api/destinations";
 import { getSpecificDestination } from "./api/destinations";
-import { fetchDestinationsImages, transformListToDict } from "./api/images";
 import { getData } from "components/utils/renderHelpers";
 
 function Search() {
@@ -22,7 +21,6 @@ function Search() {
   }, [isReady, query.destination, query.month]);
 
   const [destinations, setDestinations] = useState([]);
-  const [destinationImages, setDestinationImages] = useState([]);
   const [months, setMonths] = useState([]);
   const [destinationsNames, setDestinationsNames] = useState([]);
 
@@ -31,14 +29,6 @@ function Search() {
       setDestinations
     );
   }, [query]);
-
-  useEffect(() => {
-    fetchDestinationsImages(destinations).then((val) => {
-      transformListToDict(val).then((resp) => {
-        setDestinationImages(resp);
-      });
-    });
-  }, [destinations]);
 
   useEffect(() => {
     fetchAllDestinations().then((allDest) => {
@@ -53,7 +43,7 @@ function Search() {
     <Template
       content={
         <SearchContent
-          listDestinations={getData(destinations, destinationImages)}
+          listDestinations={getData(destinations)}
           destination={destination}
           month={month}
           months={months}

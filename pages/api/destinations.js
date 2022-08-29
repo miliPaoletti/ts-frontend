@@ -28,6 +28,18 @@ export const fetchAllDestinations = async () => {
   return getAllIdAndData(snapshot);
 };
 
+export const fetchPopularDest = async () => {
+  const q = query(
+    collectionRef(PATH_DESTINATIONS),
+    orderBy("views", "desc"),
+    limit(6)
+  );
+
+  const snapshot = await getDocs(q);
+
+  return getAllIdAndData(snapshot);
+};
+
 export const getMonths = (destinations) => {
   let arrMonths = [];
 

@@ -3,6 +3,7 @@ import Image from "next/image";
 import {
   getDeparturesOrder,
   getStyledData,
+  isKeyInObject,
 } from "components/utils/renderHelpers";
 import TitleDestination from "components/ui/Titles/TitleDestination";
 import WrapperPrimary from "components/ui/WrapperImages/WrapperPrimary";
@@ -17,9 +18,9 @@ const DestinationContent = ({
   price,
   departures,
   includes,
-  img_res,
+  imgRes,
   boarding,
-  destinations_names,
+  destinationNames,
   dataForConsult,
   promotions,
   destinationsRelated,
@@ -76,17 +77,15 @@ const DestinationContent = ({
             />
           </div>
           <div className=" w-[100%] lg:w-[75%] block py-5 px-5">
-            {destinations_names.map((destination, index) => {
+            {destinationNames.map((destination, index) => {
               let getImages = [];
               let getDescription = "";
-              if (img_res?.length > 0) {
-                let data = img_res?.find(
-                  (dest) => dest?.destination_names === destination
-                );
-                if (data !== undefined) {
-                  getImages = data["data"]["images"];
-                  getDescription = data["data"]["description"];
-                }
+
+              let data = isKeyInObject(imgRes, destination);
+
+              if (data) {
+                getImages = data["images"];
+                getDescription = data["description"];
               }
 
               return (

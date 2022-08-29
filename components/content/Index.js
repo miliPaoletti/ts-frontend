@@ -3,7 +3,6 @@ import { getImgsCarousel } from "pages/api/carousel";
 import { fetchAllDestinations } from "pages/api/destinations";
 import { fetchDestinationsNamesAndMonths } from "pages/api/destinations";
 import { getMonths } from "pages/api/destinations";
-import { fetchDestinationsImages, transformListToDict } from "pages/api/images";
 import React, { useEffect, useState } from "react";
 import { ALL } from "components/utils/constants";
 import AboutUs from "components/layout/AboutUs";
@@ -16,9 +15,10 @@ const Index = () => {
   const [popularDest, setPopularDest] = useState([]);
   const [months, setMonths] = useState([]);
   const [destinationsNames, setDestinationsNames] = useState([]);
-  const [destinationImages, setDestinationImages] = useState([]);
 
   useEffect(() => {
+    // cambiar por fetchPopularDest cuando lu cambie para
+    // que me de los valores
     fetchAllDestinations().then((allDest) => {
       let popular = allDest.slice(0, 6);
       setPopularDest(popular);
@@ -32,14 +32,6 @@ const Index = () => {
   useEffect(() => {
     getImgsCarousel().then(setImagesCarousel);
   }, []);
-
-  useEffect(() => {
-    fetchDestinationsImages(popularDest).then((val) => {
-      transformListToDict(val).then((resp) => {
-        setDestinationImages(resp);
-      });
-    });
-  }, [popularDest]);
 
   return (
     <>
@@ -57,7 +49,7 @@ const Index = () => {
           <section>
             <TitlePrimary text="Destinos " text2="Destacados" />
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-              {getData(popularDest, destinationImages)}
+              {getData(popularDest)}
             </div>
           </section>
         </div>

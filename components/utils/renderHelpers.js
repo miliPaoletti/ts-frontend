@@ -11,27 +11,23 @@ export const getCurrency = (currency) => {
   return local_currency;
 };
 
-export const getData = (destinations, destinationImages) => {
+export const getData = (destinations) => {
   let listDestinations = [];
 
   for (let destination in destinations) {
     const dest = destinations[destination];
     const destino = dest["data"];
     const key = dest["id"];
+    const imageCard = destino["custom_info"];
 
-    const titleDest = destino["title"];
     const durationDest = destino.duration;
     const promotionDest = destino.promotions;
 
     let first_image = IMG_DEFAULT;
 
-    if (destinationImages[titleDest] !== undefined) {
-      if (destinationImages[titleDest].length > 0) {
-        const webInfoDestination = destinationImages[titleDest][0]["data"];
-
-        if (webInfoDestination !== undefined) {
-          first_image = webInfoDestination["images"][0];
-        }
+    if (imageCard !== undefined) {
+      if (imageCard["card_image"] !== null) {
+        first_image = imageCard["card_image"];
       }
     }
 
@@ -146,3 +142,13 @@ export const getPromotionsValue = (promotionDest) => {
   }
   return promotion;
 };
+
+export function isKeyInObject(obj, key) {
+  let val = {};
+  Object.keys(obj).some((v) => {
+    if (v == key) {
+      return (val = obj[v]);
+    }
+  });
+  return val;
+}

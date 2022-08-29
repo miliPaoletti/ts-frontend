@@ -9,16 +9,13 @@ import {
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchDestDocumentId, fetchDestRelated } from "./api/destinations";
-import { fetchDestinationsImages, transformListToDict } from "./api/images";
 
 const Destination = () => {
   const { query, isReady } = useRouter();
   const router = useRouter();
   const [destination, setDestination] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [destinationImages, setDestinationImages] = useState([]);
   const [destinationsRelated, setDestinationsRelated] = useState([]);
-  const [imagesDestRelated, setImagesDestRelated] = useState([]);
 
   useEffect(() => {
     if (!isReady) return;
@@ -41,16 +38,6 @@ const Destination = () => {
 
   useEffect(() => {
     if (searchResults !== undefined) {
-      fetchDestinationsImages(searchResults).then((val) => {
-        transformListToDict(val).then((resp) => {
-          setDestinationImages(resp);
-        });
-      });
-    }
-  }, [searchResults]);
-
-  useEffect(() => {
-    if (searchResults !== undefined) {
       if (searchResults.length !== 0) {
         const destino = searchResults[0]["data"];
         let destinationNames = destino["destinations_names"];
@@ -62,39 +49,18 @@ const Destination = () => {
     }
   }, [searchResults, destination]);
 
-  useEffect(() => {
-    if (destinationsRelated !== undefined) {
-      fetchDestinationsImages(destinationsRelated).then((val) => {
-        transformListToDict(val).then((resp) => {
-          setImagesDestRelated(resp);
-        });
-      });
-    }
-  }, [destinationsRelated]);
-
-  if (
-    searchResults === undefined ||
-    searchResults.length === 0 ||
-    destinationImages.length === 0 ||
-    Object.entries(destinationImages).length === 0
-  ) {
+  if (searchResults === undefined || searchResults.length === 0) {
     return;
   }
   const destino = searchResults[0]["data"];
   let title = destino["title"];
-  let destination_names = destino["destinations_names"];
+  let destinationNames = destino["destinations_names"];
 
-  let first_image = IMG_DEFAULT;
-
-  let dataImages = destinationImages[title];
-  if (destinationImages !== undefined) {
-    if (destinationImages[title]?.length > 0) {
-      let webInfoDestination = destinationImages[title][0]["data"];
-      if (webInfoDestination !== undefined) {
-        first_image = webInfoDestination["images"][0];
-      }
-    }
+  let firstImage = IMG_DEFAULT;
+  if (destino["custom_info"] !== undefined) {
+    firstImage = destino["custom_info"]["carousel_image"];
   }
+  let dataImages = destino["custom_info"];
 
   let departures = destino["departures"];
   let sheet = destino["sheet"];
@@ -109,13 +75,11 @@ const Destination = () => {
     includes = [includes];
   }
 
-  let img = first_image;
-
   const dataForConsult = `Destino: ${title},
       URL: http://localhost:3000/destination?destinationId=${destination},
       PRECIO: ${destino["lowest_price"][0]} ${destino["lowest_price"][1]}
       NOCHES: ${destino["duration"]["nights"]},
-      NOMBRES DE LOS DESTINOS: ${destination_names},
+      NOMBRES DE LOS DESTINOS: ${destinationNames},
       REGIMEN: ${regimen},
       BOARDING: ${boarding}, 
       PROVIDER: ${provider}
@@ -125,7 +89,7 @@ const Destination = () => {
     <Template
       content={
         <DestinationContent
-          img={img}
+          img={firstImage}
           title={title}
           sheet={sheet}
           days={days}
@@ -134,12 +98,12 @@ const Destination = () => {
           taxes={destino["lowest_price"]["taxes"]}
           departures={departures}
           includes={includes}
-          img_res={dataImages}
+          imgRes={dataImages}
           boarding={boarding}
-          destinations_names={destination_names}
+          destinationNames={destinationNames}
           dataForConsult={dataForConsult}
           promotions={getPromotionsValue(promotion)}
-          destinationsRelated={getData(destinationsRelated, imagesDestRelated)}
+          destinationsRelated={getData(destinationsRelated)}
         />
       }
       title={`${title} - Turismo Serrano`}
