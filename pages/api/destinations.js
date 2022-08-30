@@ -149,12 +149,15 @@ export const fetchDestDocumentId = async (title) => {
   }
 };
 
-export const fetchDestRelated = async (destinationsNames) => {
-  if (destinationsNames.length !== 0) {
+export const fetchDestRelated = async (departures, title) => {
+  if (departures.length !== 0 && title !== undefined) {
     const q = query(
       collectionRef(PATH_DESTINATIONS),
-      where("destinations_names", "array-contains-any", destinationsNames),
-      limit(4)
+      orderBy("title", "desc"),
+      where("departures", "array-contains-any", departures),
+      where("title", "!=", title),
+      orderBy("views", "desc"),
+      limit(3)
     );
 
     const snapshot = await getDocs(q);

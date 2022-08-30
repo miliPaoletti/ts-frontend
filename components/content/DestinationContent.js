@@ -92,7 +92,9 @@ const DestinationContent = ({
                 <div key={index} className="space-y-5">
                   <TitleDestination text={destination} />{" "}
                   <WrapperPrimary list={getImages} />
-                  <div className="text-justify">{getDescription}</div>
+                  <div className="text-justify whitespace-pre-wrap">
+                    {getDescription}
+                  </div>
                 </div>
               );
             })}

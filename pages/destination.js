@@ -40,10 +40,10 @@ const Destination = () => {
     if (searchResults !== undefined) {
       if (searchResults.length !== 0) {
         const destino = searchResults[0]["data"];
-        let destinationNames = destino["destinations_names"];
-        fetchDestRelated(destinationNames).then((val) => {
-          let dataFiltered = val.filter((dest) => dest["id"] !== destination);
-          setDestinationsRelated(dataFiltered);
+        let departures = destino["departures"];
+        let title = destino["title"];
+        fetchDestRelated(departures, title).then((val) => {
+          setDestinationsRelated(val);
         });
       }
     }
