@@ -85,7 +85,9 @@ export const fetchDestinationsNamesAndMonths = (destinations) => {
 export const getSpecificDestination = async (month, destination) => {
   let snapshot = [];
   let ret = [];
-  if (month === ALL && destination === ALL) {
+  if (month === undefined || destination === undefined) {
+    return ret;
+  } else if (month === ALL && destination === ALL) {
     snapshot = await getDocs(collectionRef(PATH_DESTINATIONS));
     ret = getAllIdAndData(snapshot);
   } else if (month !== ALL && destination !== ALL) {
@@ -99,8 +101,9 @@ export const getSpecificDestination = async (month, destination) => {
 
       let resultado_final = [];
       snapshot.docs.map((doc) => {
-        let title = doc.data()["title"];
-        if (title.toLowerCase().includes(destination.toLowerCase())) {
+        let destinationsNames = doc.data()["destinations_names"];
+
+        if (destinationsNames.includes(destination.toLowerCase())) {
           let obj = {};
           obj["id"] = doc.id;
           obj["data"] = doc.data();
@@ -121,7 +124,7 @@ export const getSpecificDestination = async (month, destination) => {
       ret = getAllIdAndData(snapshot);
     }
   } else {
-    if (month !== destination) {
+    if (destination !== ALL) {
       const q = query(
         collectionRef(PATH_DESTINATIONS),
         where("destinations_names", "array-contains", destination)
