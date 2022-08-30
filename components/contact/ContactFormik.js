@@ -12,7 +12,10 @@ import {
   LOADING,
   MEDIUM_CARD,
   INFO_NOT_UPLOADED,
+  FORM,
+  INFO_WHATSAPP,
 } from "components/utils/constants";
+import Whatsapp from "components/ui/Links/Whatsapp";
 
 function validateEmail(value) {
   let error;
@@ -189,6 +192,11 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             >
               Enviar
             </button>
+
+            <div className="flex items-center text-left space-x-3 ">
+              <Whatsapp page={FORM} />
+              <p className="text-[12px]">{INFO_WHATSAPP}</p>
+            </div>
           </Form>
         )}
       </Formik>

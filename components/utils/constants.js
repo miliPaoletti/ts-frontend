@@ -29,3 +29,6 @@ export const URL_WHATSAPP = "https://wa.me/+5492494563653";
 export const MEDIUM_CARD = "mediumCard";
 export const INFO_NOT_UPLOADED =
   "La info todavia no esta cargada, envie su consulta y le daremos mas informacion a la brevedad";
+export const FORM = "FORM";
+export const INFO_WHATSAPP =
+  " Haciendo click en el icono podras comunicarte con nosotros por whatsapp";
