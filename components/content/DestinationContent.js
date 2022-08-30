@@ -6,8 +6,8 @@ import {
   isKeyInObject,
 } from "components/utils/renderHelpers";
 import TitleDestination from "components/ui/Titles/TitleDestination";
-import WrapperPrimary from "components/ui/WrapperImages/WrapperPrimary";
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
+import { Wrapper } from "components/ui/WrapperImages/Wrapper";
 
 const DestinationContent = ({
   img,
@@ -80,9 +80,7 @@ const DestinationContent = ({
             {destinationNames.map((destination, index) => {
               let getImages = [];
               let getDescription = "";
-
               let data = isKeyInObject(imgRes, destination);
-
               if (data) {
                 getImages = data["images"];
                 getDescription = data["description"];
@@ -91,7 +89,7 @@ const DestinationContent = ({
               return (
                 <div key={index} className="space-y-5">
                   <TitleDestination text={destination} />{" "}
-                  <WrapperPrimary list={getImages} />
+                  <Wrapper images={getImages} />
                   <div className="text-justify whitespace-pre-wrap">
                     {getDescription}
                   </div>
