@@ -1,34 +1,38 @@
-import { getFirestore } from "firebase/firestore";
+import {
+  enableMultiTabIndexedDbPersistence,
+  getFirestore,
+} from "firebase/firestore";
 
-import { getApp, initializeApp } from "firebase/app";
+import { getApps, initializeApp } from "firebase/app";
 
 import { getAuth, signInAnonymously } from "firebase/auth";
 
-function createFirebaseApp(config) {
-  try {
-    return getApp("[DEFAULT]");
-  } catch {
-    return initializeApp(config);
-  }
-}
+function initializeServices() {
+  const isConfigured = getApps().length > 0;
 
-let firebaseApp;
-if (process.env.NEXT_PUBLIC_FIREBASE_CREDENTIALS !== undefined) {
-  firebaseApp = createFirebaseApp(
+  const firebaseApp = initializeApp(
     JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CREDENTIALS)
-    // FIREBASE_CREDENTIALS
   );
+
+  const database = getFirestore(firebaseApp);
+  const auth = getAuth();
+  signInAnonymously(auth);
+  // .then(() => {
+  //   // Signed in..
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ...
+  // });
+
+  return { firebaseApp, database, auth, isConfigured };
 }
 
-const auth = getAuth();
-signInAnonymously(auth)
-  .then(() => {
-    // Signed in..
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ...
-  });
-
-export const database = getFirestore(firebaseApp);
+export function getFirebase() {
+  const services = initializeServices();
+  if (!services.isConfigured) {
+    enableMultiTabIndexedDbPersistence(services.database);
+  }
+  return services;
+}

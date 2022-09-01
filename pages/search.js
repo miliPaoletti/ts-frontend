@@ -1,43 +1,11 @@
-import { useEffect, useState } from "react";
 import Template from "components/layout/Template";
-import { useRouter } from "next/router";
 import SearchContent from "components/content/SearchContent";
-import { fetchAllDestinations } from "./api/destinations";
-import { fetchDestinationsNamesAndMonths } from "./api/destinations";
-import { getMonths } from "./api/destinations";
-import { getSpecificDestination } from "./api/destinations";
 import { getData } from "components/utils/renderHelpers";
+import { useSearchData } from "hooks/useSearchData";
 
 function Search() {
-  const { query, isReady } = useRouter();
-  const [destination, setDestination] = useState("");
-  const [month, setMonth] = useState("");
-  useEffect(() => {
-    if (!isReady) return;
-    else {
-      setDestination(query.destination);
-      setMonth(query.month);
-    }
-  }, [isReady, query.destination, query.month]);
-
-  const [destinations, setDestinations] = useState([]);
-  const [months, setMonths] = useState([]);
-  const [destinationsNames, setDestinationsNames] = useState([]);
-
-  useEffect(() => {
-    getSpecificDestination(query.month, query.destination).then(
-      setDestinations
-    );
-  }, [query]);
-
-  useEffect(() => {
-    fetchAllDestinations().then((allDest) => {
-      setMonths(getMonths(allDest));
-      setDestinationsNames(
-        Object.assign({ todos: [1] }, fetchDestinationsNamesAndMonths(allDest))
-      );
-    });
-  }, []);
+  const { destinations, destination, month, months, destinationsNames } =
+    useSearchData();
 
   return (
     <Template

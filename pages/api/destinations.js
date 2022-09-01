@@ -1,14 +1,8 @@
 import { ALL } from "components/utils/constants";
 import { orderObject, sortByMonth } from "components/utils/renderHelpers";
-import {
-  documentId,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
-import { collectionRef, PATH_DESTINATIONS } from "./constants";
+import { documentId, limit, orderBy, query, where } from "firebase/firestore";
+import { collectionRef, PATH_DESTINATIONS, QUERY_ALL_DEST } from "./constants";
+import { reFillDataFirestore } from "./helpers";
 
 const getAllIdAndData = (snapshot) => {
   let ret = snapshot.docs.map((doc) => {
@@ -23,19 +17,7 @@ const getAllIdAndData = (snapshot) => {
 export const fetchAllDestinations = async () => {
   const q = query(collectionRef(PATH_DESTINATIONS), orderBy("views", "desc"));
 
-  const snapshot = await getDocs(q);
-
-  return getAllIdAndData(snapshot);
-};
-
-export const fetchPopularDest = async () => {
-  const q = query(
-    collectionRef(PATH_DESTINATIONS),
-    orderBy("views", "desc"),
-    limit(6)
-  );
-
-  const snapshot = await getDocs(q);
+  const snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
 
   return getAllIdAndData(snapshot);
 };
@@ -88,7 +70,9 @@ export const getSpecificDestination = async (month, destination) => {
   if (month === undefined || destination === undefined) {
     return ret;
   } else if (month === ALL && destination === ALL) {
-    snapshot = await getDocs(collectionRef(PATH_DESTINATIONS));
+    const q = query(collectionRef(PATH_DESTINATIONS));
+    snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
+
     ret = getAllIdAndData(snapshot);
   } else if (month !== ALL && destination !== ALL) {
     if (month !== undefined) {
@@ -97,7 +81,7 @@ export const getSpecificDestination = async (month, destination) => {
         where("departures", "array-contains", month)
       );
 
-      const snapshot = await getDocs(q);
+      const snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
 
       let resultado_final = [];
       snapshot.docs.map((doc) => {
@@ -120,7 +104,7 @@ export const getSpecificDestination = async (month, destination) => {
         collectionRef(PATH_DESTINATIONS),
         where("departures", "array-contains", month)
       );
-      const snapshot = await getDocs(q);
+      const snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
       ret = getAllIdAndData(snapshot);
     }
   } else {
@@ -129,7 +113,7 @@ export const getSpecificDestination = async (month, destination) => {
         collectionRef(PATH_DESTINATIONS),
         where("destinations_names", "array-contains", destination)
       );
-      const snapshot = await getDocs(q);
+      const snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
       ret = getAllIdAndData(snapshot);
     }
   }
@@ -143,7 +127,7 @@ export const fetchDestDocumentId = async (title) => {
       where(documentId(), "==", title)
     );
 
-    const snapshot = await getDocs(q);
+    const snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
 
     return getAllIdAndData(snapshot);
   }
@@ -160,7 +144,7 @@ export const fetchDestRelated = async (departures, title) => {
       limit(3)
     );
 
-    const snapshot = await getDocs(q);
+    const snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
 
     return getAllIdAndData(snapshot);
   }

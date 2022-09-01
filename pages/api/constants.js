@@ -1,10 +1,13 @@
-import { collection } from "firebase/firestore";
-import { database } from "../../firebase/initFirebase";
+import { collection, query } from "firebase/firestore";
+import { getFirebase } from "../../firebase/initFirebase";
 
 export const collectionRef = (path) => {
+  const { database } = getFirebase();
   return collection(database, path);
 };
 
 export const PATH_CAROUSEL = "carousel";
 export const PATH_CUSTOM_INFO = "custom_info";
 export const PATH_DESTINATIONS = "destinations";
+export const QUERY_ALL_DEST = query(collectionRef(PATH_DESTINATIONS));
+export const QUERY_ALL_CAROUSEL = query(collectionRef(PATH_CAROUSEL));

@@ -1,37 +1,15 @@
 import { getData } from "components/utils/renderHelpers";
-import { getImgsCarousel } from "pages/api/carousel";
-import { fetchAllDestinations } from "pages/api/destinations";
-import { fetchDestinationsNamesAndMonths } from "pages/api/destinations";
-import { getMonths } from "pages/api/destinations";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ALL } from "components/utils/constants";
 import AboutUs from "components/layout/AboutUs";
 import Slider from "components/ui/Carousel/Slider";
 import SearchBar from "components/ui/Search/SearchContainer";
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
+import { useIndexData } from "hooks/useIndexData";
 
 const Index = () => {
-  const [imagesCarousel, setImagesCarousel] = useState([]);
-  const [popularDest, setPopularDest] = useState([]);
-  const [months, setMonths] = useState([]);
-  const [destinationsNames, setDestinationsNames] = useState([]);
-
-  useEffect(() => {
-    // cambiar por fetchPopularDest cuando lu cambie para
-    // que me de los valores
-    fetchAllDestinations().then((allDest) => {
-      let popular = allDest.slice(0, 6);
-      setPopularDest(popular);
-      setMonths(getMonths(allDest));
-      setDestinationsNames(
-        Object.assign({ todos: [1] }, fetchDestinationsNamesAndMonths(allDest))
-      );
-    });
-  }, []);
-
-  useEffect(() => {
-    getImgsCarousel().then(setImagesCarousel);
-  }, []);
+  const { imagesCarousel, popularDest, months, destinationsNames } =
+    useIndexData();
 
   return (
     <>
