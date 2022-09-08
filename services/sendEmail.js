@@ -1,4 +1,4 @@
-const MAIL_ROUTE = "https://ts-contact-us-app.herokuapp.com/";
+const MAIL_ROUTE = "https://ts-contact-us-app-dev.onrender.com";
 
 export default function registerForm(
   { name, phoneNumber, passengers, email, consult },

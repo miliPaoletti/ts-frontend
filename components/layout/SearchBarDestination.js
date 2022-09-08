@@ -1,14 +1,17 @@
+import SearchBar from "components/ui/Search/SearchContainer";
 import { useRouter } from "next/router";
 import { fetchAllDestinations } from "pages/api/destinations";
 import { fetchDestinationsNamesAndMonths } from "pages/api/destinations";
 import { getMonths } from "pages/api/destinations";
-import { getSpecificDestination } from "pages/api/destinations";
 import { useEffect, useState } from "react";
 
-export const useSearchData = () => {
+export const SearchBarDestination = () => {
   const { query, isReady } = useRouter();
   const [destination, setDestination] = useState("");
   const [month, setMonth] = useState("");
+  const [months, setMonths] = useState([]);
+  const [destinationsNames, setDestinationsNames] = useState([]);
+
   useEffect(() => {
     if (!isReady) return;
     else {
@@ -16,16 +19,6 @@ export const useSearchData = () => {
       setMonth(query.month);
     }
   }, [isReady, query.destination, query.month]);
-
-  const [destinations, setDestinations] = useState([]);
-  const [months, setMonths] = useState([]);
-  const [destinationsNames, setDestinationsNames] = useState([]);
-
-  useEffect(() => {
-    getSpecificDestination(query.month, query.destination).then(
-      setDestinations
-    );
-  }, [query]);
 
   useEffect(() => {
     fetchAllDestinations().then((allDest) => {
@@ -35,5 +28,19 @@ export const useSearchData = () => {
       );
     });
   }, []);
-  return { destinations, destination, month, months, destinationsNames };
+
+  return (
+    <div className="items-center text-center relative">
+      <div className="container-search"></div>
+      <p className="top-[28%] lg:top-[40%] w-full font-medium text-2xl md:text-4xl text-white z-40 absolute remove-selection">
+        ¿Buscás otro destino?
+      </p>
+      <SearchBar
+        destinationsNames={destinationsNames}
+        months={months}
+        destination={destination}
+        month={month}
+      />
+    </div>
+  );
 };

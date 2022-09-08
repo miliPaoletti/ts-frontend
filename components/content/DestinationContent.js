@@ -1,31 +1,78 @@
 import Sidebar from "components/layout/Sidebar";
-import Image from "next/image";
 import {
+  getCurrency,
   getDeparturesOrder,
+  getPromotionsValue,
   getStyledData,
-  isKeyInObject,
 } from "components/utils/renderHelpers";
-import TitleDestination from "components/ui/Titles/TitleDestination";
-import TitlePrimary from "components/ui/Titles/TitlePrimary";
-import { Wrapper } from "components/ui/WrapperImages/Wrapper";
 
-const DestinationContent = ({
-  img,
-  title,
-  days,
-  regimen,
-  currency,
-  price,
-  departures,
-  includes,
-  imgRes,
-  boarding,
-  destinationNames,
-  dataForConsult,
-  promotions,
-  destinationsRelated,
-  taxes,
-}) => {
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { fetchDestDocumentId } from "pages/api/destinations";
+import { IMG_DEFAULT } from "components/utils/constants";
+import Banner from "components/layout/destination/Banner";
+import DestinationInfo from "components/layout/destination/DestinationInfo";
+import DestinationsRelated from "components/layout/destination/DestinationsRelated";
+
+const DestinationContent = () => {
+  const { query, isReady } = useRouter();
+  const router = useRouter();
+  const [destination, setDestination] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    if (!isReady) return;
+    else {
+      if (query.destinationId !== "") {
+        fetchDestDocumentId(query.destinationId).then((values) => {
+          if (values !== undefined) {
+            if (values.length === 0) {
+              router.push("/404");
+            } else {
+              setSearchResults(values);
+              setDestination(query.destinationId);
+            }
+          }
+        });
+      }
+    }
+  }, [isReady, query.destinationId, router]);
+
+  if (searchResults === undefined || searchResults.length === 0) {
+    return;
+  }
+  const destino = searchResults[0]["data"];
+  let title = destino["title"];
+  let destinationNames = destino["destinations_names"];
+
+  let firstImage = IMG_DEFAULT;
+  if (destino["custom_info"] !== undefined) {
+    firstImage = destino["custom_info"]["carousel_image"];
+  }
+  let dataImages = destino["custom_info"];
+
+  let departures = destino["departures"];
+
+  let days = destino["duration"]["days"];
+  let regimen = destino["meal_regimen"];
+  let boarding = destino["boarding"];
+  let includes = destino["includes"];
+  let provider = destino["provider"];
+  let promotion = destino["promotions"];
+  if (typeof includes === "string") {
+    includes = [includes];
+  }
+
+  const dataForConsult = `Destino: ${title},
+      URL: http://localhost:3000/destination?destinationId=${destination},
+      PRECIO: ${destino["lowest_price"][0]} ${destino["lowest_price"][1]}
+      NOCHES: ${destino["duration"]["nights"]},
+      NOMBRES DE LOS DESTINOS: ${destinationNames},
+      REGIMEN: ${regimen},
+      BOARDING: ${boarding}, 
+      PROVIDER: ${provider}
+      `;
+
   let text_boarding = "Tandil y zona";
   let list_boarding = true;
   if (boarding.includes("mar del plata y zona")) {
@@ -40,23 +87,7 @@ const DestinationContent = ({
   }
   return (
     <div className="bg-white ">
-      <div className="relative slider-container w-100">
-        <div className="opacity-imgs">
-          <Image
-            src={img}
-            layout="fill"
-            objectFit="cover"
-            className="center z-0 remove-selection"
-            alt=""
-          />
-        </div>
-        <p
-          className="slide-text-destination "
-          style={{ textShadow: "0 0 2px #333" }}
-        >
-          {title}
-        </p>
-      </div>
+      <Banner image={firstImage} title={title} />
 
       <div className="container-general ">
         <div className="flex flex-col lg:flex-row flex-wrap min-w-100 p-2  pt-0">
@@ -64,45 +95,26 @@ const DestinationContent = ({
             <Sidebar
               days={days}
               regimen={regimen}
-              currency={currency}
-              price={price}
+              currency={getCurrency(destino["lowest_price"]["currency"])}
+              price={destino["lowest_price"]["price"]}
               departures={getDeparturesOrder(departures)}
               text_boarding={text_boarding}
               boarding={getStyledData(boarding)}
               includes={includes}
               dataForConsult={dataForConsult}
               list_boarding={list_boarding}
-              promotions={promotions}
-              taxes={taxes}
+              promotions={getPromotionsValue(promotion)}
+              taxes={destino["lowest_price"]["taxes"]}
             />
           </div>
-          <div className=" w-[100%] lg:w-[75%] block py-5 px-5">
-            {destinationNames.map((destination, index) => {
-              let getImages = [];
-              let getDescription = "";
-              let data = isKeyInObject(imgRes, destination);
-              if (data) {
-                getImages = data["images"];
-                getDescription = data["description"];
-              }
-
-              return (
-                <div key={index} className="space-y-5">
-                  <TitleDestination text={destination} />{" "}
-                  <Wrapper images={getImages} />
-                  <div className="text-justify whitespace-pre-wrap">
-                    {getDescription}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="px-0 lg:px-5 xl:px-11 pt-32">
-            <TitlePrimary text="Destinos " text2="Relacionados" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-              {destinationsRelated}
-            </div>
-          </div>
+          <DestinationInfo
+            destinationNames={destinationNames}
+            dataImages={dataImages}
+          />
+          <DestinationsRelated
+            searchResults={searchResults}
+            destination={destination}
+          />
         </div>
       </div>
     </div>

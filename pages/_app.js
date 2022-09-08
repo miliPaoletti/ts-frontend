@@ -1,12 +1,10 @@
 import "../styles/globals.css";
-import SimpleReactLightbox from "simple-react-lightbox";
+import { useMemo } from "react";
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <SimpleReactLightbox>
-      <Component {...pageProps} />
-    </SimpleReactLightbox>
-  );
+  //si funciona lento sacar el memo
+  return useMemo(() => <Component {...pageProps} />, [pageProps]);
+  // return <Component {...pageProps} />;
 }
 
 export default MyApp;
