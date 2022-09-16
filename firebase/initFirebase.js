@@ -15,16 +15,19 @@ function initializeServices() {
   );
 
   const database = getFirestore(firebaseApp);
+
   const auth = getAuth();
-  signInAnonymously(auth);
-  // .then(() => {
-  //   // Signed in..
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // ...
-  // });
+  signInAnonymously(auth)
+    .then(() => {
+      // Signed in..
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("error");
+      console.log(error);
+      // ...
+    });
 
   return { firebaseApp, database, auth, isConfigured };
 }

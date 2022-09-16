@@ -3,7 +3,13 @@ import { getFirebase } from "../../firebase/initFirebase";
 
 export const collectionRef = (path) => {
   const { database } = getFirebase();
+  // console.log(auth.currentUser.isAnonymous);
+  // console.log(auth.currentUser["isAnonymous"]);
+
+  // console.log(auth._isInitialized);
+  // if (isAnonymousLocal) {
   return collection(database, path);
+  // }
 };
 
 export const PATH_CAROUSEL = "carousel";
