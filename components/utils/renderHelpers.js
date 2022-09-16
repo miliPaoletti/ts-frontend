@@ -107,21 +107,25 @@ export const getDeparturesOrder = (departures) => {
 };
 
 export const sortPricesAsc = (list_destinations) => {
-  return list_destinations.sort(
-    (a, b) => parseFloat(a.props["price"]) - parseFloat(b.props["price"])
-  );
+  return list_destinations?.sort((a, b) => a.props["price"] - b.props["price"]);
 };
 
 export const sortPricesDesc = (list_destinations) => {
-  return list_destinations.sort(
-    (a, b) => parseFloat(b.props["price"]) - parseFloat(a.props["price"])
+  return list_destinations?.sort((a, b) => b.props["price"] - a.props["price"]);
+};
+
+const sortByPromotions = (list_destinations) => {
+  return list_destinations?.sort(
+    (a, b) => b.props["promotions"] - a.props["promotions"]
   );
 };
 
 export const sortByViews = (list_destinations) => {
-  return list_destinations.sort(
-    (a, b) => parseFloat(b.props["views"]) - parseFloat(a.props["views"])
-  );
+  return list_destinations?.sort((a, b) => b.props["views"] - a.props["views"]);
+};
+
+export const sortByPromotionsAndViews = (list_destinations) => {
+  return sortByPromotions(sortByViews(list_destinations));
 };
 
 export const filterListDestDolars = (list_destinations) => {

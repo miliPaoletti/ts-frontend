@@ -3,7 +3,7 @@ import {
   filterListDestDolars,
   filterListDestPesos,
   getData,
-  sortByViews,
+  sortByPromotionsAndViews,
   sortPricesAsc,
   sortPricesDesc,
 } from "components/utils/renderHelpers";
@@ -29,8 +29,8 @@ export const useDestinationsSearched = () => {
   }, [query]);
 
   useEffect(() => {
-    setDest(listDestinations);
-    setTextDropdown("Ordernar por");
+    setDest(sortByPromotionsAndViews(listDestinations));
+    setTextDropdown("Populares");
   }, [listDestinations]);
 
   let lenDest = 0;
@@ -72,7 +72,7 @@ export const useDestinationsSearched = () => {
   };
 
   const handleOrderName = () => {
-    let listOrder = sortByViews(listDestinations);
+    let listOrder = sortByPromotionsAndViews(listDestinations);
     setDest([...listOrder]);
     setTextDropdown("Populares");
   };

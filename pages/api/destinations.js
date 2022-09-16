@@ -15,7 +15,11 @@ const getAllIdAndData = (snapshot) => {
 };
 
 export const fetchAllDestinations = async () => {
-  const q = query(collectionRef(PATH_DESTINATIONS), orderBy("views", "desc"));
+  const q = query(
+    collectionRef(PATH_DESTINATIONS),
+    orderBy("promotions", "asc"),
+    orderBy("views", "desc")
+  );
 
   const snapshot = await reFillDataFirestore(q, QUERY_ALL_DEST);
 

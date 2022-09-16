@@ -22,18 +22,8 @@ export const reFillDataFirestore = async (q, queryForServer) => {
     return snapshot;
   }
 
-  // const q2 = query(
-  //   collectionRef(PATH_DESTINATIONS),
-  //   orderBy("ts", "desc"),
-  //   limit(1)
-  // );
-  // const response = await getDocsFromCache(q2);
-  // const biggerTs = response.docs[0].data()["ts"];
-
   const date = new Date();
-  // const dateTs = new Date(biggerTs * 1000);
   let timeQueryServer = new Date(localStorage.getItem("timeQueryServer"));
-  // var hours = Math.floor(Math.abs(date - dateTs) / 36e5);
 
   let hours = date.getHours() - timeQueryServer.getHours();
 
@@ -46,7 +36,7 @@ export const reFillDataFirestore = async (q, queryForServer) => {
       orderBy("ts", "desc"),
       limit(1)
     );
-    const response = await getDocsFromCache(q2);
+    const response = await getDocsFromServer(q2);
     const biggerTs = response.docs[0].data()["ts"];
     const dateTs = new Date(biggerTs * 1000);
 
