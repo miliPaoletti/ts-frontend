@@ -81,7 +81,7 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
             }}
           >
             <a className="relative overflow-hidden z-30 w-full md:w-auto">
-              <div className="uppercase text-center p-2 md:p-5 text-sm md:text-xl text-white font-bold bg-orange-950 md:bg-transparent w-full md:w-auto md:before:-z-50 md:before:content-[''] md:before:absolute md:before:right-[-6px] md:before:top-0 md:before:h-full md:before:w-full md:before:-skew-x-6 md:before:bg-orange-950 remove-selection">
+              <div className="uppercase text-center p-3 md:p-5 text-sm md:text-xl text-white font-bold bg-orange-950 md:bg-transparent w-full md:w-auto md:before:-z-50 md:before:content-[''] md:before:absolute md:before:right-[-6px] md:before:top-0 md:before:h-full md:before:w-full md:before:-skew-x-6 md:before:bg-orange-950 remove-selection">
                 buscar
               </div>
             </a>

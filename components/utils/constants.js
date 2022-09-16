@@ -25,9 +25,11 @@ export const RESULTS_SEARCH = 6;
 export const LOADING = "LOADING";
 export const SUCCESS = "SUCCESS";
 export const FAIL = "FAIL";
-export const URL_WHATSAPP_TEST =
-  "https://whatsapp:/send?text=hello&phone=549249456365";
-export const URL_WHATSAPP = "https://wa.me/+5492494563653";
+export const URL_WHATSAPP_test = "https://wa.me/+5492494563653/text=holi";
+// whatsapp://send/?phone=0000000&text=example"
+const whatsAppText = "Turismo Serrano. En que podemos ayudarte?";
+// ?text=${encodeURIComponent(whatsAppText)}
+export const URL_WHATSAPP = `https://wa.me/5492494563653`;
 export const MEDIUM_CARD = "mediumCard";
 export const INFO_NOT_UPLOADED =
   "La info todavia no esta cargada, envie su consulta y le daremos mas informacion a la brevedad";
