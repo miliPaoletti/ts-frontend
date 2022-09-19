@@ -13,6 +13,7 @@ import { IMG_DEFAULT } from "components/utils/constants";
 import Banner from "components/layout/destination/Banner";
 import DestinationInfo from "components/layout/destination/DestinationInfo";
 import DestinationsRelated from "components/layout/destination/DestinationsRelated";
+import Head from "next/head";
 
 const DestinationContent = () => {
   const { query, isReady } = useRouter();
@@ -86,38 +87,43 @@ const DestinationContent = () => {
     list_boarding = false;
   }
   return (
-    <div className="bg-white ">
-      <Banner image={firstImage} title={title} />
+    <>
+      <Head>
+        <title>{title} - Turismo Serrano</title>
+      </Head>
+      <div className="bg-white ">
+        <Banner image={firstImage} title={title} />
 
-      <div className="container-general ">
-        <div className="flex flex-col lg:flex-row flex-wrap min-w-100 p-2  pt-0">
-          <div className="relative w-[100%] lg:w-[25%] block ">
-            <Sidebar
-              days={days}
-              regimen={regimen}
-              currency={getCurrency(destino["lowest_price"]["currency"])}
-              price={destino["lowest_price"]["price"]}
-              departures={getDeparturesOrder(departures)}
-              text_boarding={text_boarding}
-              boarding={getStyledData(boarding)}
-              includes={includes}
-              dataForConsult={dataForConsult}
-              list_boarding={list_boarding}
-              promotions={getPromotionsValue(promotion)}
-              taxes={destino["lowest_price"]["taxes"]}
+        <div className="container-general ">
+          <div className="flex flex-col lg:flex-row flex-wrap min-w-100 p-2  pt-0">
+            <div className="relative w-[100%] lg:w-[25%] block ">
+              <Sidebar
+                days={days}
+                regimen={regimen}
+                currency={getCurrency(destino["lowest_price"]["currency"])}
+                price={destino["lowest_price"]["price"]}
+                departures={getDeparturesOrder(departures)}
+                text_boarding={text_boarding}
+                boarding={getStyledData(boarding)}
+                includes={includes}
+                dataForConsult={dataForConsult}
+                list_boarding={list_boarding}
+                promotions={getPromotionsValue(promotion)}
+                taxes={destino["lowest_price"]["taxes"]}
+              />
+            </div>
+            <DestinationInfo
+              destinationNames={destinationNames}
+              dataImages={dataImages}
+            />
+            <DestinationsRelated
+              searchResults={searchResults}
+              destination={destination}
             />
           </div>
-          <DestinationInfo
-            destinationNames={destinationNames}
-            dataImages={dataImages}
-          />
-          <DestinationsRelated
-            searchResults={searchResults}
-            destination={destination}
-          />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
