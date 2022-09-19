@@ -28,7 +28,11 @@ export const Wrapper = ({ images }) => {
           key={image}
           className={`${img_container}`}
         >
-          <img src={image} alt="" className={`${img_style}`} />
+          <img
+            src={`./destinations/${image}`}
+            alt=""
+            className={`${img_style}`}
+          />
         </div>
       ) : (
         <div

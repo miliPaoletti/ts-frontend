@@ -57,3 +57,11 @@ export const reFillDataFirestore = async (q, queryForServer) => {
 
   return snapshot;
 };
+
+export const getUniques = (arr) => {
+  // get uniques values from an array of objects
+
+  return Array.from(new Set(arr.map((a) => a.id))).map((id) => {
+    return arr.find((a) => a.id === id);
+  });
+};

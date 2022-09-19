@@ -12,7 +12,8 @@ export default function DestinationsRelated({ searchResults, destination }) {
         const destino = searchResults[0]["data"];
         let departures = destino["departures"];
         let title = destino["title"];
-        fetchDestRelated(departures, title).then((val) => {
+        let destinationsNames = destino["destinations_names"];
+        fetchDestRelated(departures, title, destinationsNames).then((val) => {
           setDestinationsRelated(val);
         });
       }

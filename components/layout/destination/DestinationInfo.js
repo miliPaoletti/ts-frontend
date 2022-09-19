@@ -2,11 +2,7 @@ import TitleDestination from "components/ui/Titles/TitleDestination";
 import { Wrapper } from "components/ui/WrapperImages/Wrapper";
 import { isKeyInObject } from "components/utils/renderHelpers";
 
-export default function DestinationInfo({
-  destinationNames,
-
-  dataImages,
-}) {
+export default function DestinationInfo({ destinationNames, dataImages }) {
   return (
     <div className=" w-[100%] lg:w-[75%] block py-5 px-5">
       {destinationNames.map((destination, index) => {
