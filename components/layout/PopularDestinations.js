@@ -1,16 +1,13 @@
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
 import { getData } from "components/utils/renderHelpers";
-import { fetchAllDestinations } from "pages/api/destinations";
+import { fetchPopularDestinations } from "pages/api/destinations";
 import { useEffect, useState } from "react";
 
 export const PopularDestinations = () => {
   const [popularDest, setPopularDest] = useState([]);
 
   useEffect(() => {
-    fetchAllDestinations().then((allDest) => {
-      let popular = allDest.slice(0, 6);
-      setPopularDest(popular);
-    });
+    fetchPopularDestinations().then(setPopularDest);
   }, []);
 
   return (

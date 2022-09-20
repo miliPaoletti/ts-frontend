@@ -11,6 +11,6 @@ export const PATH_CUSTOM_INFO = "custom_info";
 export const PATH_DESTINATIONS = "destinations";
 // query all destinations
 export const QUERY_DESTS = query(collectionRef(PATH_DESTINATIONS));
-// query all data in carousel
+// // query all data in carousel
 export const QUERY_ALL_CAROUSEL = query(collectionRef(PATH_CAROUSEL));
 export const DESTINATIONS_RELATED = 3;

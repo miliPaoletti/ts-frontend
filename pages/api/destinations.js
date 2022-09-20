@@ -19,6 +19,19 @@ const getAllIdAndData = (snapshot) => {
   return ret;
 };
 
+export const fetchPopularDestinations = async () => {
+  const q = query(
+    collectionRef(PATH_DESTINATIONS),
+    orderBy("promotions", "asc"),
+    orderBy("views", "desc"),
+    limit(6)
+  );
+
+  const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
+
+  return getAllIdAndData(snapshot);
+};
+
 export const fetchAllDestinations = async () => {
   const q = query(
     collectionRef(PATH_DESTINATIONS),
