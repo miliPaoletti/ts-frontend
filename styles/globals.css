@@ -45,7 +45,7 @@
   }
 
   section {
-    @apply pt-16 pb-8 ;
+    @apply pt-10 md:pt-16 pb-8 ;
   }
 
   .container-general{
@@ -99,11 +99,15 @@
 
   .lightbox-img {
     max-width: 80%;
-    max-height:80%;
+    max-height:75%;
 }
 
 .lightbox svg {
   @apply text-6xl z-[999999] p-2 remove-selection text-white cursor-pointer
+}
+
+.subtitle {
+  @apply pb-3 font-bold text-lg md:text-xl
 }
 
 .icon-close {
@@ -184,7 +188,7 @@
   }
 
   .about-us-container {
-    @apply flex items-center space-x-2 justify-center lg:justify-start;
+    @apply flex items-center space-x-2 justify-start;
   }
 
   .about-us-icons {

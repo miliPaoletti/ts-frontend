@@ -1,16 +1,15 @@
-import Image from "next/image";
-
 export default function Banner({ image, title }) {
   return (
     <div className="relative slider-container w-100">
-      <div className="opacity-imgs">
-        <Image
-          src={image}
-          layout="fill"
-          objectFit="cover"
-          className="center z-0 remove-selection"
-          alt=""
-        />
+      <div className="opacity-imgs h-full w-full">
+        <picture className="h-full w-full">
+          <source srcSet={image} type="image" />
+          <img
+            className="object-cover h-full w-full z-0 remove-selection"
+            src={image}
+            alt={image}
+          />
+        </picture>
       </div>
       <p
         className="slide-text-destination "

@@ -19,10 +19,24 @@ const Sidebar = ({
   list_boarding,
   promotions,
   taxes,
+  tours,
 }) => {
   let list_includes = [];
   if (includes !== undefined) {
     list_includes = includes?.map((item) => {
+      return (
+        <p
+          key={item}
+          className="p-2 first-letter-capitalize border-b border-b-gray-300 last:border-b last:border-b-transparent"
+        >
+          {item}.
+        </p>
+      );
+    });
+  }
+  let list_tours = [];
+  if (tours !== undefined) {
+    list_tours = tours?.map((item) => {
       return (
         <p
           key={item}
@@ -57,7 +71,7 @@ const Sidebar = ({
           </>
         )}
 
-        <p className="font-bold text-xl">Resumen del viaje</p>
+        <p className="font-bold text-2xl lg:text-2xl ">Resumen del viaje</p>
 
         {departures && (
           <Item icon={<BsFillCalendarEventFill />} text={departures} />
@@ -76,8 +90,17 @@ const Sidebar = ({
         {regimen && <Item icon={<GiMeal />} text={regimen} />}
         {list_includes.length > 0 ? (
           <div>
-            <p className="pb-3 font-medium">Incluye:</p>
+            <p className="subtitle">Incluye:</p>
             <Item text={list_includes} />
+          </div>
+        ) : (
+          ""
+        )}
+
+        {list_tours.length > 0 ? (
+          <div>
+            <p className="subtitle">Tours:</p>
+            <Item text={list_tours} />
           </div>
         ) : (
           ""

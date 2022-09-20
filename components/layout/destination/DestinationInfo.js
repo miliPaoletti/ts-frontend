@@ -18,7 +18,7 @@ export default function DestinationInfo({ destinationNames, dataImages }) {
           <div key={index} className="space-y-5">
             <TitleDestination text={destination} />{" "}
             <Wrapper images={getImages} />
-            <div className="text-justify whitespace-pre-wrap">
+            <div className="text-justify whitespace-pre-wrap  text-base md:text-xl">
               {getDescription}
             </div>
           </div>

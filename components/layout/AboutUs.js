@@ -13,10 +13,10 @@ const AboutUs = () => {
         <div className="container-general z-40 pb-5">
           <div className="grid grid-cols-1 lg:grid-cols-2 align-center">
             <div className="space-y-5 px-11">
-              <h1 className="text-2xl md:text-4xl font-medium">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium">
                 Turismo Serrano
               </h1>
-              <div className="text-sm sm:text-base xl:text-xl text-justify">
+              <div className="text-md sm:text-lg font-medium xl:text-xl text-justify">
                 Turismo Serrano es una agencia de viajes y turismo fundada el 1
                 de diciembre de 1991. Conformamos una empresa familiar
                 especializada en salidas grupales propias tanto como salidas
@@ -29,7 +29,7 @@ const AboutUs = () => {
                 departamentos temporarios y guiadas exclusivas.
               </div>
             </div>
-            <div className="z-40 flex justify-center lg:justify-end mt-2 lg:mt-0">
+            <div className="z-40 flex justify-center lg:justify-end mt-10 lg:mt-0">
               <div className="space-y-1 md:space-y-2 lg:space-y-4 px-11 ">
                 <SocialMediaLink
                   icon={<MdLocationOn />}
@@ -46,9 +46,9 @@ const AboutUs = () => {
                   text="MegaStereo (100.9) - Jueves 12hs"
                 />
                 <SocialMediaLink
-                  href="http://megatandil.com.ar"
+                  href="https://www.eleco.com.ar/tandilfm"
                   icon={<MdRadio />}
-                  text="RADIO ECO "
+                  text="Tandil FM - El Eco "
                 />
                 <SocialMediaLink
                   href="https://www.eleco.com.ar/ecotv"
