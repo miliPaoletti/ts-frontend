@@ -1,12 +1,11 @@
 import { ALL } from "components/utils/constants";
 import { sortByMonth } from "components/utils/renderHelpers";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { GoLocation } from "react-icons/go";
 import { GoCalendar } from "react-icons/go";
-
 import InputContainer from "components/ui/Search/InputContainer";
 import ListBoxSearch from "components/ui/Search/ListBoxSearch";
+import Link from "next/link";
 
 const getDestinationNames = (destinations) => {
   return Object.keys(destinations);
@@ -22,44 +21,30 @@ const getMonthsOfDest = (destinations, destination) => {
 };
 
 const SearchBar = ({ destinationsNames, months, destination, month }) => {
-  const router = useRouter();
   const [selectedDestination, setSelectedDestination] = useState(destination);
   const [selectedMonth, setSelectedMonth] = useState(month);
-  console.log("selectedMonth");
-  console.log(selectedMonth);
 
   const [listDestinations, setListDestinations] = useState([destination]);
   const [listMonths, setListMonths] = useState([month]);
-
-  const [skipCount, setSkipCount] = useState(true);
 
   useEffect(() => {
     setSelectedDestination(destination);
   }, [destination]);
 
   useEffect(() => {
+    setSelectedMonth(month);
+  }, [month]);
+
+  useEffect(() => {
     setListDestinations(getDestinationNames(destinationsNames));
+
     if (selectedDestination !== ALL) {
       setListMonths(getMonthsOfDest(destinationsNames, selectedDestination));
     } else {
       setListMonths(months);
     }
-    if (skipCount) setSkipCount(false);
-    if (!skipCount) {
-      setSelectedMonth(ALL);
-    }
-  }, [selectedDestination, months, skipCount, destinationsNames]);
+  }, [selectedDestination, months, destinationsNames]);
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    router.push({
-      pathname: `/search`,
-      query: {
-        destination: selectedDestination,
-        month: selectedMonth,
-      },
-    });
-  };
   return (
     <div className="relative mt-0 md:flex md:items-center md:justify-center md:w-full md:left-0 z-[100] md:mt-[-120px]">
       <div className=" shadow-[0_0_15px_0px] shadow-orange-400">
@@ -73,6 +58,7 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
                 icon={<GoLocation className="icon" size={20} />}
                 text="Destino"
                 selected={selectedDestination}
+                updateMonths={setSelectedMonth}
               />
             }
           />
@@ -88,14 +74,18 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
               />
             }
           />
-          <form
-            className="relative overflow-hidden z-30 w-full md:w-auto"
-            onSubmit={handleSubmit}
+          <Link
+            href={{
+              pathname: "search",
+              query: { destination: selectedDestination, month: selectedMonth },
+            }}
           >
-            <button className="uppercase p-2 md:p-5 text-sm md:text-xl text-white font-bold bg-orange-950 md:bg-transparent w-full md:w-auto md:before:-z-50 md:before:content-[''] md:before:absolute md:before:right-[-6px] md:before:top-0 md:before:h-full md:before:w-full md:before:-skew-x-6 md:before:bg-orange-950 remove-selection">
-              buscar
-            </button>
-          </form>
+            <a className="relative overflow-hidden z-30 w-full md:w-auto">
+              <div className="uppercase text-center p-3 md:p-5 text-sm md:text-xl text-white font-bold bg-orange-950 md:bg-transparent w-full md:w-auto md:before:-z-50 md:before:content-[''] md:before:absolute md:before:right-[-6px] md:before:top-0 md:before:h-full md:before:w-full md:before:-skew-x-6 md:before:bg-orange-950 remove-selection">
+                buscar
+              </div>
+            </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -2,9 +2,21 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { BsCheck } from "react-icons/bs";
 import { TbSelector } from "react-icons/tb";
-const ListBoxSearch = ({ data, separator, icon, onChange, text, selected }) => {
+import { ALL } from "components/utils/constants";
+const ListBoxSearch = ({
+  data,
+  separator,
+  icon,
+  onChange,
+  text,
+  selected,
+  updateMonths,
+}) => {
   const onChangeSetSelected = (q) => {
     onChange(q);
+    if (updateMonths) {
+      updateMonths(ALL);
+    }
   };
   return (
     <div className="w-full md:w-72 lg:w-96 remove-selection">
@@ -17,12 +29,14 @@ const ListBoxSearch = ({ data, separator, icon, onChange, text, selected }) => {
                 : "text-left cursor-default sm:text-sm flex items-center"
             }
           >
-            <Listbox.Button className="remove-selection text-left whitespace-nowrap flex items-center text-ellipsis overflow-hidden w-full  capitalize border-none focus:ring-0 text-md md:text-xl leading-5 text-black bg-transparent ">
+            <Listbox.Button className="remove-selection py-1 text-left flex items-center w-full capitalize border-none focus:ring-0 text-md md:text-xl leading-5 text-black bg-transparent">
               {icon}{" "}
-              <p className="mx-2 text-md md:text-lg text-gray-950 remove-selection">
+              <p className="mx-2 text-md md:text-lg text-gray-950 remove-selection w-[70px] md:w-auto">
                 {text}:{" "}
               </p>{" "}
-              {selected}
+              <p className="text-ellipsis overflow-hidden  whitespace-nowrap ">
+                {selected}
+              </p>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <TbSelector
                   className="w-5 h-5 text-gray-400"

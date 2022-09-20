@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
 import Arrows from "components/ui/Carousel/Arrows";
 import SliderContent from "components/ui/Carousel/SliderContent";
+import { getImgsCarousel } from "pages/api/carousel";
+import { useCallback, useEffect, useState } from "react";
 
-const Slider = (props) => {
-  const len = props.sliderImage?.length - 1;
+const Slider = () => {
+  const [imagesCarousel, setImagesCarousel] = useState([]);
+
+  const len = imagesCarousel?.length - 1;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -16,19 +19,24 @@ const Slider = (props) => {
     return () => clearInterval(interval);
   }, [activeIndex, isPaused, len]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setActiveIndex(activeIndex === len ? 0 : activeIndex + 1);
     setIsPaused(true);
-  };
-  const prevSlide = () => {
+  }, [activeIndex, len]);
+
+  const prevSlide = useCallback(() => {
     setActiveIndex(activeIndex < 1 ? len : activeIndex - 1);
     setIsPaused(true);
-  };
+  }, [activeIndex, len]);
+
+  useEffect(() => {
+    getImgsCarousel().then(setImagesCarousel);
+  }, []);
   return (
     <div className="slider-container group">
       <SliderContent
         activeIndex={activeIndex}
-        sliderImage={props.sliderImage}
+        sliderImage={imagesCarousel}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       />

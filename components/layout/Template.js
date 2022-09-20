@@ -1,22 +1,25 @@
 import Head from "next/head";
 import React from "react";
-import Footer from "components/layout/Footer";
-import Header from "./Header";
+import { NotificationProvider } from "context/NotificationContext";
+import MainContent from "./MainContent";
 
-const Template = ({ content }) => {
+const Template = ({ content, title }) => {
   return (
     <div>
       <Head>
-        <title>Turismo Serrano</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
+        <link
+          rel="icon"
+          href={`${
+            process.env.NEXT_PUBLIC_BASE_PATH === undefined
+              ? "/favicon.ico"
+              : `${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.ico`
+          }`}
+        />
       </Head>
-      <div className="page-container">
-        <main className="content-wrap ">
-          <Header />
-          {content}
-        </main>
-        <Footer />
-      </div>
+      <NotificationProvider>
+        <MainContent content={content} />
+      </NotificationProvider>
     </div>
   );
 };

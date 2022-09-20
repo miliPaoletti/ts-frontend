@@ -2,9 +2,10 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  reactStrictMode: false,
   images: {
     loader: "akamai",
-    path: "",
+    path: " ",
     domains: ["cdn.kimkim.com"],
   },
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,

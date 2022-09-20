@@ -3,7 +3,7 @@ import { MdPermPhoneMsg } from "react-icons/md";
 import { MdWatchLater } from "react-icons/md";
 import { MdFacebook } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
-import { BsInstagram } from "react-icons/bs";
+import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 import Contact from "components/ui/Footer/Contact";
 import TitleFooter from "components/ui/Titles/TitleFooter";
 import SocialMediaLink from "components/ui/Links/SocialMediaLink";
@@ -12,7 +12,7 @@ import Logo from "../Icons/Logo";
 
 function Footer() {
   return (
-    <footer className=" py-8 bg-black-900  text-white h-[30rem] lg:h-[20rem] ">
+    <footer className="footer">
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 space-y-5 cursor-default ">
         <div className="flex flex-col justify-center items-center space-y-5 ">
           <div className="flex px-3 sm:px-12 ">

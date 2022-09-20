@@ -20,13 +20,17 @@
   }
   
   .header {
-    @apply flex h-10 items-center px-3 sm:px-12;
+    @apply flex h-10 items-center px-3 sm:px-12 justify-between;
   }
 
   header svg {
-    @apply cursor-pointer h-fit w-[200px]
+    @apply cursor-pointer h-fit w-[150px] sm:w-[200px]
   }
 
+
+  header ul li:hover{
+    @apply  text-orange-950 cursor-pointer transition-all duration-200 ease-in-out 
+  }
   footer .logo {
     @apply cursor-pointer h-fit w-[250px]
   }
@@ -77,6 +81,35 @@
     
   }
 
+
+  .lightbox {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    /*the following isn't necessary but will help center everything once we add buttons*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+
+  .lightbox-img {
+    max-width: 80%;
+    max-height:80%;
+}
+
+.lightbox svg {
+  @apply text-6xl z-[999999] p-2 remove-selection text-white cursor-pointer
+}
+
+.icon-close {
+  @apply absolute top-2 right-5 cursor-pointer
+}
+
   .animation {
     animation: move 20s forwards ease-in;
   }
@@ -116,7 +149,7 @@
   }
   .slide-title,
   .slide-text {
-    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 remove-selection w-full font-bold cursor-default text-white text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[25%] z-10 font-['Rubik'] uppercase sm:left-[10%];
+    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 w-full font-bold cursor-default text-white text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[25%] z-10 font-['Rubik'] uppercase sm:left-[10%];
   }
 
   .slide-text {
@@ -124,7 +157,7 @@
   }
 
   .slide-text-destination{ 
-    @apply absolute  top-[52%] sm:top-[58%] md:top-[50%] remove-selection w-full text-white  cursor-default break-words capitalize font-bold text-2xl md:text-3xl 2xl:text-5xl z-10 font-['Rubik'] left-[10%]
+    @apply absolute top-[52%] sm:top-[58%] md:top-[50%] w-full text-white  cursor-default break-words capitalize font-bold text-2xl md:text-4xl 2xl:text-5xl z-10 font-['Rubik'] left-[5%]
   }
 
   .separator {
@@ -190,8 +223,12 @@
   }
   
   .content-wrap {
-    @apply pb-[30rem] lg:pb-[20rem]
+    @apply pb-[26rem] lg:pb-[16rem]
     /* Footer height */
+  }
+
+  .footer{
+    @apply py-8 bg-black-900  text-white h-[30rem] lg:h-[20rem]
   }
 
   .container-search {
@@ -215,6 +252,10 @@
 
   .gradient{
     background-image: linear-gradient(to right top, #cccccc, #d9d9d9, #e5e5e5, #f2f2f2, #ffffff);
+  }
+
+  .medium-card{
+    @apply rounded-xl overflow-hidden hover:shadow-lg mb-11 md:mx-5 bg-white hover:scale-105 transition transform duration-200 ease-out border border-[#dce0e0] cursor-pointer relative
   }
 
 
@@ -241,15 +282,15 @@
   }
 
   .notification-fail{
-  @apply items-center animationIn rounded-xl fixed z-40 font-medium notifications-colors-fail px-5 py-2 mt-11 cursor-default right-10
+  @apply items-center animationIn rounded-xl fixed z-[99999]  font-medium notifications-colors-fail px-5 py-2 mt-11 cursor-default right-10
   }
 
   .notification-loading {
-    @apply items-center animationInLoading rounded-xl fixed z-40 font-medium notifications-colors-loading px-5 py-3 mt-11 cursor-default right-10
+    @apply items-center animationInLoading rounded-xl fixed z-[99999] font-medium notifications-colors-loading px-5 py-3 mt-11 cursor-default right-10
   }
 
   .notification-success {
-    @apply animationIn rounded-xl fixed z-40 font-medium notifications-colors-success px-5 py-3 mt-11 cursor-default right-10
+    @apply animationIn rounded-xl fixed z-[99999] font-medium notifications-colors-success px-5 py-3 mt-11 cursor-default right-10
   }
 
   .animationInLoading {
