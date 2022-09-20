@@ -1,3 +1,4 @@
+import { query } from "firebase/firestore";
 import { collectionRef, PATH_CAROUSEL, QUERY_ALL_CAROUSEL } from "./constants";
 import { reFillDataFirestore } from "./helpers";
 
