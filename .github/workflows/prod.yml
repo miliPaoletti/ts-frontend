@@ -41,12 +41,12 @@ jobs:
           #     Name: DEPLOY_PRIVATE_KEY, Value Paste the private key.
           # SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY. }} 
 
-        with:
-          # GitHub Action output files
-          source-directory: output/
-          destination-github-username: "miliPaoletti"
-          destination-repository-name: "turismoSerrano"
-          user-email: milagros.paoletti@gmail.com
-          # It defaults to `main`
-          target-branch: "turismo-serrano"
+      with:
+        # GitHub Action output files
+        source-directory: output/
+        destination-github-username: "miliPaoletti"
+        destination-repository-name: "turismoSerrano"
+        user-email: milagros.paoletti@gmail.com
+        # It defaults to `main`
+        target-branch: "turismo-serrano"
 
