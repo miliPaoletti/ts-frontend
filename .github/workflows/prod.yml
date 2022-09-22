@@ -11,34 +11,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
-    env:
-      NEXT_PUBLIC_BASE_PATH: ${{ secrets.BASE_PATH }}
-      NEXT_PUBLIC_FIREBASE_CREDENTIALS: '${{ secrets.FIREBASE_CONFIG }}'
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    container: pandoc/latex
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
 
     - name: Deploy to external repository
       uses: cpina/github-action-push-to-another-repository@main
       env:
         SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}       
       with:
-        source-directory: .
+        source-directory: "."
         destination-github-username: "miliPaoletti"
         destination-repository-name: "turismoSerrano"
-        user-email: milagros.paoletti@gmail.com
-        # It defaults to `main`
-        target-branch: master
-    - name: Test get variable exported by push-to-another-repository
-      run: echo $DESTINATION_CLONED_DIRECTORY
+        target-branch: "master"
