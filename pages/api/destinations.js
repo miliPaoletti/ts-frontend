@@ -33,12 +33,7 @@ export const fetchPopularDestinations = async () => {
 };
 
 export const fetchAllDestinations = async () => {
-  const q = query(
-    collectionRef(PATH_DESTINATIONS),
-    orderBy("promotions", "asc"),
-    orderBy("views", "desc")
-  );
-
+  const q = query(collectionRef(PATH_DESTINATIONS));
   const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
 
   return getAllIdAndData(snapshot);

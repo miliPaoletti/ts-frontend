@@ -92,7 +92,9 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
       >
         {({ errors, isSubmitting, touched }) => (
           <Form className="form space-y-5 my-7">
-            <div className="text-center text-2xl font-medium"> CONSULTAR</div>
+            <div className="text-center text-2xl font-medium">
+              ¿Ya pensaste en tu nuevo destino?
+            </div>
             {section === MEDIUM_CARD && <div>{INFO_NOT_UPLOADED}</div>}
             <ItemContact
               icon={<FaUser />}
@@ -171,7 +173,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             <div className="">
               <div className="flex items-top">
                 <Field
-                  className={errors.consult ? "error" : ""}
+                  className={errors.consult ? "error" : " text-lg"}
                   name="consult"
                   placeholder="Consulta..."
                   type="text"

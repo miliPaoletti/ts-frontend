@@ -2,7 +2,7 @@ const Contact = ({ icon, text }) => {
   return (
     <div className="flex items-center space-x-2">
       {icon}
-      <span className="text-sm md:text-base">{text}</span>
+      <span className="text-md md:text-lg">{text}</span>
     </div>
   );
 };

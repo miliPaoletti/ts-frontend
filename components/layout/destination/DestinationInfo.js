@@ -8,17 +8,24 @@ export default function DestinationInfo({ destinationNames, dataImages }) {
       {destinationNames.map((destination, index) => {
         let getImages = [];
         let getDescription = "";
+        let imgObjs = [];
         let data = isKeyInObject(dataImages, destination);
         if (data) {
           getImages = data["images"];
+          // transform arr to obj to get same structure of carosuel data
+          getImages.map((item) => {
+            let obj = {};
+            obj["images"] = item;
+            imgObjs.push(obj);
+          });
+
           getDescription = data["description"];
         }
 
         return (
           <div key={index} className="space-y-5">
-            <TitleDestination text={destination} />{" "}
-            <Wrapper images={getImages} />
-            <div className="text-justify whitespace-pre-wrap">
+            <TitleDestination text={destination} /> <Wrapper images={imgObjs} />
+            <div className="text-justify whitespace-pre-wrap  text-base md:text-xl">
               {getDescription}
             </div>
           </div>

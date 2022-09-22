@@ -64,6 +64,8 @@ const DestinationContent = () => {
     includes = [includes];
   }
 
+  let tours = destino["tours"];
+
   const dataForConsult = `Destino: ${title},
       URL: http://localhost:3000/destination?destinationId=${destination},
       PRECIO: ${destino["lowest_price"][0]} ${destino["lowest_price"][1]}
@@ -110,6 +112,7 @@ const DestinationContent = () => {
                 list_boarding={list_boarding}
                 promotions={getPromotionsValue(promotion)}
                 taxes={destino["lowest_price"]["taxes"]}
+                tours={tours}
               />
             </div>
             <DestinationInfo
