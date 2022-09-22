@@ -15,31 +15,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - run: |
-        if [ -e yarn.lock ]; then
-        yarn install --frozen-lockfile
-        elif [ -e package-lock.json ]; then
-        npm ci
-        else
-        npm i
-        fi
-        npm run build
-        npm run export
-    - name: Add .nojekyll file
-      run: touch ./out/.nojekyll
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-          branch: turismo-serrano 
-          folder: out # The folder the action should deploy.
-
-
-    
 
     - name: Deploy to external repository
       uses: cpina/github-action-push-to-another-repository@main
