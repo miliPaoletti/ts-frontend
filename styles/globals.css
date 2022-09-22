@@ -98,8 +98,9 @@
   }
 
   .lightbox-img {
-    max-width: 80%;
-    max-height:75%;
+    /* width: 80%; */
+    /* height:50%; */
+    @apply h-fit w-fit
 }
 
 .lightbox svg {
@@ -125,6 +126,10 @@
   .slider-container {
     @apply height-carousel relative overflow-hidden;
     /* aca creo que se tendria que acomodar la transicion del carousle */
+  }
+
+  .slider-destination {
+    @apply h-[300px] md:h-[400px] relative overflow-hidden 
   }
   .active {
     @apply block opacity-100 ;

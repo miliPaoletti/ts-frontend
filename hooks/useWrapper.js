@@ -19,12 +19,12 @@ const useWrapper = (images) => {
   const showNext = useCallback(
     (event) => {
       event.stopPropagation();
-      if (images !== undefined) {
+      if (images.length !== 0) {
         const totalLength = images?.length;
         if (currentIndex + 1 >= totalLength) {
           // last element
           setCurrentIndex(0);
-          const newUrl = images[0];
+          const newUrl = images[0]["images"];
           setImageToShow(newUrl);
           // cargo la primera imagen
           return;
@@ -35,7 +35,7 @@ const useWrapper = (images) => {
           return images.indexOf(item) === newIndex;
         });
 
-        const newItem = newUrl[0];
+        const newItem = newUrl[0]["images"];
         setImageToShow(newItem);
         setCurrentIndex(newIndex);
       }
@@ -47,13 +47,13 @@ const useWrapper = (images) => {
     (event) => {
       event.stopPropagation();
 
-      if (images !== undefined) {
+      if (images.length !== 0) {
         const totalLength = images?.length;
 
         if (currentIndex === 0) {
           // first element
           setCurrentIndex(totalLength - 1);
-          const newUrl = images[totalLength - 1];
+          const newUrl = images[totalLength - 1]["images"];
           setImageToShow(newUrl);
           return;
         }
@@ -62,7 +62,7 @@ const useWrapper = (images) => {
           return images.indexOf(item) === newIndex;
         });
 
-        const newItem = newUrl[0];
+        const newItem = newUrl[0]["images"];
         setImageToShow(newItem);
         setCurrentIndex(newIndex);
       }
