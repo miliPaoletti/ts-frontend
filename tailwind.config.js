@@ -20,7 +20,11 @@ module.exports = {
         },
       },
       backgroundImage: {
-        "about-us": "url(https://i.postimg.cc/nVW9QPbV/158835.jpg)",
+        "about-us": `${
+          process.env.NEXT_PUBLIC_BASE_PATH === undefined
+            ? "url(/aboutUs.jpg)"
+            : `url(${process.env.NEXT_PUBLIC_BASE_PATH}/aboutUs.jpg)`
+        } `,
         "search-img": `${
           process.env.NEXT_PUBLIC_BASE_PATH === undefined
             ? "url(/search_img.jpeg)"
