@@ -43,7 +43,7 @@ jobs:
 
         with:
           # GitHub Action output files
-          source-directory: public/
+          source-directory: output/
           destination-github-username: "miliPaoletti"
           destination-repository-name: "turismoSerrano"
           user-email: milagros.paoletti@gmail.com
