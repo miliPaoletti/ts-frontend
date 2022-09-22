@@ -48,5 +48,5 @@ jobs:
         destination-repository-name: "turismoSerrano"
         user-email: milagros.paoletti@gmail.com
         # It defaults to `main`
-        target-branch: "master"
+        target-branch: master
 
