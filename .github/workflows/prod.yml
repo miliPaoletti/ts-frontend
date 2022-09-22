@@ -24,4 +24,4 @@ jobs:
         source-directory: "."
         destination-github-username: "miliPaoletti"
         destination-repository-name: "turismoSerrano"
-        target-branch: "master"
+        target-branch: "turismo-serrano"
