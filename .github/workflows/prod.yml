@@ -43,10 +43,10 @@ jobs:
 
       with:
         # GitHub Action output files
-        source-directory: output/
+        source-directory: .
         destination-github-username: "miliPaoletti"
         destination-repository-name: "turismoSerrano"
         user-email: milagros.paoletti@gmail.com
         # It defaults to `main`
-        target-branch: "turismo-serrano"
+        target-branch: "master"
 
