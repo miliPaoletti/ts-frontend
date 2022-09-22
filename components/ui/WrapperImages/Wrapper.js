@@ -14,8 +14,7 @@ export const Wrapper = ({ images }) => {
     hideLightBox,
     showImage,
   } = useWrapper(images);
-
-  return (
+  return images.length > 0 ? (
     <div className="remove-selection ">
       <SliderDestination images={images} showImage={showImage} />
       {lightboxDisplay ? (
@@ -38,5 +37,7 @@ export const Wrapper = ({ images }) => {
         ""
       )}
     </div>
+  ) : (
+    ""
   );
 };
