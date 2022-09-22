@@ -39,13 +39,13 @@ jobs:
           #     Name: DEPLOY_PUBLIC_KEY, Value Paste the public key. Enable "✅️ Allow write access"
           # 2.3 Add private key in the source repository: <external repository>/Settings/Secrets/Actions/New repository secret
           #     Name: DEPLOY_PRIVATE_KEY, Value Paste the private key.
-          # SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          # SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY. }} 
 
         with:
           # GitHub Action output files
           source-directory: public/
-          destination-github-username: milagros.paoletti@gmail.com
-          destination-repository-name: turismoSerrano
+          destination-github-username: "miliPaoletti"
+          destination-repository-name: "turismoSerrano"
           user-email: milagros.paoletti@gmail.com
           # It defaults to `main`
           target-branch: "turismo-serrano"
