@@ -39,6 +39,6 @@ jobs:
         destination-repository-name: "turismoSerrano"
         user-email: milagros.paoletti@gmail.com
         # It defaults to `main`
-        target-branch: "master"
+        target-branch: master
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY
