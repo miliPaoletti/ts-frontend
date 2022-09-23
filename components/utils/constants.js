@@ -34,4 +34,4 @@ export const MEDIUM_CARD = "mediumCard";
 export const INFO_NOT_UPLOADED =
   "La info todavia no esta cargada, envie su consulta y le daremos mas informacion a la brevedad";
 export const FORM = "FORM";
-export const INFO_WHATSAPP = "O consultanos por whatsapp";
+export const INFO_WHATSAPP = "O consúltanos por ";

@@ -11,42 +11,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
-    env:
-      NEXT_PUBLIC_BASE_PATH: ${{ secrets.BASE_PATH }}
-      NEXT_PUBLIC_FIREBASE_CREDENTIALS: '${{ secrets.FIREBASE_CONFIG }}'
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    container: pandoc/latex
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-
     - name: Deploy to external repository
       uses: cpina/github-action-push-to-another-repository@main
       env:
-          # Way 2: using SSH deploy keys
-          # @see https://cpina.github.io/push-to-another-repository-docs/setup-using-ssh-deploy-keys.html#setup-ssh-deploy-keys
-          # 2.1 Generate an SSH key in terminal (Leave the passphrase empty)
-          # 2.2 Add public key in the external repository: <external repository>/Settings/Deploy keys/Add deploy key
-          #     Name: DEPLOY_PUBLIC_KEY, Value Paste the public key. Enable "✅️ Allow write access"
-          # 2.3 Add private key in the source repository: <external repository>/Settings/Secrets/Actions/New repository secret
-          #     Name: DEPLOY_PRIVATE_KEY, Value Paste the private key.
-          # SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
-
-        with:
-          # GitHub Action output files
-          source-directory: public/
-          destination-github-username: milagros.paoletti@gmail.com
-          destination-repository-name: turismoSerrano
-          user-email: milagros.paoletti@gmail.com
-          # It defaults to `main`
-          target-branch: "turismo-serrano"
-
+        SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}       
+      with:
+        source-directory: "."
+        destination-github-username: "miliPaoletti"
+        destination-repository-name: "turismoSerrano"
+        target-branch: "master"

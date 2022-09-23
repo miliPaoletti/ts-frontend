@@ -1,24 +1,18 @@
 import Arrows from "components/ui/Carousel/Arrows";
 import SliderContent from "components/ui/Carousel/SliderContent";
 import { useSlider } from "hooks/useSlider";
-import { getImgsCarousel } from "pages/api/carousel";
-import { useEffect, useState } from "react";
 
-const Slider = () => {
-  const [imagesCarousel, setImagesCarousel] = useState([]);
-
-  useEffect(() => {
-    getImgsCarousel().then(setImagesCarousel);
-  }, []);
-  const { activeIndex, setIsPaused, prevSlide, nextSlide } =
-    useSlider(imagesCarousel);
+const Slider = ({ images, showImage, sliderStyles }) => {
+  const { activeIndex, setIsPaused, prevSlide, nextSlide } = useSlider(images);
   return (
-    <div className="slider-container group">
+    <>
       <SliderContent
         activeIndex={activeIndex}
-        sliderImage={imagesCarousel}
+        sliderImage={images}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        showImage={showImage}
+        sliderStyles={sliderStyles}
       />
       <Arrows
         prevSlide={prevSlide}
@@ -26,7 +20,7 @@ const Slider = () => {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       />
-    </div>
+    </>
   );
 };
 

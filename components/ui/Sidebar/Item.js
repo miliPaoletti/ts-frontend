@@ -4,7 +4,7 @@ import PopoverUi from "components/ui/Popover/PopoverUi";
 
 const Item = ({ text, icon, data, list_boarding, stylesItem }) => {
   return (
-    <div className="flex items-center space-x-2 border border-gray-300 text-lg relative ">
+    <div className="flex items-center space-x-2 border border-gray-300 text-lg relative capitalize ">
       {icon && (
         <div className="border-r border-gray-300 p-2 py-4 text-xl">{icon}</div>
       )}

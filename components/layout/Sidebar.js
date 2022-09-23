@@ -29,7 +29,7 @@ const Sidebar = ({
           key={item}
           className="p-2 first-letter-capitalize border-b border-b-gray-300 last:border-b last:border-b-transparent"
         >
-          {item}.
+          {item}
         </p>
       );
     });
@@ -42,7 +42,7 @@ const Sidebar = ({
           key={item}
           className="p-2 first-letter-capitalize border-b border-b-gray-300 last:border-b last:border-b-transparent"
         >
-          {item}.
+          {item}
         </p>
       );
     });
@@ -71,7 +71,7 @@ const Sidebar = ({
           </>
         )}
 
-        <p className="font-bold text-2xl lg:text-2xl ">Resumen del viaje</p>
+        <p className="font-bold text-2xl lg:text-xl ">Información del viaje</p>
 
         {departures && (
           <Item icon={<BsFillCalendarEventFill />} text={departures} />
