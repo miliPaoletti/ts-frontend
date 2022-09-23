@@ -62,7 +62,11 @@ export const fetchDestinationsNamesAndMonths = (destinations) => {
   let obj = {};
   destinations?.map((destination) => {
     let destinations_names = destination["data"]["destinations_names"];
-    let months = destination["data"]["departures"];
+    let months = [];
+    let departures = destination["data"]["departures"];
+    if (departures !== undefined) {
+      months = departures;
+    }
 
     destinations_names.map((item) => {
       if (item in obj) {
