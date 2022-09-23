@@ -8,7 +8,9 @@ const SliderContent = ({
 }) => {
   return (
     <section
-      className="pt-0 relative opacity-imgs cursor-pointer"
+      className={`pt-0 relative  ${
+        sliderStyles ? "cursor-pointer" : "opacity-imgs"
+      }`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() =>

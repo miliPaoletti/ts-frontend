@@ -14,8 +14,10 @@ import {
   INFO_NOT_UPLOADED,
   FORM,
   INFO_WHATSAPP,
+  URL_WHATSAPP,
 } from "components/utils/constants";
 import Whatsapp from "components/ui/Links/Whatsapp";
+import Link from "next/link";
 
 function validateEmail(value) {
   let error;
@@ -93,7 +95,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
         {({ errors, isSubmitting, touched }) => (
           <Form className="form space-y-5 my-7">
             <div className="text-center text-2xl font-medium">
-              ¿Ya pensaste en tu nuevo destino?
+              Consúltanos sobre tu próximo destino
             </div>
             {section === MEDIUM_CARD && <div>{INFO_NOT_UPLOADED}</div>}
             <ItemContact
@@ -196,8 +198,12 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             </button>
 
             <div className="flex items-center text-left space-x-3 ">
+              <Link href={URL_WHATSAPP}>
+                <a rel="noreferrer" target="_blank">
+                  <p className="text-base">{INFO_WHATSAPP}</p>
+                </a>
+              </Link>
               <Whatsapp page={FORM} />
-              <p className="text-[12px]">{INFO_WHATSAPP}</p>
             </div>
           </Form>
         )}
