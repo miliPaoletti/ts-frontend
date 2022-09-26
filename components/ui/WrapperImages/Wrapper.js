@@ -1,5 +1,6 @@
 import SliderDestination from "components/layout/destination/SliderDestination";
 import useWrapper from "hooks/useWrapper";
+import Image from "next/image";
 import {
   BsFillArrowLeftSquareFill,
   BsFillArrowRightSquareFill,
@@ -22,14 +23,13 @@ export const Wrapper = ({ images }) => {
           <RiCloseCircleFill className="icon-close" onClick={hideLightBox} />
           <BsFillArrowLeftSquareFill onClick={showPrev} />
           <div className="h-fit lg:h-[90%]">
-            <picture className="lightbox-img remove-selection">
-              <source srcSet={imageToShow} type="image" />
-              <img
-                className="remove-selection w-full h-full"
-                src={imageToShow}
-                alt={imageToShow}
-              />
-            </picture>
+            <Image
+              src={imageToShow}
+              layout="fill"
+              objectFit="contain"
+              alt={imageToShow}
+              className="remove-selection "
+            />
           </div>
           <BsFillArrowRightSquareFill onClick={showNext} />
         </div>

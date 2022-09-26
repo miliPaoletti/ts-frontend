@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const SliderContent = ({
   activeIndex,
   sliderImage,
@@ -8,7 +10,7 @@ const SliderContent = ({
 }) => {
   return (
     <section
-      className={`pt-0 relative  ${
+      className={`pt-0 relative ${
         sliderStyles ? "cursor-pointer" : "opacity-imgs"
       }`}
       onMouseEnter={onMouseEnter}
@@ -23,22 +25,19 @@ const SliderContent = ({
             key={index}
             className={
               index === activeIndex
-                ? `active  ${sliderStyles ? sliderStyles : "slides"}`
+                ? `active   ${sliderStyles ? sliderStyles : "slides"}`
                 : "inactive"
             }
           >
-            <picture>
-              <source srcSet={slide.images} type="image" />
-              <img
-                className={
-                  index === activeIndex
-                    ? "slide-image animation "
-                    : "slide-image"
-                }
-                src={slide.images}
-                alt=""
-              />
-            </picture>
+            <Image
+              src={slide.images}
+              layout="fill"
+              objectFit="cover"
+              alt={slide.images}
+              className={
+                index === activeIndex ? "slide-image animation " : "slide-image"
+              }
+            />
 
             <p className="slide-title" style={{ textShadow: "0 0 2px #333" }}>
               {slide.title}
