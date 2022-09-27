@@ -97,7 +97,7 @@ const DestinationContent = () => {
         <Banner image={firstImage} title={title} />
 
         <div className="container-general ">
-          <div className="flex flex-col lg:flex-row flex-wrap min-w-100 p-2  pt-0">
+          <div className="flex flex-col lg:flex-row lg:flex-wrap min-w-100 p-2  pt-0">
             <div className="relative w-[100%] lg:w-[25%] block ">
               <Sidebar
                 days={days}

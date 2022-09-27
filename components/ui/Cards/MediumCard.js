@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CONSULT, IMG_DEFAULT, MEDIUM_CARD } from "components/utils/constants";
 import { ModalConsult } from "../Modals/ModalConsult";
 import { updateViews } from "pages/api/updateViews";
+import Image from "next/image";
 export function MediumCard({
   img,
   title,
@@ -29,14 +30,14 @@ export function MediumCard({
       ) : (
         ""
       )}
-      <picture>
-        <source srcSet={img} type="image" />
-        <img
-          className="w-full h-[250px] sm:h-[300px] md:h-[300px] lg:h-[250px] xl:h-[300px] object-cover"
-          src={img}
-          alt={title}
-        />
-      </picture>
+      <Image
+        src={img}
+        layout="responsive"
+        objectFit="cover"
+        alt={img}
+        width={100}
+        height={70}
+      />
       <div className="px-6 py-4 h-[150px]">
         <div className="font-bold text-2xl sm:text-3xl xl:text-2xl 2xl:text-3xl mb-2 capitalize">
           {title}
