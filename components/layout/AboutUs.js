@@ -19,7 +19,7 @@ const AboutUs = () => {
               <div className="text-md sm:text-lg font-medium xl:text-xl text-justify">
                 Turismo Serrano es una agencia de viajes y turismo fundada el 1
                 de diciembre de 1991. Conformamos una empresa familiar
-                especializada en salidas grupales propias tanto como salidas
+                especializada tanto en salidas grupales propias como en salidas
                 nacionales e internacionales. Contamos con un equipo de trabajo
                 eficiente, honesto y comprometido con la prestación de un
                 servicio integral y personalizado. Con el objetivo de cubrir las

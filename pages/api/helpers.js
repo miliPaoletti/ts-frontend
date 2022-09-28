@@ -10,52 +10,79 @@ import {
 } from "firebase/firestore";
 import { collectionRef, PATH_DESTINATIONS } from "./constants";
 
+const TS = "ts";
+const TIME_QUERY_SERVER = "timeQueryServer";
+
+const authFirestore = async () => {
+  const auth = getAuth();
+  await signInAnonymously(auth);
+};
+
+const getDataFromServer = async (q, queryForServer) => {
+  await getDocsFromServer(queryForServer);
+  // save the time where the query was made to the server
+  localStorage.setItem(TIME_QUERY_SERVER, new Date());
+  const snapshot = await getDocsFromCache(q);
+  return snapshot;
+};
+
+const lastTimeQueryServer = () => {
+  const date = new Date();
+  let timeQueryServer = new Date(localStorage.getItem(TIME_QUERY_SERVER));
+  let hours = Math.abs(date.getTime() - timeQueryServer.getTime()) / 3600000;
+  return hours;
+};
+
+const getBiggestTsFromServer = async () => {
+  const q2 = query(
+    collectionRef(PATH_DESTINATIONS),
+    orderBy(TS, "desc"),
+    limit(1)
+  );
+  const response = await getDocsFromServer(q2);
+  const biggerTs = response.docs[0].data()[TS];
+  return new Date(biggerTs * 1000);
+};
+
+const isTimestampUpdated = async (dateTs) => {
+  const q3 = query(
+    collectionRef(PATH_DESTINATIONS),
+    where("timestamp", ">", dateTs),
+    limit(1)
+  );
+
+  const snapshot = await getDocsFromServer(q3);
+  if (snapshot.length !== 0) {
+    return true;
+  }
+  return false;
+};
+
 export const reFillDataFirestore = async (q, queryForServer) => {
   // get the data from cache
-  const auth = getAuth();
+  await authFirestore();
 
-  await signInAnonymously(auth);
   const snapshot = await getDocsFromCache(q);
   const lenSnapshot = snapshot.docs.length;
 
   if (lenSnapshot === 0) {
     console.log("entre a from server len 0");
-    await getDocsFromServer(queryForServer);
-    // save the time where the query was made to the server
-    localStorage.setItem("timeQueryServer", new Date());
-    const snapshot = await getDocsFromCache(q);
-    return snapshot;
+    return getDataFromServer(q, queryForServer);
   }
 
-  const date = new Date();
-  let timeQueryServer = new Date(localStorage.getItem("timeQueryServer"));
-  let hours = Math.abs(date.getTime() - timeQueryServer.getTime()) / 3600000;
-
-  if (hours > 3) {
+  if (lastTimeQueryServer() > 3) {
     console.log("entre a horas mayor a 3");
     // recalcular
-    const q2 = query(
-      collectionRef(PATH_DESTINATIONS),
-      orderBy("ts", "desc"),
-      limit(1)
-    );
-    const response = await getDocsFromServer(q2);
-    const biggerTs = response.docs[0].data()["ts"];
-    const dateTs = new Date(biggerTs * 1000);
+    // pido el ts mas grande els erver
+    let dateTs = await getBiggestTsFromServer();
+    // pme fijo si uno cambio, y si cambio, pido todos de nuevo y actualizo
 
-    const q3 = query(
-      collectionRef(PATH_DESTINATIONS),
-      where("timestamp", ">", dateTs),
-      limit(1)
-    );
-
-    const snapshot2 = await getDocsFromServer(q3);
-    if (snapshot2.length !== 0) {
+    let tsChanged = await isTimestampUpdated(dateTs);
+    if (tsChanged) {
       console.log("cambiaron los ts");
-      await getDocsFromServer(queryForServer);
-      localStorage.setItem("timeQueryServer", new Date());
-      const snapshot = await getDocsFromCache(q);
-      return snapshot;
+      return getDataFromServer(q, queryForServer);
+    } else {
+      localStorage.setItem(TIME_QUERY_SERVER, new Date());
     }
   }
 
