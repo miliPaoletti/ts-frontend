@@ -1,8 +1,8 @@
-import { RESULTS_SEARCH } from "components/utils/constants";
+import { DROPDOWN, RESULTS_SEARCH } from "components/utils/constants";
 import {
   filterListDestDolars,
   filterListDestPesos,
-  getData,
+  getMediumCards,
   sortByPromotionsAndViews,
   sortPricesAsc,
   sortPricesDesc,
@@ -15,7 +15,7 @@ export const useDestinationsSearched = () => {
   const [listDestinations, setDestinations] = useState([]);
 
   const [dest, setDest] = useState(listDestinations);
-  const [textDropdown, setTextDropdown] = useState("Ordernar por");
+  const [textDropdown, setTextDropdown] = useState(DROPDOWN.orderBy);
   const [visible, setVisible] = useState(RESULTS_SEARCH);
 
   const { query } = useRouter();
@@ -23,14 +23,14 @@ export const useDestinationsSearched = () => {
   useEffect(() => {
     if (Object.keys(query).length !== 0) {
       getSpecificDestination(query.month, query.destination).then((val) => {
-        setDestinations(getData(val));
+        setDestinations(getMediumCards(val));
       });
     }
   }, [query]);
 
   useEffect(() => {
     setDest(sortByPromotionsAndViews(listDestinations));
-    setTextDropdown("Populares");
+    setTextDropdown(DROPDOWN.populars);
   }, [listDestinations]);
 
   let lenDest = 0;
@@ -54,7 +54,7 @@ export const useDestinationsSearched = () => {
     let listOrderAsc = sortedListPesos.concat(sortedListDolars);
 
     setDest([...listOrderAsc]);
-    setTextDropdown("Precio asc");
+    setTextDropdown(DROPDOWN.asc);
   };
 
   const handleOrderDesc = () => {
@@ -68,13 +68,13 @@ export const useDestinationsSearched = () => {
     let listOrderDesc = sortedListDolars.concat(sortedListPesos);
 
     setDest([...listOrderDesc]);
-    setTextDropdown("Precio desc");
+    setTextDropdown(DROPDOWN.desc);
   };
 
   const handleOrderName = () => {
     let listOrder = sortByPromotionsAndViews(listDestinations);
     setDest([...listOrder]);
-    setTextDropdown("Populares");
+    setTextDropdown(DROPDOWN.populars);
   };
   return {
     lenDest,

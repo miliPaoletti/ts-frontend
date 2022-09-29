@@ -1,8 +1,10 @@
-import { Fragment } from "react";
-import { Listbox, Transition } from "@headlessui/react";
+import { Fragment, useRef } from "react";
+import { Combobox, Transition } from "@headlessui/react";
 import { BsCheck } from "react-icons/bs";
 import { TbSelector } from "react-icons/tb";
 import { ALL } from "components/utils/constants";
+import useInput from "hooks/useInput";
+import { getFilteredData } from "components/utils/renderHelpers";
 const ListBoxSearch = ({
   data,
   separator,
@@ -18,9 +20,16 @@ const ListBoxSearch = ({
       updateMonths(ALL);
     }
   };
+
+  const inputEl = useRef(null);
+
+  function handleFocus() {
+    inputEl.current.select();
+  }
+  const { input, handleInput } = useInput("");
   return (
-    <div className="w-full md:w-72 lg:w-96 remove-selection">
-      <Listbox value={selected} onChange={onChangeSetSelected}>
+    <div className="w-full md:w-72 lg:w-96 ">
+      <Combobox value={selected} onChange={onChangeSetSelected}>
         <div className="relative w-full md:w-auto border-b py-2 border-b-gray-200 md:py-0 md:border-b-transparent">
           <span
             className={
@@ -29,21 +38,29 @@ const ListBoxSearch = ({
                 : "text-left cursor-default sm:text-sm flex items-center"
             }
           >
-            <Listbox.Button className="remove-selection py-1 text-left flex items-center w-full capitalize border-none focus:ring-0 text-md md:text-xl leading-5 text-black bg-transparent">
+            <div className="flex items-center ">
               {icon}{" "}
-              <p className="mx-2 text-md md:text-lg text-gray-950 remove-selection w-[70px] md:w-auto">
+              <p className="mx-2 text-md md:text-lg text-gray-950 w-[70px] md:w-auto">
                 {text}:{" "}
               </p>{" "}
-              <p className="text-ellipsis overflow-hidden  whitespace-nowrap ">
-                {selected}
-              </p>
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+              <Combobox.Input
+                ref={inputEl}
+                onFocus={handleFocus}
+                className="border-none py-1 text-left capitalize text-md md:text-xl text-black"
+                displayValue={input}
+                onChange={handleInput}
+                spellCheck="false"
+              />
+            </div>
+
+            <Combobox.Button className="">
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2 ">
                 <TbSelector
-                  className="w-5 h-5 text-gray-400"
+                  className="w-5 h-5 text-gray-400 mx-5"
                   aria-hidden="true"
                 />
               </span>
-            </Listbox.Button>
+            </Combobox.Button>
           </span>
           <Transition
             as={Fragment}
@@ -51,9 +68,9 @@ const ListBoxSearch = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="z-[40] capitalize absolute w-full py-1 mt-1 overflow-auto text-md md:text-base lg:text-lg bg-white rounded-md shadow-lg max-h-60  focus:outline-none sm:text-lg">
-              {data?.map((destinationName, index) => (
-                <Listbox.Option
+            <Combobox.Options className="z-[40] capitalize absolute w-full py-1 mt-1 overflow-auto text-md md:text-base lg:text-lg bg-white rounded-md shadow-lg max-h-60  focus:outline-none sm:text-lg">
+              {getFilteredData(input, data)?.map((destinationName, index) => (
+                <Combobox.Option
                   key={index}
                   className={({ active }) =>
                     `cursor-default select-none relative py-2 pl-10 pr-4 ${
@@ -78,12 +95,12 @@ const ListBoxSearch = ({
                       ) : null}
                     </>
                   )}
-                </Listbox.Option>
+                </Combobox.Option>
               ))}
-            </Listbox.Options>
+            </Combobox.Options>
           </Transition>
         </div>
-      </Listbox>
+      </Combobox>
     </div>
   );
 };

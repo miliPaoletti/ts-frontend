@@ -5,25 +5,26 @@ import { MdDepartureBoard, MdWatchLater } from "react-icons/md";
 import { GiMeal } from "react-icons/gi";
 import { ModalConsult } from "components/ui/Modals/ModalConsult";
 import { ButtonPrimary } from "components/ui/Buttons/ButtonPrimary";
+import { getPrice } from "components/utils/renderHelpers";
 
 const Sidebar = ({
   days,
   regimen,
   currency,
   price,
-  text_boarding,
+  textBoarding,
   boarding,
   departures,
   includes,
   dataForConsult,
-  list_boarding,
+  listBoarding,
   promotions,
   taxes,
   tours,
 }) => {
-  let list_includes = [];
+  let listIncludes = [];
   if (includes !== undefined) {
-    list_includes = includes?.map((item) => {
+    listIncludes = includes?.map((item) => {
       return (
         <p
           key={item}
@@ -34,9 +35,9 @@ const Sidebar = ({
       );
     });
   }
-  let list_tours = [];
+  let listTours = [];
   if (tours !== undefined) {
-    list_tours = tours?.map((item) => {
+    listTours = tours?.map((item) => {
       return (
         <p
           key={item}
@@ -49,13 +50,13 @@ const Sidebar = ({
   }
 
   let text = days + " dias ";
+
   return (
     <div className="sticky top-[80px] px-0 lg:px-5 xl:px-11 pt-5 lg:pt-11 pb-0 lg:pb-11 space-y-5 ">
       <div>
         <h2 className="text-black-950 text-sm italic">desde</h2>
         <p className="text-5xl font-bold text-orange-950 ">
-          {/* items-center flex */}
-          {currency + price}
+          {getPrice(price, currency)}
           {taxes && <span className="text-sm ">+imp</span>}
         </p>
         <p className="text-black-950 text-sm italic">en base doble</p>
@@ -80,27 +81,27 @@ const Sidebar = ({
         {boarding && (
           <Item
             icon={<MdDepartureBoard />}
-            text={text_boarding}
+            text={textBoarding}
             data={boarding}
-            list_boarding={list_boarding}
+            listBoarding={listBoarding}
           />
         )}
 
         {text && <Item icon={<MdWatchLater />} text={text} />}
         {regimen && <Item icon={<GiMeal />} text={regimen} />}
-        {list_includes.length > 0 ? (
+        {listIncludes.length > 0 ? (
           <div>
             <p className="subtitle">Incluye:</p>
-            <Item text={list_includes} />
+            <Item text={listIncludes} />
           </div>
         ) : (
           ""
         )}
 
-        {list_tours.length > 0 ? (
+        {listTours.length > 0 ? (
           <div>
             <p className="subtitle">Tours:</p>
-            <Item text={list_tours} />
+            <Item text={listTours} />
           </div>
         ) : (
           ""

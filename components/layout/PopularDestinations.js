@@ -1,5 +1,6 @@
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
-import { getData } from "components/utils/renderHelpers";
+import { TITLE_INDEX } from "components/utils/constants";
+import { getMediumCards } from "components/utils/renderHelpers";
 import { fetchPopularDestinations } from "pages/api/destinations";
 import { useEffect, useState } from "react";
 
@@ -7,6 +8,7 @@ export const PopularDestinations = () => {
   const [popularDest, setPopularDest] = useState([]);
 
   useEffect(() => {
+    // get popular destinations
     fetchPopularDestinations().then(setPopularDest);
   }, []);
 
@@ -14,9 +16,9 @@ export const PopularDestinations = () => {
     <div className="bg-gray-100">
       <div className="container-general md:pt-11">
         <section>
-          <TitlePrimary text="Destinos " text2="Destacados" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-            {getData(popularDest)}
+          <TitlePrimary text={TITLE_INDEX.text} text2={TITLE_INDEX.text2} />
+          <div className="display-medium-cards">
+            {getMediumCards(popularDest)}
           </div>
         </section>
       </div>

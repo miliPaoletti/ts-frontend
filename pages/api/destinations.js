@@ -33,6 +33,7 @@ export const fetchPopularDestinations = async () => {
 };
 
 export const fetchAllDestinations = async () => {
+  // get all destinations from firestore
   const q = query(collectionRef(PATH_DESTINATIONS));
   const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
 
@@ -40,6 +41,8 @@ export const fetchAllDestinations = async () => {
 };
 
 export const getMonths = (destinations) => {
+  // from all the destinations available, returns
+  // an array with all the months (Order as: january ... december)
   let arrMonths = [];
 
   destinations.map((destination) => {
@@ -54,11 +57,13 @@ export const getMonths = (destinations) => {
     }
   });
   sortByMonth(arrMonths);
+  // add ALL to the first position of the array
   arrMonths.unshift(ALL);
   return arrMonths;
 };
 
-export const fetchDestinationsNamesAndMonths = (destinations) => {
+export const getDestinationsNamesAndMonths = (destinations) => {
+  // obj with all the destinations and months related to those dest.
   let obj = {};
   destinations?.map((destination) => {
     let destinations_names = destination["data"]["destinations_names"];

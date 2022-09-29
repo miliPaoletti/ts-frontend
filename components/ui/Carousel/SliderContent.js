@@ -25,7 +25,7 @@ const SliderContent = ({
             key={index}
             className={
               index === activeIndex
-                ? `active   ${sliderStyles ? sliderStyles : "slides"}`
+                ? `active ${sliderStyles ? sliderStyles : "slides"}`
                 : "inactive"
             }
           >

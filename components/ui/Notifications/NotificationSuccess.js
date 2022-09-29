@@ -1,3 +1,4 @@
+import { NOTIFICATIONS } from "components/utils/constants";
 import { useCallback, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 
@@ -15,7 +16,7 @@ export default function NotificationSucess() {
     >
       <div className="flex items-center space-x-3">
         <BsCheckCircleFill />
-        <p>Tu consulta fue enviada correctamente</p>
+        <p>{NOTIFICATIONS.success}</p>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { NOTIFICATIONS } from "components/utils/constants";
 import { useCallback, useState } from "react";
 
 export default function NotificationLoading() {
@@ -14,7 +15,7 @@ export default function NotificationLoading() {
     >
       <div className="flex items-center space-x-3">
         <span className="loader"></span>
-        <p>Enviando consulta...</p>
+        <p>{NOTIFICATIONS.loading}</p>
       </div>
     </div>
   );

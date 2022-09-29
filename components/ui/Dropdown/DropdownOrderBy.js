@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { RiSortAsc, RiSortDesc } from "react-icons/ri";
 import { FaSortAlphaDown } from "react-icons/fa";
+import { DROPDOWN } from "components/utils/constants";
 
 export function DropdownOrderBy({
   handleOrderAsc,
@@ -40,7 +41,7 @@ export function DropdownOrderBy({
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   <RiSortAsc className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Precio asc
+                  {DROPDOWN.asc}
                 </button>
               )}
             </Menu.Item>
@@ -56,7 +57,7 @@ export function DropdownOrderBy({
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   <RiSortDesc className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Precio desc
+                  {DROPDOWN.desc}
                 </button>
               )}
             </Menu.Item>
@@ -75,7 +76,7 @@ export function DropdownOrderBy({
                     className="mr-2 h-5 w-5"
                     aria-hidden="true"
                   />
-                  Populares
+                  {DROPDOWN.populars}
                 </button>
               )}
             </Menu.Item>

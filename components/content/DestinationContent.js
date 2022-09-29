@@ -1,5 +1,6 @@
 import Sidebar from "components/layout/Sidebar";
 import {
+  getBoarding,
   getCurrency,
   getDeparturesOrder,
   getPromotionsValue,
@@ -9,7 +10,20 @@ import {
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchDestDocumentId } from "pages/api/destinations";
-import { IMG_DEFAULT } from "components/utils/constants";
+import {
+  BOARDING,
+  COMPANY_DATA,
+  DESTINATION,
+  DESTINATIONS_NAMES,
+  IMG_DEFAULT,
+  MONTHS,
+  NIGHTS,
+  PATHNAMES,
+  PRICE,
+  PROVIDER,
+  REGIMEN,
+  URL,
+} from "components/utils/constants";
 import Banner from "components/layout/destination/Banner";
 import DestinationInfo from "components/layout/destination/DestinationInfo";
 import DestinationsRelated from "components/layout/destination/DestinationsRelated";
@@ -28,7 +42,7 @@ const DestinationContent = () => {
         fetchDestDocumentId(query.destinationId).then((values) => {
           if (values !== undefined) {
             if (values.length === 0) {
-              router.push("/404");
+              router.push(`/${PATHNAMES.error404}`);
             } else {
               setSearchResults(values);
               setDestination(query.destinationId);
@@ -66,32 +80,39 @@ const DestinationContent = () => {
 
   let tours = destino["tours"];
 
-  const dataForConsult = `Destino: ${title},
-      URL: http://localhost:3000/destination?destinationId=${destination},
-      PRECIO: ${destino["lowest_price"][0]} ${destino["lowest_price"][1]}
-      NOCHES: ${destino["duration"]["nights"]},
-      NOMBRES DE LOS DESTINOS: ${destinationNames},
-      REGIMEN: ${regimen},
-      BOARDING: ${boarding}, 
-      PROVIDER: ${provider}
+  const dataForConsult = `
+      ${DESTINATION}: ${title},
+      ${URL}: ${window.location.href},
+      ${PRICE}: ${destino["lowest_price"]["currency"]} ${destino["lowest_price"]["price"]}
+      ${NIGHTS}: ${destino["duration"]["nights"]},
+      ${DESTINATIONS_NAMES}: ${destinationNames},
+      ${REGIMEN}: ${regimen},
+      ${BOARDING}: ${boarding}, 
+      ${PROVIDER}: ${provider}
+      ${MONTHS}: ${departures}
       `;
 
-  let text_boarding = "Tandil y zona";
-  let list_boarding = true;
-  if (boarding.includes("mar del plata y zona")) {
-    text_boarding = "Mar del Plata y zona";
-    list_boarding = false;
-  } else if (boarding.includes("aeroparque")) {
-    text_boarding = "Aeroparque";
-    list_boarding = false;
-  } else if (boarding.includes("ezeiza")) {
-    text_boarding = "Ezeiza";
-    list_boarding = false;
-  }
+  localStorage.setItem(DESTINATION, title);
+  localStorage.setItem(URL, window.location.href);
+  localStorage.setItem(
+    PRICE,
+    destino["lowest_price"]["currency"] + destino["lowest_price"]["price"]
+  );
+  localStorage.setItem(NIGHTS, destino["duration"]["nights"]);
+  localStorage.setItem(DESTINATIONS_NAMES, destinationNames);
+  localStorage.setItem(REGIMEN, regimen);
+  localStorage.setItem(BOARDING, boarding);
+  localStorage.setItem(PROVIDER, provider);
+  localStorage.setItem(MONTHS, departures);
+
+  let boardingLocal = getBoarding(boarding);
+
   return (
     <>
       <Head>
-        <title>{title} - Turismo Serrano</title>
+        <title>
+          {title} - {COMPANY_DATA.name}
+        </title>
       </Head>
       <div className="bg-white ">
         <Banner image={firstImage} title={title} />
@@ -105,11 +126,11 @@ const DestinationContent = () => {
                 currency={getCurrency(destino["lowest_price"]["currency"])}
                 price={destino["lowest_price"]["price"]}
                 departures={getDeparturesOrder(departures)}
-                text_boarding={text_boarding}
+                textBoarding={boardingLocal[0]}
                 boarding={getStyledData(boarding)}
                 includes={includes}
                 dataForConsult={dataForConsult}
-                list_boarding={list_boarding}
+                listBoarding={boardingLocal[1]}
                 promotions={getPromotionsValue(promotion)}
                 taxes={destino["lowest_price"]["taxes"]}
                 tours={tours}

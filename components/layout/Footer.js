@@ -3,12 +3,13 @@ import { MdPermPhoneMsg } from "react-icons/md";
 import { MdWatchLater } from "react-icons/md";
 import { MdFacebook } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
-import { BsInstagram, BsWhatsapp } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
 import Contact from "components/ui/Footer/Contact";
 import TitleFooter from "components/ui/Titles/TitleFooter";
 import SocialMediaLink from "components/ui/Links/SocialMediaLink";
 import Link from "next/link";
 import Logo from "../Icons/Logo";
+import { COMPANY_DATA, FOOTER, PATHNAMES } from "components/utils/constants";
 
 function Footer() {
   return (
@@ -16,47 +17,47 @@ function Footer() {
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 space-y-5 cursor-default ">
         <div className="flex flex-col justify-center items-center space-y-5 ">
           <div className="flex px-3 sm:px-12 ">
-            <Link href="/">
+            <Link href={PATHNAMES.home}>
               <a>
                 <Logo className="logo" />
               </a>
             </Link>
           </div>
-          <div> Legajo 7320</div>
+          <div>{COMPANY_DATA.legajo}</div>
         </div>
 
         <div className="flex flex-col space-y-2 items-center lg:items-start justify-end ">
-          <TitleFooter text="Información de contacto" />
+          <TitleFooter text={FOOTER.title} />
           <Contact
-            text="San Martin 186 - Tandil - Argentina"
+            text={COMPANY_DATA.address}
             icon={<MdLocationOn className="icon-footer" />}
           />
           <Contact
-            text="Atención al Público Lun a Vie: 10 a 17"
+            text={COMPANY_DATA.openHours}
             icon={<MdWatchLater className="icon-footer" />}
           />
           <Contact
-            text="(54 249) 443 1894"
+            text={COMPANY_DATA.number}
             icon={<MdPermPhoneMsg className="icon-footer" />}
           />
           <Contact
-            text="info@turismoserrano.com"
+            text={COMPANY_DATA.email}
             icon={<MdEmail className="icon-footer" />}
           />
 
           <div className="flex space-x-4 pt-3 ">
             <SocialMediaLink
-              href="https://www.instagram.com/turismo.serrano/"
+              href={COMPANY_DATA.linkIg}
               icon={<BsInstagram />}
-              text="turismo.serrano"
+              text={COMPANY_DATA.ig}
               own_style="text-orange-950"
               footer={true}
             />
 
             <SocialMediaLink
-              href="https://www.facebook.com/Turismo-Serrano-EVT-179888245394193/"
+              href={COMPANY_DATA.linkFb}
               icon={<MdFacebook />}
-              text="Turismo Serrano (E.V.T)"
+              text={COMPANY_DATA.fb}
               own_style="text-blue-400"
               footer={true}
             />
