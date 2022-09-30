@@ -14,12 +14,14 @@ const Slider = ({ images, showImage, sliderStyles }) => {
         showImage={showImage}
         sliderStyles={sliderStyles}
       />
-      <Arrows
-        prevSlide={prevSlide}
-        nextSlide={nextSlide}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      />
+      {images.length > 1 && (
+        <Arrows
+          prevSlide={prevSlide}
+          nextSlide={nextSlide}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        />
+      )}
     </>
   );
 };
