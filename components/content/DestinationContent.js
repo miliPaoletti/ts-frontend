@@ -13,6 +13,7 @@ import { fetchDestDocumentId } from "pages/api/destinations";
 import {
   BOARDING,
   COMPANY_DATA,
+  DAYS,
   DESTINATION,
   DESTINATIONS_NAMES,
   IMG_DEFAULT,
@@ -84,6 +85,7 @@ const DestinationContent = () => {
       ${DESTINATION}: ${title},
       ${URL}: ${window.location.href},
       ${PRICE}: ${destino["lowest_price"]["currency"]} ${destino["lowest_price"]["price"]}
+      ${DAYS} : ${days}
       ${NIGHTS}: ${destino["duration"]["nights"]},
       ${DESTINATIONS_NAMES}: ${destinationNames},
       ${REGIMEN}: ${regimen},
@@ -99,6 +101,7 @@ const DestinationContent = () => {
     destino["lowest_price"]["currency"] + destino["lowest_price"]["price"]
   );
   localStorage.setItem(NIGHTS, destino["duration"]["nights"]);
+  localStorage.setItem(DAYS, days);
   localStorage.setItem(DESTINATIONS_NAMES, destinationNames);
   localStorage.setItem(REGIMEN, regimen);
   localStorage.setItem(BOARDING, boarding);

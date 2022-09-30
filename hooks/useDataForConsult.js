@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BOARDING } from "components/utils/constants";
+import { BOARDING, DAYS } from "components/utils/constants";
 import { DESTINATION } from "components/utils/constants";
 import { DESTINATIONS_NAMES } from "components/utils/constants";
 import { MONTHS } from "components/utils/constants";
@@ -35,6 +35,7 @@ export const useDataForConsult = () => {
           ${BOARDING}: ${localStorage.getItem(BOARDING)}
           ${PROVIDER}: ${localStorage.getItem(PROVIDER)}
           ${MONTHS}: ${localStorage.getItem(MONTHS)}
+          ${DAYS}: ${localStorage.getItem(DAYS)}
           `;
       }
     }

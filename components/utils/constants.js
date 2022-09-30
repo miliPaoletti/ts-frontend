@@ -42,6 +42,7 @@ export const REGIMEN = "REGIMEN";
 export const BOARDING = "BOARDING";
 export const PROVIDER = "PROVIDER";
 export const MONTHS = "MONTHS";
+export const DAYS = "DAYS";
 
 export const TITLE_INDEX = {
   text: "Destinos ",
@@ -57,6 +58,8 @@ export const FOOTER = {
   title: "Información de contacto",
 };
 
+const email = "info@turismoserrano.com";
+
 export const COMPANY_DATA = {
   name: "Turismo Serrano",
   description:
@@ -64,9 +67,9 @@ export const COMPANY_DATA = {
   address: "San Martin 186 - Tandil - Argentina",
   number: "(54 249) 443 1894",
   linkRadioMega: "http://megatandil.com.ar",
-  radioMega: "MegaStereo (100.9) - Jueves 12hs",
+  radioMega: "MegaStereo (100.9) - Miércoles 12hs",
   linkRadioEco: "https://www.eleco.com.ar/tandilfm",
-  radioEco: "Tandil FM - El Eco ",
+  radioEco: "Tandil FM - El Eco - Viernes 9hs",
   linkEcoTv: "https://www.eleco.com.ar/ecotv",
   ecoTv: "Tandil Despierta (Eco Tv) - Viernes 9hs",
   linkIg: "https://www.instagram.com/turismo.serrano/",
@@ -74,8 +77,12 @@ export const COMPANY_DATA = {
   linkFb: "https://www.facebook.com/Turismo-Serrano-EVT-179888245394193/",
   fb: "Turismo Serrano (E.V.T)",
   legajo: "Legajo 7320",
-  openHours: "Atención al Público Lun a Vie: 10 a 17",
-  email: "info@turismoserrano.com",
+  openHours: "Atención al Público Lun a Vie: 10 a 17hs",
+  email: email,
+  linkLocation:
+    "https://www.google.com/maps/dir//turismo+serrano/@1.1965479,-71.241989,3z/data=!4m8!4m7!1m0!1m5!1m1!1s0x95911f9bdb035e47:0x9efcc38df263ae10!2m2!1d-59.1425245!2d-37.3284937",
+  linkNumber: "tel:542494431894",
+  linkEmail: `mailto:${email}`,
 };
 
 export const HEADER = {

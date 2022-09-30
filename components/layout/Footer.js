@@ -31,6 +31,8 @@ function Footer() {
           <Contact
             text={COMPANY_DATA.address}
             icon={<MdLocationOn className="icon-footer" />}
+            href={COMPANY_DATA.linkLocation}
+            apply={true}
           />
           <Contact
             text={COMPANY_DATA.openHours}
@@ -39,10 +41,13 @@ function Footer() {
           <Contact
             text={COMPANY_DATA.number}
             icon={<MdPermPhoneMsg className="icon-footer" />}
+            href={COMPANY_DATA.linkNumber}
+            apply={false}
           />
           <Contact
             text={COMPANY_DATA.email}
             icon={<MdEmail className="icon-footer" />}
+            href={COMPANY_DATA.linkEmail}
           />
 
           <div className="flex space-x-4 pt-3 ">

@@ -14,7 +14,7 @@ const AboutUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 align-center">
           <div className="space-y-5 px-11">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium">
-              {COMPANY_DATA.name}
+              Sobre Nosotros
             </h1>
             <div className="text-md sm:text-lg font-medium xl:text-xl text-justify">
               {COMPANY_DATA.description}
@@ -25,26 +25,33 @@ const AboutUs = () => {
               <SocialMediaLink
                 icon={<MdLocationOn />}
                 text={COMPANY_DATA.address}
+                href={COMPANY_DATA.linkLocation}
+                apply={true}
               />
               <SocialMediaLink
                 icon={<MdPermPhoneMsg />}
                 text={COMPANY_DATA.number}
+                apply={false}
+                href={COMPANY_DATA.linkNumber}
               />
 
               <SocialMediaLink
                 href={COMPANY_DATA.linkRadioMega}
                 icon={<MdRadio />}
                 text={COMPANY_DATA.radioMega}
+                apply={true}
               />
               <SocialMediaLink
                 href={COMPANY_DATA.linkRadioEco}
                 icon={<MdRadio />}
                 text={COMPANY_DATA.radioEco}
+                apply={true}
               />
               <SocialMediaLink
                 href={COMPANY_DATA.linkEcoTv}
                 icon={<MdDesktopWindows />}
                 text={COMPANY_DATA.ecoTv}
+                apply={true}
               />
 
               <SocialMediaLink
@@ -52,6 +59,7 @@ const AboutUs = () => {
                 icon={<BsInstagram />}
                 text={COMPANY_DATA.ig}
                 own_style="text-orange-950"
+                apply={true}
               />
 
               <SocialMediaLink
@@ -59,6 +67,7 @@ const AboutUs = () => {
                 icon={<MdFacebook />}
                 text={COMPANY_DATA.fb}
                 own_style="text-blue-400"
+                apply={true}
               />
             </div>
           </div>
