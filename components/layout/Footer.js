@@ -47,7 +47,7 @@ function Footer() {
           <Contact
             text={COMPANY_DATA.email}
             icon={<MdEmail className="icon-footer" />}
-            href="mailto:milagros.paoletti@gmail.com"
+            href={COMPANY_DATA.linkEmail}
           />
 
           <div className="flex space-x-4 pt-3 ">

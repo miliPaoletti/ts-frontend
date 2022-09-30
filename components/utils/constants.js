@@ -58,6 +58,8 @@ export const FOOTER = {
   title: "Información de contacto",
 };
 
+const email = "info@turismoserrano.com";
+
 export const COMPANY_DATA = {
   name: "Turismo Serrano",
   description:
@@ -76,10 +78,11 @@ export const COMPANY_DATA = {
   fb: "Turismo Serrano (E.V.T)",
   legajo: "Legajo 7320",
   openHours: "Atención al Público Lun a Vie: 10 a 17hs",
-  email: "info@turismoserrano.com",
+  email: email,
   linkLocation:
     "https://www.google.com/maps/dir//turismo+serrano/@1.1965479,-71.241989,3z/data=!4m8!4m7!1m0!1m5!1m1!1s0x95911f9bdb035e47:0x9efcc38df263ae10!2m2!1d-59.1425245!2d-37.3284937",
   linkNumber: "tel:542494431894",
+  linkEmail: `mailto:${email}`,
 };
 
 export const HEADER = {
