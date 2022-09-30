@@ -17,7 +17,7 @@ export const SliderIndex = () => {
         setImagesCarousel(images);
       }
     });
-  }, []);
+   }, []);
 
   return (
     <div className="slider-container group">
