@@ -1,4 +1,8 @@
-const MAIL_ROUTE = "https://ts-contact-us-app-dev.onrender.com";
+const MAIL_ROUTE = `${
+  process.env.NEXT_PUBLIC_MAILROUTE === undefined
+    ? "https://ts-contact-us-app-dev.onrender.com"
+    : `${process.env.NEXT_PUBLIC_MAILROUTE}`
+}`;
 
 export default function registerForm(
   { name, phoneNumber, passengers, email, consult },

@@ -1,4 +1,5 @@
 import Slider from "components/ui/Carousel/Slider";
+import { IMG_DEFAULT } from "components/utils/constants";
 import { getImgsCarousel } from "pages/api/carousel";
 import { useEffect, useState } from "react";
 
@@ -7,8 +8,16 @@ export const SliderIndex = () => {
 
   useEffect(() => {
     // get the images for the carousel
-    getImgsCarousel().then(setImagesCarousel);
-  }, []);
+    getImgsCarousel().then((images) => {
+      if (images.length <= 1) {
+        let obj = {};
+        obj["images"] = IMG_DEFAULT;
+        setImagesCarousel([obj]);
+      } else {
+        setImagesCarousel(images);
+      }
+    });
+   }, []);
 
   return (
     <div className="slider-container group">

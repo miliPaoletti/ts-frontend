@@ -21,7 +21,9 @@ export const Wrapper = ({ images }) => {
       {lightboxDisplay ? (
         <div className="lightbox remove-selection" onClick={hideLightBox}>
           <RiCloseCircleFill className="icon-close" onClick={hideLightBox} />
-          <BsFillArrowLeftSquareFill onClick={showPrev} />
+          {images.length > 1 && (
+            <BsFillArrowLeftSquareFill onClick={showPrev} />
+          )}
           <div className="h-fit lg:h-[90%]">
             <Image
               src={imageToShow}
@@ -31,7 +33,9 @@ export const Wrapper = ({ images }) => {
               className="remove-selection "
             />
           </div>
-          <BsFillArrowRightSquareFill onClick={showNext} />
+          {images.length > 1 && (
+            <BsFillArrowRightSquareFill onClick={showNext} />
+          )}
         </div>
       ) : (
         ""

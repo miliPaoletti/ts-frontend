@@ -67,7 +67,7 @@ export const ModalConsult = ({ dataForConsult, trigger, section }) => {
                   </div>
 
                   <div
-                    className="text-orange-950 absolute top-3 right-5 text-2xl cursor-pointer"
+                    className="text-orange-950 absolute top-3 right-5 text-3xl cursor-pointer"
                     onClick={() => closeModal()}
                   >
                     <IoMdCloseCircle />

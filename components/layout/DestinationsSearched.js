@@ -42,7 +42,7 @@ export const DestinationSearched = () => {
         {dest?.slice(0, visible)}
       </div>
       {visible < lenDest ? (
-        <div className="text-right pr-11">
+        <div className="text-center lg:text-right lg:pr-11">
           <button
             className="bg-orange-950 text-white p-4 rounded-xl hover:shadow-lg transition transform duration-200 ease-out font-semibold uppercase text-xl"
             onClick={showMoreItems}
