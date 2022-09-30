@@ -1,5 +1,6 @@
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
-import { getData } from "components/utils/renderHelpers";
+import { TITLE_DESTINATIONS_RELATED } from "components/utils/constants";
+import { getMediumCards } from "components/utils/renderHelpers";
 import { fetchDestRelated } from "pages/api/destinations";
 import { useEffect, useState } from "react";
 
@@ -22,9 +23,12 @@ export default function DestinationsRelated({ searchResults, destination }) {
 
   return (
     <div className="px-0 lg:px-5 xl:px-11 pt-32">
-      <TitlePrimary text="Destinos " text2="Relacionados" />
+      <TitlePrimary
+        text={TITLE_DESTINATIONS_RELATED.text}
+        text2={TITLE_DESTINATIONS_RELATED.text2}
+      />
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-        {getData(destinationsRelated)}
+        {getMediumCards(destinationsRelated)}
       </div>
     </div>
   );

@@ -23,6 +23,10 @@
     @apply flex h-10 items-center px-3 sm:px-12 justify-between;
   }
 
+  .header ul li {
+    @apply capitalize
+  }
+
   header svg {
     @apply cursor-pointer h-fit w-[150px] sm:w-[200px]
   }
@@ -62,6 +66,7 @@
   .reactLightboxCloseButtonContainer {
     z-index: 99999;
   }
+
 
   .remove-selection::-moz-selection {
     /* Code for Firefox */
@@ -158,15 +163,15 @@
   }
   .slide-title,
   .slide-text {
-    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 w-full font-bold cursor-default text-white text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[25%] z-10 font-['Rubik'] uppercase sm:left-[10%];
+    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 w-full font-bold cursor-default text-white text-base sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[5rem] absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[29%] z-10 font-['Rubik'] uppercase sm:left-[10%];
   }
 
   .slide-text {
-    @apply font-[400] break-words normal-case text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl top-[52%] sm:top-[58%] md:top-[50%];
+    @apply font-[400] break-words normal-case text-[0.8rem] sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl top-[52%] sm:top-[58%] md:top-[50%];
   }
 
   .slide-text-destination{ 
-    @apply absolute top-[52%] sm:top-[58%] md:top-[50%] w-full text-white  cursor-default break-words capitalize font-bold text-2xl md:text-4xl 2xl:text-5xl z-10 font-['Rubik'] left-[5%]
+    @apply absolute top-[52%] sm:top-[58%] md:top-[50%] w-full text-white  cursor-default break-words capitalize font-bold text-sm sm:text-base md:text-4xl 2xl:text-5xl z-10 font-['Rubik'] left-[5%]
   }
 
   .separator {
@@ -189,7 +194,7 @@
   }
 
   .about-us {
-    @apply relative  flex flex-col items-center justify-center bg-about-us bg-cover bg-center opacity-imgs w-full before:bg-black-960;
+    @apply relative  flex flex-col items-center justify-center bg-about-us bg-cover bg-center opacity-imgs w-full before:bg-black-960 text-white cursor-default md:text-center lg:text-left;
   }
 
   .about-us-container {
@@ -220,6 +225,7 @@
     @apply first-letter:capitalize
   }
 
+  
   .container-modal{
     
     background-color: rgba(255,255,255, .8);
@@ -244,6 +250,22 @@
     @apply bg-search-img bg-cover bg-center opacity-imgs before:bg-black-960 h-[200px] md:h-[300px] relative
   }
   
+  .container-search-text {
+    @apply top-[28%] lg:top-[40%] w-full font-medium text-2xl md:text-4xl text-white z-40 absolute remove-selection
+  }
+
+
+  .search-bar-container {
+    @apply relative mt-0 md:flex md:items-center md:justify-center md:w-full md:left-0 z-[100] md:mt-[-120px]
+  }
+
+  .search-bar-container-input {
+    @apply flex flex-col md:flex-row items-center md:mx-auto md:bg-white
+  }
+
+  .button-search {
+    @apply uppercase text-center p-3 md:p-5 text-sm md:text-xl text-white font-bold bg-orange-950 md:bg-transparent w-full md:w-auto md:before:-z-50 md:before:content-[''] md:before:absolute md:before:right-[-6px] md:before:top-0 md:before:h-full md:before:w-full md:before:-skew-x-6 md:before:bg-orange-950 remove-selection
+  }
   footer {
     @apply absolute bottom-0 w-full h-[30rem] lg:h-[20rem] flex items-center
           /* Footer height */
@@ -267,6 +289,9 @@
     @apply rounded-xl overflow-hidden hover:shadow-lg mb-11 md:mx-5 bg-white hover:scale-105 transition transform duration-200 ease-out border border-[#dce0e0] cursor-pointer relative
   }
 
+  .display-medium-cards{
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3
+  }
 
 .notifications-colors-success {
   @apply text-white bg-[#0d8951] 

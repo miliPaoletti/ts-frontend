@@ -1,3 +1,4 @@
+import { NOTIFICATIONS } from "components/utils/constants";
 import { useCallback, useState } from "react";
 import { GoAlert } from "react-icons/go";
 
@@ -12,7 +13,7 @@ export default function NotificationFail() {
     <div className={`notification-fail ${display} `} onClick={handleOnClick}>
       <div className="flex items-center space-x-3">
         <GoAlert color="white" />
-        <p>Hubo un error al enviar la consulta</p>
+        <p>{NOTIFICATIONS.fail}</p>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import MediumCard from "components/ui/Cards/MediumCard";
-import { CONSULT, IMG_DEFAULT, months } from "./constants";
+import { CONSULT, IMG_DEFAULT, months, PATHNAMES } from "./constants";
 
 export const getCurrency = (currency) => {
   let local_currency = "";
@@ -11,7 +11,23 @@ export const getCurrency = (currency) => {
   return local_currency;
 };
 
-export const getData = (destinations) => {
+export const getFirstCardImage = (image) => {
+  if (image !== undefined) {
+    if (image["card_image"] !== null) {
+      return image["card_image"];
+    }
+  }
+  return IMG_DEFAULT;
+};
+
+export const getDuration = (duration) => {
+  if (duration !== undefined) {
+    return duration.days;
+  }
+  return CONSULT;
+};
+
+export const getMediumCards = (destinations) => {
   let listDestinations = [];
 
   for (let destination in destinations) {
@@ -19,29 +35,17 @@ export const getData = (destinations) => {
     const destino = dest["data"];
     const key = dest["id"];
     const imageCard = destino["custom_info"];
-
     const durationDest = destino.duration;
     const promotionDest = destino.promotions;
 
-    let first_image = IMG_DEFAULT;
-
-    if (imageCard !== undefined) {
-      if (imageCard["card_image"] !== null) {
-        first_image = imageCard["card_image"];
-      }
-    }
-
-    let duration = CONSULT;
-    if (durationDest !== undefined) {
-      duration = durationDest.days;
-    }
-
+    let firstImage = getFirstCardImage(imageCard);
+    let duration = getDuration(durationDest);
     let months_local = sortByMonth(destino.departures);
     let months = getStyledData(months_local);
 
     listDestinations.push(
       <MediumCard
-        img={first_image}
+        img={firstImage}
         key={key}
         title={destino.title}
         months={months}
@@ -56,7 +60,7 @@ export const getData = (destinations) => {
         departures={destino.departures}
         meal_regimen={destino.meal_regimen}
         hotels={destino.hotel}
-        pathname="/destination"
+        pathname={`/${PATHNAMES.destination}`}
         destinationId={key}
         provider={destino.provider}
         views={destino.views}
@@ -67,6 +71,7 @@ export const getData = (destinations) => {
 };
 
 export const sortByMonth = (arr) => {
+  // sort months (January, February ... December)
   arr?.sort(function (a, b) {
     return months.indexOf(a.toLowerCase()) - months.indexOf(b.toLowerCase());
   });
@@ -156,3 +161,39 @@ export function isKeyInObject(obj, key) {
   });
   return val;
 }
+
+export function getPrice(price, currency) {
+  if (price === "0") {
+    return "Consultar";
+  }
+  return currency + price;
+}
+
+export const getFilteredData = (input, list) => {
+  //create a new array by filtering the original array
+  let data = list?.filter((el) => {
+    let val = el;
+    //if no input the return the original
+    if (input === "") {
+      return el;
+    }
+    //return the item which contains the user input
+    else {
+      return val.includes(input);
+    }
+  });
+
+  return data;
+};
+
+export const getBoarding = (boarding) => {
+  if (boarding.includes("mar del plata y zona")) {
+    return ["Mar del Plata y zona", false];
+  } else if (boarding.includes("aeroparque")) {
+    return ["Aeroparque", false];
+  } else if (boarding.includes("ezeiza")) {
+    return ["Ezeiza", false];
+  }
+
+  return ["Tandil y zona", true];
+};

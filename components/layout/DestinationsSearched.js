@@ -1,5 +1,6 @@
 import { DropdownOrderBy } from "components/ui/Dropdown/DropdownOrderBy";
 import TitlePrimary from "components/ui/Titles/TitlePrimary";
+import { SEARCH_PAGE } from "components/utils/constants";
 import { useDestinationsSearched } from "hooks/useDestinationsSearched";
 
 export const DestinationSearched = () => {
@@ -14,11 +15,11 @@ export const DestinationSearched = () => {
     showMoreItems,
   } = useDestinationsSearched();
 
-  let text = "Destinos";
-  let text2 = "encontrados";
+  let text = SEARCH_PAGE.multipleDest;
+  let text2 = SEARCH_PAGE.multipleDest2;
   if (lenDest === 1) {
-    text = "Destino";
-    text2 = "encontrado";
+    text = SEARCH_PAGE.singleDest;
+    text2 = SEARCH_PAGE.singleDest2;
   }
 
   return (
@@ -46,7 +47,7 @@ export const DestinationSearched = () => {
             className="bg-orange-950 text-white p-4 rounded-xl hover:shadow-lg transition transform duration-200 ease-out font-semibold uppercase text-xl"
             onClick={showMoreItems}
           >
-            Mostrar mas
+            {SEARCH_PAGE.showMore}
           </button>
         </div>
       ) : (

@@ -1,7 +1,7 @@
 import SearchBar from "components/ui/Search/SearchContainer";
 import { ALL } from "components/utils/constants";
 import { fetchAllDestinations } from "pages/api/destinations";
-import { fetchDestinationsNamesAndMonths } from "pages/api/destinations";
+import { getDestinationsNamesAndMonths } from "pages/api/destinations";
 import { getMonths } from "pages/api/destinations";
 import { useEffect, useState } from "react";
 
@@ -10,10 +10,11 @@ export const SearchBarIndex = () => {
   const [destinationsNames, setDestinationsNames] = useState([]);
 
   useEffect(() => {
+    // get months and destinations to show in searchbar
     fetchAllDestinations().then((allDest) => {
       setMonths(getMonths(allDest));
       setDestinationsNames(
-        Object.assign({ todos: [1] }, fetchDestinationsNamesAndMonths(allDest))
+        Object.assign({ todos: [1] }, getDestinationsNamesAndMonths(allDest))
       );
     });
   }, []);

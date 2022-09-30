@@ -5,6 +5,7 @@ import { CONSULT, IMG_DEFAULT, MEDIUM_CARD } from "components/utils/constants";
 import { ModalConsult } from "../Modals/ModalConsult";
 import { updateViews } from "pages/api/updateViews";
 import Image from "next/image";
+import { getPrice } from "components/utils/renderHelpers";
 export function MediumCard({
   img,
   title,
@@ -50,7 +51,7 @@ export function MediumCard({
         <div className="text-2xl mb-2 uppercase font-bold ">
           <SmallText text="desde" />
           <div className="text-orange-950">
-            {currency} {price}{" "}
+            {getPrice(price, currency)}
             {taxes && <span className="lowercase text-sm">+ imp</span>}
           </div>
         </div>
@@ -67,7 +68,8 @@ export function MediumCard({
     </>
   );
 
-  const dataForConsult = `Destino: ${title},
+  const dataForConsult = `
+      DESTINO: ${title},
       ID_DESTINO: ${destinationId}
       PRECIO: ${currency} - ${price}
       DAYS: ${days},

@@ -6,25 +6,25 @@ import { FaPhoneAlt, FaUser } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import NotificationContext from "context/NotificationContext";
-import {
-  FAIL,
-  SUCCESS,
-  LOADING,
-  MEDIUM_CARD,
-  INFO_NOT_UPLOADED,
-  FORM,
-  INFO_WHATSAPP,
-  URL_WHATSAPP,
-} from "components/utils/constants";
+import { FAIL } from "components/utils/constants";
+import { SUCCESS } from "components/utils/constants";
+import { LOADING } from "components/utils/constants";
+import { MEDIUM_CARD } from "components/utils/constants";
+import { INFO_NOT_UPLOADED } from "components/utils/constants";
+import { FORM } from "components/utils/constants";
+import { INFO_WHATSAPP } from "components/utils/constants";
+import { URL_WHATSAPP } from "components/utils/constants";
+import { FORM_DATA } from "components/utils/constants";
+
 import Whatsapp from "components/ui/Links/Whatsapp";
 import Link from "next/link";
 
 function validateEmail(value) {
   let error;
   if (!value) {
-    error = "Email requerido";
+    error = FORM_DATA.validations.emailRequired;
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = "Direccion de correo invalida";
+    error = FORM_DATA.validations.emailInvalid;
   }
   return error;
 }
@@ -32,7 +32,7 @@ function validateEmail(value) {
 function validateName(value) {
   let error;
   if (!value) {
-    error = "Nombre requerido";
+    error = FORM_DATA.validations.nameRequired;
   }
   return error;
 }
@@ -40,7 +40,7 @@ function validateName(value) {
 function validatePhoneNumber(value) {
   let error;
   if (!value) {
-    error = "Numero de telefono requerido";
+    error = FORM_DATA.validations.phoneRequired;
   }
   return error;
 }
@@ -48,7 +48,7 @@ function validatePhoneNumber(value) {
 function validatePassengers(value) {
   let error;
   if (!value) {
-    error = "Cantidad de pasajeros requerida";
+    error = FORM_DATA.validations.passengersRequired;
   }
   return error;
 }
@@ -56,7 +56,7 @@ function validatePassengers(value) {
 function validateConsult(value) {
   let error;
   if (!value) {
-    error = "Por favor, escriba su consulta";
+    error = FORM_DATA.validations.consultRequired;
   }
   return error;
 }
@@ -95,7 +95,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
         {({ errors, isSubmitting, touched }) => (
           <Form className="form space-y-5 my-7">
             <div className="text-center text-2xl font-medium">
-              Consúltanos sobre tu próximo destino
+              {FORM_DATA.title}
             </div>
             {section === MEDIUM_CARD && <div>{INFO_NOT_UPLOADED}</div>}
             <ItemContact
@@ -104,7 +104,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.name ? "error" : ""}
                   name="name"
-                  placeholder="Nombre..."
+                  placeholder={FORM_DATA.name}
                   validate={validateName}
                 />
               }
@@ -122,7 +122,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.phoneNumber ? "error" : ""}
                   name="phoneNumber"
-                  placeholder="Numero de telefono..."
+                  placeholder={FORM_DATA.phone}
                   type="text"
                   validate={validatePhoneNumber}
                 />
@@ -141,7 +141,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.passengers ? "error" : ""}
                   name="passengers"
-                  placeholder="Cantidad de pasajeros..."
+                  placeholder={FORM_DATA.passengers}
                   type="number"
                   validate={validatePassengers}
                 />
@@ -160,7 +160,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.email ? "error" : ""}
                   name="email"
-                  placeholder="Correo electronico..."
+                  placeholder={FORM_DATA.email}
                   type="text"
                   validate={validateEmail}
                 />
@@ -175,9 +175,9 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             <div className="">
               <div className="flex items-top">
                 <Field
-                  className={errors.consult ? "error" : " text-lg"}
+                  className={errors.consult ? "error  text-lg" : " text-lg"}
                   name="consult"
-                  placeholder="Consulta..."
+                  placeholder={FORM_DATA.consult}
                   type="text"
                   as="textarea"
                   validate={validateConsult}
@@ -194,7 +194,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
               className="button-primary"
               disabled={isSubmitting}
             >
-              Enviar
+              {FORM_DATA.send}
             </button>
 
             <div className="flex items-center text-left space-x-3 ">

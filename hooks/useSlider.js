@@ -6,6 +6,7 @@ export const useSlider = (images) => {
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    // interval for going to next image in carousel
     const interval = setInterval(() => {
       if (isPaused === false) {
         setActiveIndex(activeIndex === len ? 0 : activeIndex + 1);

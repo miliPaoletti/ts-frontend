@@ -1,4 +1,9 @@
-import { ALL } from "components/utils/constants";
+import {
+  ALL,
+  BUSCAR,
+  PATHNAMES,
+  SEARCH_PAGE,
+} from "components/utils/constants";
 import { sortByMonth } from "components/utils/renderHelpers";
 import { useEffect, useState } from "react";
 import { GoLocation } from "react-icons/go";
@@ -46,9 +51,9 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
   }, [selectedDestination, months, destinationsNames]);
 
   return (
-    <div className="relative mt-0 md:flex md:items-center md:justify-center md:w-full md:left-0 z-[100] md:mt-[-120px]">
-      <div className=" shadow-[0_0_15px_0px] shadow-orange-400">
-        <div className="flex flex-col md:flex-row items-center md:mx-auto md:bg-white">
+    <div className="search-bar-container">
+      <div className="shadow-[0_0_15px_0px] shadow-orange-400">
+        <div className="search-bar-container-input">
           <InputContainer
             content={
               <ListBoxSearch
@@ -56,7 +61,7 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
                 onChange={setSelectedDestination}
                 separator={true}
                 icon={<GoLocation className="icon" size={20} />}
-                text="Destino"
+                text={SEARCH_PAGE.firstInput}
                 selected={selectedDestination}
                 updateMonths={setSelectedMonth}
               />
@@ -69,21 +74,19 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
                 data={listMonths}
                 onChange={setSelectedMonth}
                 icon={<GoCalendar className="icon" size={20} />}
-                text="Mes"
+                text={SEARCH_PAGE.secondInput}
                 selected={selectedMonth}
               />
             }
           />
           <Link
             href={{
-              pathname: "search",
+              pathname: PATHNAMES.search,
               query: { destination: selectedDestination, month: selectedMonth },
             }}
           >
             <a className="relative overflow-hidden z-30 w-full md:w-auto">
-              <div className="uppercase text-center p-3 md:p-5 text-sm md:text-xl text-white font-bold bg-orange-950 md:bg-transparent w-full md:w-auto md:before:-z-50 md:before:content-[''] md:before:absolute md:before:right-[-6px] md:before:top-0 md:before:h-full md:before:w-full md:before:-skew-x-6 md:before:bg-orange-950 remove-selection">
-                buscar
-              </div>
+              <div className="button-search">{BUSCAR}</div>
             </a>
           </Link>
         </div>
