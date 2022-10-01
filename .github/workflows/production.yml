@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      NEXT_PUBLIC_BASE_PATH: ${{ secrets.BASE_PATH }}
       NEXT_PUBLIC_FIREBASE_CREDENTIALS: '${{ secrets.FIREBASE_CONFIG }}'
       NEXT_PUBLIC_MAILROUTE: ${{ secrets.MAILROUTE }}
 
