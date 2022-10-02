@@ -1,11 +1,11 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node.
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions..
 
-name: Production 
+name: Staging - Production (Testing)
 
 on:
   push:
-    branches: [ "turismo-serrano"]
+    branches: [ "master"]
 
 jobs:
   build:
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      NEXT_PUBLIC_BASE_PATH: ${{ secrets.BASE_PATH }}
       NEXT_PUBLIC_FIREBASE_CREDENTIALS: '${{ secrets.FIREBASE_CONFIG }}'
       NEXT_PUBLIC_MAILROUTE: ${{ secrets.MAILROUTE }}
 
@@ -43,5 +44,5 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-          branch: turismo-serrano-prod 
+          branch: turismo-serrano 
           folder: out # The folder the action should deploy.
