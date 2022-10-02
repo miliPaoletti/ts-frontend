@@ -38,11 +38,12 @@ const SliderContent = ({
                 index === activeIndex ? "slide-image animation " : "slide-image"
               }
             />
-
-            <p className="slide-title" style={{ textShadow: "0 0 2px #333" }}>
-              {slide.title}
-            </p>
-            <p className="slide-text">{slide.text}</p>
+            <div className="slider-text-container">
+              <p className="slide-title" style={{ textShadow: "0 0 2px #333" }}>
+                {slide.title}
+              </p>
+              <p className="slide-text">{slide.text}</p>
+            </div>
           </div>
         );
       })}
