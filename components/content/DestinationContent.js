@@ -102,6 +102,7 @@ const DestinationContent = () => {
   );
   localStorage.setItem(NIGHTS, destino["duration"]["nights"]);
   localStorage.setItem(DAYS, days);
+
   localStorage.setItem(DESTINATIONS_NAMES, destinationNames);
   localStorage.setItem(REGIMEN, regimen);
   localStorage.setItem(BOARDING, boarding);
