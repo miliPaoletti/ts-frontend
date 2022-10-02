@@ -28,7 +28,7 @@
   }
 
   header svg {
-    @apply cursor-pointer h-fit w-[150px] sm:w-[200px]
+    @apply cursor-pointer h-fit w-[110px] sm:w-[200px]
   }
 
 
@@ -146,11 +146,11 @@
   }
 
   .slides {
-    @apply height-carousel w-full relative ;
+    @apply height-carousel w-full relative  ;
   }
 
   .slide-image {
-    @apply w-full h-full absolute object-cover remove-selection;
+    @apply w-full h-full absolute object-cover remove-selection ;
   }
 
   .prev,
@@ -163,17 +163,23 @@
   }
   .slide-title,
   .slide-text {
-    @apply pl-5 pr-11 sm:pl-0 sm:pr-0 w-full font-bold cursor-default text-white text-base sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[5rem] absolute items-center top-[40%] sm:top-[40%] md:top-[35%] lg:top-[35%] xl:top-[30%] 2xl:top-[29%] z-10 font-['Rubik'] uppercase sm:left-[10%];
+    @apply pl-5 pr-11 sm:pl-0 sm:pr-0  font-bold cursor-default text-white text-[5vw] 2xl:text-9xl;
+    /* text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl */
   }
 
   .slide-text {
-    @apply font-[400] break-words normal-case text-[0.8rem] sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl top-[52%] sm:top-[58%] md:top-[50%];
+    @apply font-[400] break-words normal-case  text-[3vw] 2xl:text-4xl ;
+    /* text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl */
+  }
+
+  .slider-text-container{
+    @apply absolute items-center top-[40%] sm:top-[40%] md:top-[30%] lg:top-[35%] xl:top-[30%] 2xl:top-[25%] z-10 font-['Rubik'] uppercase left-[5%]
   }
 
   .slide-text-destination{ 
-    @apply absolute top-[52%] sm:top-[58%] md:top-[50%] w-full text-white  cursor-default break-words capitalize font-bold text-sm sm:text-base md:text-4xl 2xl:text-5xl z-10 font-['Rubik'] left-[5%]
+    @apply text-[5vw] 2xl:text-5xl absolute top-[52%] sm:top-[58%] md:top-[50%]  text-white  cursor-default break-words capitalize font-bold  z-10 font-['Rubik'] left-[5%]
+    /* text-2xl md:text-4xl 2xl:text-5xl */
   }
-
   .separator {
     @apply overflow-hidden md:before:content-[''] md:before:absolute md:before:top-0 md:before:right-0 md:before:bottom-0 md:before:h-full md:before:-skew-x-6	md:before:border md:before:border-transparent md:before:border-r-gray-200;
   }

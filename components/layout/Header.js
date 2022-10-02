@@ -16,7 +16,7 @@ function Header() {
           </a>
         </Link>
         <div className="text-black-950">
-          <ul className="flex space-x-6 text-[0.7rem] sm:text-lg font-bold">
+          <ul className="flex space-x-6 text-sm sm:text-lg font-bold">
             <Link href={PATHNAMES.home}>
               <a>
                 <li className="hidden sm:block">{HEADER.home}</li>

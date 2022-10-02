@@ -9,15 +9,19 @@ export const SliderIndex = () => {
   useEffect(() => {
     // get the images for the carousel
     getImgsCarousel().then((images) => {
-      if (images.length <= 1) {
+      if (images.length < 1) {
         let obj = {};
-        obj["images"] = IMG_DEFAULT;
+        obj["images"] = `${
+          process.env.NEXT_PUBLIC_BASE_PATH === undefined
+            ? "search_img.jpeg"
+            : `${process.env.NEXT_PUBLIC_BASE_PATH}/search_img.jpeg`
+        }`;
         setImagesCarousel([obj]);
       } else {
         setImagesCarousel(images);
       }
     });
-   }, []);
+  }, []);
 
   return (
     <div className="slider-container group">

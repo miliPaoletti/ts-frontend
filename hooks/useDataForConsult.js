@@ -28,14 +28,14 @@ export const useDataForConsult = () => {
         dataForConsult = `
           ${DESTINATION}: ${localStorage.getItem(DESTINATION)},
           ${URL}: ${localStorage.getItem(URL)},
-          ${PRICE}: ${localStorage.getItem(PRICE)}
-          ${NIGHTS}: ${localStorage.getItem(NIGHTS)}
-          ${DESTINATIONS_NAMES}: ${localStorage.getItem(DESTINATIONS_NAMES)}
-          ${REGIMEN}: ${localStorage.getItem(REGIMEN)}
-          ${BOARDING}: ${localStorage.getItem(BOARDING)}
-          ${PROVIDER}: ${localStorage.getItem(PROVIDER)}
-          ${MONTHS}: ${localStorage.getItem(MONTHS)}
-          ${DAYS}: ${localStorage.getItem(DAYS)}
+          ${PRICE}: ${localStorage.getItem(PRICE)},
+          ${NIGHTS}: ${localStorage.getItem(NIGHTS)},
+          ${DESTINATIONS_NAMES}: ${localStorage.getItem(DESTINATIONS_NAMES)},
+          ${REGIMEN}: ${localStorage.getItem(REGIMEN)},
+          ${BOARDING}: ${localStorage.getItem(BOARDING)},
+          ${PROVIDER}: ${localStorage.getItem(PROVIDER)},
+          ${MONTHS}: ${localStorage.getItem(MONTHS)},
+          ${DAYS}: ${localStorage.getItem(DAYS)},
           `;
       }
     }

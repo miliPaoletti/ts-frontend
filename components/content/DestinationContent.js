@@ -84,14 +84,14 @@ const DestinationContent = () => {
   const dataForConsult = `
       ${DESTINATION}: ${title},
       ${URL}: ${window.location.href},
-      ${PRICE}: ${destino["lowest_price"]["currency"]} ${destino["lowest_price"]["price"]}
-      ${DAYS} : ${days}
+      ${PRICE}: ${destino["lowest_price"]["currency"]} ${destino["lowest_price"]["price"]},
+      ${DAYS} : ${days},
       ${NIGHTS}: ${destino["duration"]["nights"]},
       ${DESTINATIONS_NAMES}: ${destinationNames},
       ${REGIMEN}: ${regimen},
       ${BOARDING}: ${boarding}, 
-      ${PROVIDER}: ${provider}
-      ${MONTHS}: ${departures}
+      ${PROVIDER}: ${provider},
+      ${MONTHS}: ${departures},
       `;
 
   localStorage.setItem(DESTINATION, title);

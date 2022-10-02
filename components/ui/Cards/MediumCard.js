@@ -1,7 +1,16 @@
 import SmallText from "components/ui/Titles/SmallText";
 import { MdWatchLater } from "react-icons/md";
 import Link from "next/link";
-import { CONSULT, IMG_DEFAULT, MEDIUM_CARD } from "components/utils/constants";
+import {
+  CONSULT,
+  DAYS,
+  DESTINATION,
+  IMG_DEFAULT,
+  MEDIUM_CARD,
+  MONTHS,
+  PRICE,
+  PROVIDER,
+} from "components/utils/constants";
 import { ModalConsult } from "../Modals/ModalConsult";
 import { updateViews } from "pages/api/updateViews";
 import Image from "next/image";
@@ -35,7 +44,7 @@ export function MediumCard({
         src={img}
         layout="responsive"
         objectFit="cover"
-        alt={img}
+        alt={title}
         width={100}
         height={70}
       />
@@ -69,11 +78,11 @@ export function MediumCard({
   );
 
   const dataForConsult = `
-      DESTINO: ${title},
-      ID_DESTINO: ${destinationId}
-      PRECIO: ${currency} - ${price}
-      DAYS: ${days},
-      PROVIDER: ${provider}
+      ${DESTINATION}: ${title},
+      ${PRICE}: ${currency} - ${price},
+      ${DAYS}: ${days},
+      ${PROVIDER}: ${provider},
+      ${MONTHS}: ${months},
      `;
 
   return img === IMG_DEFAULT ? (

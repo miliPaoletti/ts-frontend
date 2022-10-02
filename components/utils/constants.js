@@ -32,6 +32,7 @@ export const INFO_NOT_UPLOADED =
   "La info todavia no esta cargada, envie su consulta y le daremos mas informacion a la brevedad";
 export const FORM = "FORM";
 export const INFO_WHATSAPP = "O consultanos por ";
+export const URL_MAIL_DEV = "https://ts-contact-us-app-dev.onrender.com";
 
 export const DESTINATION = "DESTINATION";
 export const URL = "URL";

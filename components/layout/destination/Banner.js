@@ -8,7 +8,7 @@ export default function Banner({ image, title }) {
           src={image}
           layout="fill"
           objectFit="cover"
-          alt={image}
+          alt={title}
           className="remove-selection z-0 "
         />
       </div>
