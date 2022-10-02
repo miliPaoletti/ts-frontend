@@ -33,7 +33,7 @@ const SliderContent = ({
               src={slide.images}
               layout="fill"
               objectFit="cover"
-              alt={slide.images}
+              alt="Imagen"
               className={
                 index === activeIndex ? "slide-image animation " : "slide-image"
               }

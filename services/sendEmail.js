@@ -1,6 +1,8 @@
+import { URL_MAIL_DEV } from "components/utils/constants";
+
 const MAIL_ROUTE = `${
   process.env.NEXT_PUBLIC_MAILROUTE === undefined
-    ? "https://ts-contact-us-app-dev.onrender.com"
+    ? URL_MAIL_DEV
     : `${process.env.NEXT_PUBLIC_MAILROUTE}`
 }`;
 
@@ -8,15 +10,13 @@ export default function registerForm(
   { name, phoneNumber, passengers, email, consult },
   dataForConsult
 ) {
-  const textCons = `${consult}
-  ---------
-  Datos de la consulta:  ${dataForConsult}`;
   const data = {
     name: name,
     phone_number: phoneNumber,
     passengers: passengers,
     mail: email,
-    text: textCons,
+    request: consult,
+    destination_info: dataForConsult,
   };
   return fetch(`${MAIL_ROUTE}`, {
     method: "POST",

@@ -29,7 +29,7 @@ export const Wrapper = ({ images }) => {
               src={imageToShow}
               layout="fill"
               objectFit="contain"
-              alt={imageToShow}
+              alt="Imagen"
               className="remove-selection "
             />
           </div>

@@ -35,7 +35,7 @@ export function MediumCard({
         src={img}
         layout="responsive"
         objectFit="cover"
-        alt={img}
+        alt={title}
         width={100}
         height={70}
       />
@@ -70,10 +70,10 @@ export function MediumCard({
 
   const dataForConsult = `
       DESTINO: ${title},
-      ID_DESTINO: ${destinationId}
-      PRECIO: ${currency} - ${price}
+      ID_DESTINO: ${destinationId},
+      PRECIO: ${currency} - ${price},
       DAYS: ${days},
-      PROVIDER: ${provider}
+      PROVIDER: ${provider},
      `;
 
   return img === IMG_DEFAULT ? (
