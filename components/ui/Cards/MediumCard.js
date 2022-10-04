@@ -77,13 +77,13 @@ export function MediumCard({
     </>
   );
 
-  const dataForConsult = `
-      ${DESTINATION}: ${title},
-      ${PRICE}: ${currency} - ${price},
-      ${DAYS}: ${days},
-      ${PROVIDER}: ${provider},
-      ${MONTHS}: ${months},
-     `;
+  const dataForConsult = {
+    DESTINATION: title,
+    PRICE: currency - price,
+    DAYS: days,
+    PROVIDER: provider,
+    MONTHS: months,
+  };
 
   return img === IMG_DEFAULT ? (
     <ModalConsult

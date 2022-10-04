@@ -21,6 +21,7 @@ export const IMG_DEFAULT = `${
     : `${process.env.NEXT_PUBLIC_BASE_PATH}/default_img.jpg`
 }`;
 
+export const SEARCH_IMG = "search_img.jpeg";
 export const RESULTS_SEARCH = 6;
 export const LOADING = "LOADING";
 export const SUCCESS = "SUCCESS";

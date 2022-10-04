@@ -66,12 +66,10 @@ export const reFillDataFirestore = async (q, queryForServer) => {
   const lenSnapshot = snapshot.docs.length;
 
   if (lenSnapshot === 0) {
-    console.log("entre a from server len 0");
     return getDataFromServer(q, queryForServer);
   }
 
   if (lastTimeQueryServer() > 3) {
-    console.log("entre a horas mayor a 3");
     // recalcular
     // pido el ts mas grande els erver
     let dateTs = await getBiggestTsFromServer();
@@ -79,7 +77,6 @@ export const reFillDataFirestore = async (q, queryForServer) => {
 
     let tsChanged = await isTimestampUpdated(dateTs);
     if (tsChanged) {
-      console.log("cambiaron los ts");
       return getDataFromServer(q, queryForServer);
     } else {
       localStorage.setItem(TIME_QUERY_SERVER, new Date());
