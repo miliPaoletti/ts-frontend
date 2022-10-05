@@ -59,7 +59,7 @@ export function MediumCard({
       <div className="flex px-6 pb-2 justify-between">
         <div className="text-2xl mb-2 uppercase font-bold ">
           <SmallText text="desde" />
-          <div className="text-orange-950">
+          <div className="text-orange-950 font-[Rubik]">
             {getPrice(price, currency)}
             {taxes && <span className="lowercase text-sm">+ imp</span>}
           </div>

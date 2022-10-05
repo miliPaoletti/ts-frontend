@@ -55,7 +55,7 @@ const Sidebar = ({
     <div className="sticky top-[80px] px-0 lg:px-5 xl:px-11 pt-5 lg:pt-11 pb-0 lg:pb-11 space-y-5 ">
       <div>
         <h2 className="text-black-950 text-sm italic">desde</h2>
-        <p className="text-5xl font-bold text-orange-950 ">
+        <p className="text-5xl font-bold text-orange-950 font-[Rubik]">
           {getPrice(price, currency)}
           {taxes && <span className="text-sm ">+imp</span>}
         </p>
