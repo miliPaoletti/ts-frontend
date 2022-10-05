@@ -40,7 +40,7 @@ const ListBoxSearch = ({
           >
             <div className="flex items-center ">
               {icon}{" "}
-              <p className="mx-2 text-md md:text-lg text-gray-950 w-[70px] md:w-auto remove-selection">
+              <p className="mx-2 text-md md:text-lg text-gray-950 w-[90px] md:w-auto remove-selection">
                 {text}:{" "}
               </p>{" "}
               <Combobox.Input
