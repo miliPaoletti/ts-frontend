@@ -1,6 +1,5 @@
 import { getAuth, signInAnonymously } from "firebase/auth";
 import {
-  getDocs,
   getDocsFromCache,
   getDocsFromServer,
   limit,
@@ -60,7 +59,11 @@ const isTimestampUpdated = async (dateTs) => {
 
 export const reFillDataFirestore = async (q, queryForServer) => {
   // get the data from cache
-  await authFirestore();
+  try {
+    await authFirestore();
+  } catch {
+    window.location.href = "/500";
+  }
 
   const snapshot = await getDocsFromCache(q);
   const lenSnapshot = snapshot.docs.length;
