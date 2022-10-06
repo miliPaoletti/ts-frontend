@@ -175,12 +175,10 @@ input {
   .slide-title,
   .slide-text {
     @apply pl-5 pr-11 sm:pl-0 sm:pr-0  font-bold cursor-default text-white text-[6vw] 2xl:text-9xl;
-    /* text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl */
-  }
+}
 
   .slide-text {
     @apply font-[400] break-words normal-case text-[4vw] 2xl:text-4xl ;
-    /* text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl */
   }
 
   .slider-text-container{
@@ -190,7 +188,7 @@ input {
 
   .slide-text-destination{ 
     @apply text-[5vw] 2xl:text-5xl absolute top-1/2 translate-y-[-50%] text-white  cursor-default break-words capitalize font-bold  z-10  left-[5%]
-    /* text-2xl md:text-4xl 2xl:text-5xl */
+
   }
   .separator {
     @apply overflow-hidden md:before:content-[''] md:before:absolute md:before:top-0 md:before:right-0 md:before:bottom-0 md:before:h-full md:before:-skew-x-6	md:before:border md:before:border-transparent md:before:border-r-gray-200;

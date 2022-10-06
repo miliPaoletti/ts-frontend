@@ -85,6 +85,7 @@ export function MediumCard({
     MONTHS: months,
   };
 
+
   return img === IMG_DEFAULT ? (
     <ModalConsult
       dataForConsult={dataForConsult}

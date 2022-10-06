@@ -26,6 +26,7 @@ export default function registerForm(
     PROVIDER: dataForConsult?.PROVIDER,
     MONTHS: dataForConsult?.MONTHS,
     DAYS: dataForConsult?.DAYS,
+
   };
   return fetch(`${MAIL_ROUTE}`, {
     method: "POST",

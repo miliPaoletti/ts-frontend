@@ -14,6 +14,7 @@ export const SliderIndex = () => {
           process.env.NEXT_PUBLIC_BASE_PATH === undefined
             ? `${SEARCH_IMG}`
             : `${process.env.NEXT_PUBLIC_BASE_PATH}/${SEARCH_IMG}`
+
         }`;
         setImagesCarousel([obj]);
       } else {
