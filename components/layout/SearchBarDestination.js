@@ -33,8 +33,9 @@ export const SearchBarDestination = () => {
 
   return (
     <div className="items-center text-center relative">
-      <div className="container-search"></div>
-      <p className="container-search-text">{SEARCH_PAGE.textBanner}</p>
+      <div className="container-search">
+        <p className="container-search-text">{SEARCH_PAGE.textBanner}</p>
+      </div>
       <SearchBar
         destinationsNames={destinationsNames}
         months={months}

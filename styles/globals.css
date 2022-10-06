@@ -264,7 +264,7 @@ input {
   }
   
   .container-search-text {
-    @apply top-[28%] lg:top-[40%] w-full font-medium text-2xl md:text-4xl text-white z-40 absolute remove-selection
+    @apply top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-full font-medium text-2xl md:text-4xl text-white z-40 absolute remove-selection
   }
 
 
@@ -299,7 +299,7 @@ input {
   }
 
   .medium-card{
-    @apply rounded-xl overflow-hidden hover:shadow-lg mb-11 md:mx-5 bg-white hover:scale-105 transition transform duration-200 ease-out border border-[#dce0e0] cursor-pointer relative
+    @apply rounded-xl shadow-md overflow-hidden hover:shadow-lg mb-11 md:mx-5 bg-white hover:scale-105 transition transform duration-200 ease-out cursor-pointer relative
   }
 
   .display-medium-cards{
@@ -315,10 +315,6 @@ input {
     @apply text-[#0be881] bg-[#17312a] border border-[#0d8951]
 
   }
-
-  /* .notifications-colors {
-    @apply text-black-950 bg-gray-300 border border-black-950
-  } */
 
   .notifications-colors-loading {
     @apply text-black-950 bg-gray-300 
