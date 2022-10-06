@@ -12,7 +12,7 @@ export function DropdownOrderBy({
   text,
 }) {
   return (
-    <Menu as="div" className="relative pb-3 lg:mx-5 text-center">
+    <Menu as="div" className="relative pb-3 lg:mx-5 ">
       <div>
         <Menu.Button className="inline-flex items-center  rounded-md lg:px-5 py-2 text-md font-medium text-black focus:outline-none focus-visible:ring-2 ">
           {text}
@@ -28,7 +28,7 @@ export function DropdownOrderBy({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute left-1/2 translate-x-[-50%] text-sm rounded-md bg-white shadow-lg border border-gray-100 focus:outline-none z-[9999]">
+        <Menu.Items className="absolute text-sm rounded-md bg-white shadow-lg border border-gray-100 focus:outline-none z-[9999]">
           <div className="px-1 py-1 flex flex-col">
             <Menu.Item>
               {({ active }) => (

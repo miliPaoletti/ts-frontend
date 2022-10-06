@@ -31,7 +31,7 @@ export function MediumCard({
   let content = (
     <>
       {promotions !== 0 ? (
-        <div className="shadow-md z-10 absolute right-[15px] bg-green-600 text-white  rounded-b-lg py-2 px-4 text-center font-[Rubik]">
+        <div className="shadow-md z-10 absolute right-[15px]  bg-yellow-500 text-white rounded-b-lg py-2 px-4 text-center font-[Rubik]">
           <div className="font-bold text-lg">
             {promotions}% <span className="text-base font-bold">OFF</span>
           </div>

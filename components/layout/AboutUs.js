@@ -13,7 +13,7 @@ const AboutUs = () => {
       <div className="container-general z-40 pb-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 align-center">
           <div className="space-y-5 px-11">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-center">
               Sobre Nosotros
             </h1>
             <div className="text-md sm:text-lg font-medium xl:text-xl text-justify">
@@ -58,6 +58,7 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkIg}
                 icon={<BsInstagram />}
                 text={COMPANY_DATA.ig}
+                own_style="text-orange-950"
                 apply={true}
               />
 
@@ -65,6 +66,7 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkFb}
                 icon={<FaFacebookSquare />}
                 text={COMPANY_DATA.fb}
+                own_style="text-blue-400"
                 apply={true}
               />
             </div>

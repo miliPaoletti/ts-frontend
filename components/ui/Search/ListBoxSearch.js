@@ -1,7 +1,7 @@
 import { Fragment, useRef } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { BsCheck } from "react-icons/bs";
-import { TbSelector } from "react-icons/tb";
+import { BiChevronDown } from "react-icons/bi";
 import { ALL } from "components/utils/constants";
 import useInput from "hooks/useInput";
 import { getFilteredData } from "components/utils/renderHelpers";
@@ -48,7 +48,7 @@ const ListBoxSearch = ({
 
             <Combobox.Button className="">
               <span className="absolute inset-y-0 right-0 flex items-center  ">
-                <TbSelector
+                <BiChevronDown
                   className="w-5 h-5 text-gray-400 ml-5 mr-1"
                   aria-hidden="true"
                 />
