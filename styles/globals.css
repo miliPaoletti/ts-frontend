@@ -269,7 +269,7 @@ input {
 
 
   .search-bar-container {
-    @apply relative mt-0 md:flex md:items-center md:justify-center md:w-full md:left-0 z-[100] md:mt-[-120px]
+    @apply relative mt-0 md:flex md:items-center md:justify-center md:w-full md:left-0 z-[100] md:mt-[-110px]
   }
 
   .search-bar-container-input {
