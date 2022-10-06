@@ -39,7 +39,7 @@ const ListBoxSearch = ({
               <Combobox.Input
                 ref={inputEl}
                 onFocus={handleFocus}
-                className="border-none text-left capitalize text-md md:text-xl text-black text-ellipsis overflow-hidden"
+                className="border-none text-left capitalize text-md md:text-xl text-black text-ellipsis overflow-hidden whitespace-nowrap"
                 displayValue={input}
                 onChange={handleInput}
                 spellCheck="false"

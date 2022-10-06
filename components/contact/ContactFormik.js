@@ -93,18 +93,17 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
         }}
       >
         {({ errors, isSubmitting, touched }) => (
-          <Form className="form space-y-5 my-7">
+          <Form className="form space-y-3 my-7">
             <div className="text-center text-2xl font-medium">
               {FORM_DATA.title}
             </div>
             {section === MEDIUM_CARD && <div>{INFO_NOT_UPLOADED}</div>}
             <ItemContact
-              icon={<FaUser />}
               text={
                 <Field
                   className={errors.name ? "error" : ""}
                   name="name"
-                  placeholder={FORM_DATA.name}
+                  placeholder={`${FORM_DATA.name} * `}
                   validate={validateName}
                 />
               }
@@ -117,12 +116,11 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             />
 
             <ItemContact
-              icon={<FaPhoneAlt />}
               text={
                 <Field
                   className={errors.phoneNumber ? "error" : ""}
                   name="phoneNumber"
-                  placeholder={FORM_DATA.phone}
+                  placeholder={`${FORM_DATA.phone} * `}
                   type="text"
                   validate={validatePhoneNumber}
                 />
@@ -136,12 +134,11 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             />
 
             <ItemContact
-              icon={<BsPeopleFill />}
               text={
                 <Field
                   className={errors.passengers ? "error" : ""}
                   name="passengers"
-                  placeholder={FORM_DATA.passengers}
+                  placeholder={`${FORM_DATA.passengers} * `}
                   type="number"
                   validate={validatePassengers}
                 />
@@ -155,12 +152,11 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             />
 
             <ItemContact
-              icon={<MdEmail />}
               text={
                 <Field
                   className={errors.email ? "error" : ""}
                   name="email"
-                  placeholder={FORM_DATA.email}
+                  placeholder={`${FORM_DATA.email} * `}
                   type="text"
                   validate={validateEmail}
                 />
@@ -173,16 +169,16 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
               }
             />
             <div className="">
-              <div className="flex items-top">
+              <div className="flex items-top ">
                 <Field
-                  className={errors.consult ? "error  text-lg" : " text-lg"}
+                  className={errors.consult ? "error text-lg" : "text-lg"}
                   name="consult"
-                  placeholder={FORM_DATA.consult}
+                  placeholder={`${FORM_DATA.consult} * `}
                   type="text"
                   as="textarea"
+                  rows="4"
                   validate={validateConsult}
                 />{" "}
-                <p className="text-red-500">*</p>
               </div>
               {errors.consult && touched.consult && (
                 <small className="form-error">{errors.consult}</small>
@@ -191,7 +187,7 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
 
             <button
               type="submit"
-              className="button-primary"
+              className="button-primary w-full"
               disabled={isSubmitting}
             >
               {FORM_DATA.send}

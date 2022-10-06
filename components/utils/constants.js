@@ -128,11 +128,11 @@ export const DROPDOWN = {
 
 export const FORM_DATA = {
   title: "  Consultanos sobre tu próximo destino",
-  name: "Nombre...",
-  phone: "Número de teléfono...",
-  passengers: "Cantidad de pasajeros...",
-  email: "Correo electrónico...",
-  consult: "Consulta...",
+  name: "Nombre",
+  phone: "Número de teléfono",
+  passengers: "Cantidad de pasajeros",
+  email: "Correo electrónico",
+  consult: "Consulta",
   send: "Enviar",
   validations: {
     emailRequired: "Email requerido",
