@@ -29,15 +29,21 @@ const SliderContent = ({
                 : "inactive"
             }
           >
-            <Image
-              src={slide.images}
-              layout="fill"
-              objectFit="cover"
-              alt="Imagen"
-              className={
-                index === activeIndex ? "slide-image animation " : "slide-image"
-              }
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={slide.images}
+                layout="fill"
+                objectFit="cover"
+                alt="Imagen"
+                className={
+                  index === activeIndex
+                    ? "slide-image animation "
+                    : "slide-image"
+                }
+                priority="true"
+              />
+            </div>
+
             <div className="slider-text-container">
               <p className="slide-title" style={{ textShadow: "0 0 2px #333" }}>
                 {slide.title}

@@ -18,9 +18,10 @@ export const months = [
 export const IMG_DEFAULT = `${
   process.env.NEXT_PUBLIC_BASE_PATH === undefined
     ? "default_img.jpg"
-    : `${process.env.NEXT_PUBLIC_BASE_PATH}/default_img.jpg`
+    : `/${process.env.NEXT_PUBLIC_BASE_PATH}/default_img.jpg`
 }`;
 
+export const SEARCH_IMG = "search_img.jpeg";
 export const RESULTS_SEARCH = 6;
 export const LOADING = "LOADING";
 export const SUCCESS = "SUCCESS";
@@ -29,7 +30,7 @@ export const URL_WHATSAPP_test = "https://wa.me/+5492494563653/text=holi";
 export const URL_WHATSAPP = `https://wa.me/5492494563653`;
 export const MEDIUM_CARD = "mediumCard";
 export const INFO_NOT_UPLOADED =
-  "La info todavia no esta cargada, envie su consulta y le daremos mas informacion a la brevedad";
+  "El destino elegido aún no tiene información cargada. Envíe su consulta y le responderemos a la brevedad.";
 export const FORM = "FORM";
 export const INFO_WHATSAPP = "O consultanos por ";
 export const URL_MAIL_DEV = "https://ts-contact-us-app-dev.onrender.com";
@@ -127,11 +128,11 @@ export const DROPDOWN = {
 
 export const FORM_DATA = {
   title: "  Consultanos sobre tu próximo destino",
-  name: "Nombre...",
-  phone: "Número de teléfono...",
-  passengers: "Cantidad de pasajeros...",
-  email: "Correo electrónico...",
-  consult: "Consulta...",
+  name: "Nombre",
+  phone: "Número de teléfono",
+  passengers: "Cantidad de pasajeros",
+  email: "Correo electrónico",
+  consult: "Consulta",
   send: "Enviar",
   validations: {
     emailRequired: "Email requerido",

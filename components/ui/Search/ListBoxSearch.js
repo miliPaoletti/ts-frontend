@@ -1,13 +1,12 @@
 import { Fragment, useRef } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { BsCheck } from "react-icons/bs";
-import { TbSelector } from "react-icons/tb";
+import { BiChevronDown } from "react-icons/bi";
 import { ALL } from "components/utils/constants";
 import useInput from "hooks/useInput";
 import { getFilteredData } from "components/utils/renderHelpers";
 const ListBoxSearch = ({
   data,
-  separator,
   icon,
   onChange,
   text,
@@ -28,25 +27,19 @@ const ListBoxSearch = ({
   }
   const { input, handleInput } = useInput("");
   return (
-    <div className="w-full md:w-72 lg:w-96 ">
+    <div className="w-full md:w-72 lg:w-96 md:bg-white md:mx-1 py-3 rounded-md ">
       <Combobox value={selected} onChange={onChangeSetSelected}>
-        <div className="relative w-full md:w-auto border-b py-2 border-b-gray-200 md:py-0 md:border-b-transparent">
-          <span
-            className={
-              separator === true
-                ? "text-left cursor-default sm:text-sm separator flex items-center"
-                : "text-left cursor-default sm:text-sm flex items-center"
-            }
-          >
+        <div className="relative w-full md:w-auto ">
+          <span className="text-left cursor-default sm:text-sm flex items-center ">
             <div className="flex items-center ">
               {icon}{" "}
-              <p className="mx-2 text-md md:text-lg text-gray-950 w-[70px] md:w-auto">
+              <p className="mx-2 text-md md:text-lg text-gray-950 w-[90px] md:w-auto remove-selection ">
                 {text}:{" "}
               </p>{" "}
               <Combobox.Input
                 ref={inputEl}
                 onFocus={handleFocus}
-                className="border-none py-1 text-left capitalize text-md md:text-xl text-black"
+                className="border-none text-left capitalize text-md md:text-xl text-black text-ellipsis overflow-hidden whitespace-nowrap"
                 displayValue={input}
                 onChange={handleInput}
                 spellCheck="false"
@@ -54,9 +47,9 @@ const ListBoxSearch = ({
             </div>
 
             <Combobox.Button className="">
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2 ">
-                <TbSelector
-                  className="w-5 h-5 text-gray-400 mx-5"
+              <span className="absolute inset-y-0 right-0 flex items-center  ">
+                <BiChevronDown
+                  className="w-5 h-5 text-gray-400 ml-5 mr-1"
                   aria-hidden="true"
                 />
               </span>
@@ -68,7 +61,7 @@ const ListBoxSearch = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Combobox.Options className="z-[40] capitalize absolute w-full py-1 mt-1 overflow-auto text-md md:text-base lg:text-lg bg-white rounded-md shadow-lg max-h-60  focus:outline-none sm:text-lg">
+            <Combobox.Options className="z-[40] capitalize absolute w-full py-1 mt-1 overflow-auto text-md md:text-base lg:text-lg bg-white top-[29px]  md:top-[31px] shadow-lg max-h-60  focus:outline-none sm:text-lg">
               {getFilteredData(input, data)?.map((destinationName, index) => (
                 <Combobox.Option
                   key={index}

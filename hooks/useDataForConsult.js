@@ -25,18 +25,19 @@ export const useDataForConsult = () => {
     if (splitInterrogation.length > 1) {
       let page = splitInterrogation[0].split("/").pop();
       if (page == "destination") {
-        dataForConsult = `
-          ${DESTINATION}: ${localStorage.getItem(DESTINATION)},
-          ${URL}: ${localStorage.getItem(URL)},
-          ${PRICE}: ${localStorage.getItem(PRICE)},
-          ${NIGHTS}: ${localStorage.getItem(NIGHTS)},
-          ${DESTINATIONS_NAMES}: ${localStorage.getItem(DESTINATIONS_NAMES)},
-          ${REGIMEN}: ${localStorage.getItem(REGIMEN)},
-          ${BOARDING}: ${localStorage.getItem(BOARDING)},
-          ${PROVIDER}: ${localStorage.getItem(PROVIDER)},
-          ${MONTHS}: ${localStorage.getItem(MONTHS)},
-          ${DAYS}: ${localStorage.getItem(DAYS)},
-          `;
+        dataForConsult = {
+          DESTINATION: localStorage.getItem(DESTINATION),
+          URL: localStorage.getItem(URL),
+          PRICE: localStorage.getItem(PRICE),
+          NIGHTS: localStorage.getItem(NIGHTS),
+          DESTINATIONS_NAMES: localStorage.getItem(DESTINATIONS_NAMES),
+          REGIMEN: localStorage.getItem(REGIMEN),
+          BOARDING: localStorage.getItem(BOARDING),
+          PROVIDER: localStorage.getItem(PROVIDER),
+          MONTHS: localStorage.getItem(MONTHS),
+          DAYS: localStorage.getItem(DAYS),
+        };
+
       }
     }
   }

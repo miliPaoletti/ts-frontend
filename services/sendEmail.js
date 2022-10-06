@@ -16,7 +16,17 @@ export default function registerForm(
     passengers: passengers,
     mail: email,
     request: consult,
-    destination_info: dataForConsult,
+    DESTINATION: dataForConsult?.DESTINATION,
+    URL: dataForConsult?.URL,
+    PRICE: dataForConsult?.PRICE,
+    NIGHTS: dataForConsult?.NIGHTS,
+    DESTINATIONS_NAMES: dataForConsult?.DESTINATIONS_NAMES,
+    REGIMEN: dataForConsult?.REGIMEN,
+    BOARDING: dataForConsult?.BOARDING,
+    PROVIDER: dataForConsult?.PROVIDER,
+    MONTHS: dataForConsult?.MONTHS,
+    DAYS: dataForConsult?.DAYS,
+
   };
   return fetch(`${MAIL_ROUTE}`, {
     method: "POST",

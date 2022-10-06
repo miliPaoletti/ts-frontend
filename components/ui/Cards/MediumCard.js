@@ -31,8 +31,8 @@ export function MediumCard({
   let content = (
     <>
       {promotions !== 0 ? (
-        <div className="z-10 absolute top-[15px]  right-[15px] bg-yellow-500 text-white rounded-lg py-2 px-4 text-center">
-          <div className="font-bold text-xl">
+        <div className="shadow-md z-10 absolute right-[15px]  bg-yellow-500 text-white rounded-b-lg py-2 px-4 text-center font-[Rubik]">
+          <div className="font-bold text-lg">
             {promotions}% <span className="text-base font-bold">OFF</span>
           </div>
           <div className="text-[11px] font-bold">2do pasajero</div>
@@ -59,7 +59,7 @@ export function MediumCard({
       <div className="flex px-6 pb-2 justify-between">
         <div className="text-2xl mb-2 uppercase font-bold ">
           <SmallText text="desde" />
-          <div className="text-orange-950">
+          <div className="text-orange-950 font-[Rubik]">
             {getPrice(price, currency)}
             {taxes && <span className="lowercase text-sm">+ imp</span>}
           </div>
@@ -77,13 +77,14 @@ export function MediumCard({
     </>
   );
 
-  const dataForConsult = `
-      ${DESTINATION}: ${title},
-      ${PRICE}: ${currency} - ${price},
-      ${DAYS}: ${days},
-      ${PROVIDER}: ${provider},
-      ${MONTHS}: ${months},
-     `;
+  const dataForConsult = {
+    DESTINATION: title,
+    PRICE: currency - price,
+    DAYS: days,
+    PROVIDER: provider,
+    MONTHS: months,
+  };
+
 
   return img === IMG_DEFAULT ? (
     <ModalConsult

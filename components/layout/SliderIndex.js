@@ -1,8 +1,7 @@
 import Slider from "components/ui/Carousel/Slider";
-import { IMG_DEFAULT } from "components/utils/constants";
 import { getImgsCarousel } from "pages/api/carousel";
 import { useEffect, useState } from "react";
-
+import { SEARCH_IMG } from "../utils/constants";
 export const SliderIndex = () => {
   const [imagesCarousel, setImagesCarousel] = useState([]);
 
@@ -13,8 +12,9 @@ export const SliderIndex = () => {
         let obj = {};
         obj["images"] = `${
           process.env.NEXT_PUBLIC_BASE_PATH === undefined
-            ? "search_img.jpeg"
-            : `${process.env.NEXT_PUBLIC_BASE_PATH}/search_img.jpeg`
+            ? `${SEARCH_IMG}`
+            : `${process.env.NEXT_PUBLIC_BASE_PATH}/${SEARCH_IMG}`
+
         }`;
         setImagesCarousel([obj]);
       } else {
@@ -25,7 +25,7 @@ export const SliderIndex = () => {
 
   return (
     <div className="slider-container group">
-      <Slider images={imagesCarousel} />
+      <Slider images={imagesCarousel} timeInterval={7000} />
     </div>
   );
 };

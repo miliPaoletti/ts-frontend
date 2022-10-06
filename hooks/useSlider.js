@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useSlider = (images) => {
+export const useSlider = (images, timeInterval) => {
   const len = images?.length - 1;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -11,9 +11,9 @@ export const useSlider = (images) => {
       if (isPaused === false) {
         setActiveIndex(activeIndex === len ? 0 : activeIndex + 1);
       }
-    }, 7000);
+    }, timeInterval);
     return () => clearInterval(interval);
-  }, [activeIndex, isPaused, len]);
+  }, [activeIndex, isPaused, len, timeInterval]);
 
   const nextSlide = useCallback(() => {
     setActiveIndex(activeIndex === len ? 0 : activeIndex + 1);

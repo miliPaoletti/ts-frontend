@@ -7,7 +7,9 @@ const Whatsapp = ({ page }) => {
   return (
     <div
       className={`${
-        page === FORM ? "text-xl p-2" : "bottom-10 left-10 p-3 text-4xl"
+        page === FORM
+          ? "text-xl p-"
+          : "bottom-16 left-[80%] md:left-[90%] lg:left-[92%] p-3 text-4xl"
       } rounded-full bg-green-400 sticky w-fit z-[9999] hover:bg-green-500 transition transform duration-200 ease-out`}
     >
       <Link href={URL_WHATSAPP}>

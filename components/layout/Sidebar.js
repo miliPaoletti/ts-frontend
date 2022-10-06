@@ -55,7 +55,7 @@ const Sidebar = ({
     <div className="sticky top-[80px] px-0 lg:px-5 xl:px-11 pt-5 lg:pt-11 pb-0 lg:pb-11 space-y-5 ">
       <div>
         <h2 className="text-black-950 text-sm italic">desde</h2>
-        <p className="text-5xl font-bold text-orange-950 ">
+        <p className="text-5xl font-bold text-orange-950 font-[Rubik]">
           {getPrice(price, currency)}
           {taxes && <span className="text-sm ">+imp</span>}
         </p>
@@ -65,10 +65,9 @@ const Sidebar = ({
         {promotions !== 0 && (
           <>
             <p className="font-bold text-xl">Promoción</p>
-            <Item
-              text={`2do pasajero ${promotions}% OFF`}
-              stylesItem="bg-yellow-500 text-black-950 font-bold text-lg text-center p-2 py-4 border-transparent"
-            />
+            <div className="bg-yellow-500 text-white font-semibold text-lg text-center p-2 py-4 font-[Rubik] rounded-md">
+              2do pasajero ${promotions}% OFF
+            </div>
           </>
         )}
 

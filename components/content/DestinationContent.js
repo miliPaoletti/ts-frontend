@@ -81,18 +81,20 @@ const DestinationContent = () => {
 
   let tours = destino["tours"];
 
-  const dataForConsult = `
-      ${DESTINATION}: ${title},
-      ${URL}: ${window.location.href},
-      ${PRICE}: ${destino["lowest_price"]["currency"]} ${destino["lowest_price"]["price"]},
-      ${DAYS} : ${days},
-      ${NIGHTS}: ${destino["duration"]["nights"]},
-      ${DESTINATIONS_NAMES}: ${destinationNames},
-      ${REGIMEN}: ${regimen},
-      ${BOARDING}: ${boarding}, 
-      ${PROVIDER}: ${provider},
-      ${MONTHS}: ${departures},
-      `;
+  const dataForConsult = {
+    DESTINATION: title,
+    URL: window.location.href,
+    PRICE:
+      destino["lowest_price"]["currency"] + destino["lowest_price"]["price"],
+    DAYS: days,
+    NIGHTS: destino["duration"]["nights"],
+    DESTINATIONS_NAMES: destinationNames,
+    REGIMEN: regimen,
+    BOARDING: boarding,
+    PROVIDER: provider,
+    MONTHS: departures,
+  };
+
 
   localStorage.setItem(DESTINATION, title);
   localStorage.setItem(URL, window.location.href);

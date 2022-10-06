@@ -1,6 +1,6 @@
 import { BsInstagram } from "react-icons/bs";
 import { MdDesktopWindows } from "react-icons/md";
-import { MdFacebook } from "react-icons/md";
+import { FaFacebookSquare } from "react-icons/fa";
 import { MdPermPhoneMsg } from "react-icons/md";
 import { MdRadio } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
@@ -13,7 +13,7 @@ const AboutUs = () => {
       <div className="container-general z-40 pb-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 align-center">
           <div className="space-y-5 px-11">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-center">
               Sobre Nosotros
             </h1>
             <div className="text-md sm:text-lg font-medium xl:text-xl text-justify">
@@ -42,15 +42,15 @@ const AboutUs = () => {
                 apply={true}
               />
               <SocialMediaLink
-                href={COMPANY_DATA.linkRadioEco}
-                icon={<MdRadio />}
-                text={COMPANY_DATA.radioEco}
-                apply={true}
-              />
-              <SocialMediaLink
                 href={COMPANY_DATA.linkEcoTv}
                 icon={<MdDesktopWindows />}
                 text={COMPANY_DATA.ecoTv}
+                apply={true}
+              />
+              <SocialMediaLink
+                href={COMPANY_DATA.linkRadioEco}
+                icon={<MdRadio />}
+                text={COMPANY_DATA.radioEco}
                 apply={true}
               />
 
@@ -64,7 +64,7 @@ const AboutUs = () => {
 
               <SocialMediaLink
                 href={COMPANY_DATA.linkFb}
-                icon={<MdFacebook />}
+                icon={<FaFacebookSquare />}
                 text={COMPANY_DATA.fb}
                 own_style="text-blue-400"
                 apply={true}

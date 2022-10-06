@@ -192,6 +192,26 @@ const getQueryByPromotionsAndViews = (title) => {
   );
 };
 
+const getDestWithoutRepeat = (snapshot) => {
+  // return unique destinations: it checks with the name
+  // of the destinations. If there are more, only returns 1 of those.
+  let obj = {};
+  let destWithoutRep = [];
+  snapshot.docs.map((doc) => {
+    let title = doc.data().title;
+
+    if (obj[title] === undefined) {
+      obj[title] = 0;
+
+      let objRet = {};
+      objRet["id"] = doc.id;
+      objRet["data"] = doc.data();
+      destWithoutRep.push(objRet);
+    }
+  });
+  return destWithoutRep;
+};
+
 export const fetchDestRelated = async (
   departures,
   title,
@@ -202,12 +222,12 @@ export const fetchDestRelated = async (
     const queryDestsNames = getQueryDestinationsNames(destinationsNames, title);
 
     const snapshot = await reFillDataFirestore(queryDestsNames, QUERY_DESTS);
-
-    const lenSnapshot = snapshot.docs.length;
+    const withoutRep = getDestWithoutRepeat(snapshot);
+    const lenSnapshot = withoutRep.length;
 
     if (lenSnapshot >= DESTINATIONS_RELATED) {
       // Returns 3 destinations related based on destinations names
-      return getAllIdAndData(snapshot).slice(0, DESTINATIONS_RELATED);
+      return withoutRep.slice(0, DESTINATIONS_RELATED);
     }
 
     // Get destinations related that are missing (we need x amount)
@@ -217,7 +237,7 @@ export const fetchDestRelated = async (
     const snapshot2 = await reFillDataFirestore(queryDepartures, QUERY_DESTS);
 
     // unir los dos arreglos
-    let snapshot1Data = getAllIdAndData(snapshot);
+    let snapshot1Data = withoutRep;
     let snapshot2Data = getAllIdAndData(snapshot2);
     let snapshotsDestNamesAndDep = snapshot1Data.concat(snapshot2Data);
     // delete repeats
