@@ -30,7 +30,7 @@ export const URL_WHATSAPP_test = "https://wa.me/+5492494563653/text=holi";
 export const URL_WHATSAPP = `https://wa.me/5492494563653`;
 export const MEDIUM_CARD = "mediumCard";
 export const INFO_NOT_UPLOADED =
-  "La info todavia no esta cargada, envie su consulta y le daremos mas informacion a la brevedad";
+  "El destino elegido aún no tiene información cargada. Envíe su consulta y le responderemos a la brevedad.";
 export const FORM = "FORM";
 export const INFO_WHATSAPP = "O consultanos por ";
 export const URL_MAIL_DEV = "https://ts-contact-us-app-dev.onrender.com";

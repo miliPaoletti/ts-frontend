@@ -18,11 +18,11 @@
   }  
 
   header {
-    @apply  sticky top-0 z-[999] bg-white shadow-lg p-5 ;
+    @apply  sticky top-0 z-[999] bg-white shadow-lg p-5  ;
   }
   
   .header {
-    @apply flex h-10 items-center px-3 sm:px-12 justify-between;
+    @apply  flex h-10 items-center px-3 sm:px-12 justify-between container mx-auto ;
   }
 
   .header ul li {
