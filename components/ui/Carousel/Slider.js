@@ -2,8 +2,11 @@ import Arrows from "components/ui/Carousel/Arrows";
 import SliderContent from "components/ui/Carousel/SliderContent";
 import { useSlider } from "hooks/useSlider";
 
-const Slider = ({ images, showImage, sliderStyles }) => {
-  const { activeIndex, setIsPaused, prevSlide, nextSlide } = useSlider(images);
+const Slider = ({ images, showImage, sliderStyles, timeInterval }) => {
+  const { activeIndex, setIsPaused, prevSlide, nextSlide } = useSlider(
+    images,
+    timeInterval
+  );
   return (
     <>
       <SliderContent

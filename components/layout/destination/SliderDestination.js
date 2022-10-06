@@ -8,6 +8,7 @@ const SliderDestination = ({ images, showImage }) => {
         showImage={showImage}
         images={images}
         sliderStyles={sliderStyles}
+        timeInterval={4000}
       />
     </div>
   );
