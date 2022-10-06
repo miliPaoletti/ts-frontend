@@ -1,7 +1,7 @@
 import { MdEmail } from "react-icons/md";
 import { MdPermPhoneMsg } from "react-icons/md";
 import { MdWatchLater } from "react-icons/md";
-import { MdFacebook } from "react-icons/md";
+import { FaFacebookSquare } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { BsInstagram } from "react-icons/bs";
 import Contact from "components/ui/Footer/Contact";
@@ -61,7 +61,7 @@ function Footer() {
 
             <SocialMediaLink
               href={COMPANY_DATA.linkFb}
-              icon={<MdFacebook />}
+              icon={<FaFacebookSquare />}
               text={COMPANY_DATA.fb}
               own_style="text-blue-400"
               footer={true}

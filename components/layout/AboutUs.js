@@ -1,6 +1,6 @@
 import { BsInstagram } from "react-icons/bs";
 import { MdDesktopWindows } from "react-icons/md";
-import { MdFacebook } from "react-icons/md";
+import { FaFacebookSquare } from "react-icons/fa";
 import { MdPermPhoneMsg } from "react-icons/md";
 import { MdRadio } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
@@ -58,15 +58,13 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkIg}
                 icon={<BsInstagram />}
                 text={COMPANY_DATA.ig}
-                own_style="text-orange-950"
                 apply={true}
               />
 
               <SocialMediaLink
                 href={COMPANY_DATA.linkFb}
-                icon={<MdFacebook />}
+                icon={<FaFacebookSquare />}
                 text={COMPANY_DATA.fb}
-                own_style="text-blue-400"
                 apply={true}
               />
             </div>
