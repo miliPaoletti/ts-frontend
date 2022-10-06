@@ -23,7 +23,7 @@ export const DestinationSearched = () => {
   }
 
   return (
-    <div className="container-general  pb-8 md:pt-11">
+    <div className="container-general pb-8 md:pt-11">
       <div className="mb-8 py-2 text-2xl w-full"></div>
       <TitlePrimary text={lenDest + " " + text} text2={text2} />
 
@@ -42,7 +42,7 @@ export const DestinationSearched = () => {
         {dest?.slice(0, visible)}
       </div>
       {visible < lenDest ? (
-        <div className="text-center lg:text-right lg:pr-11">
+        <div className="text-center ">
           <button
             className="bg-orange-950 text-white p-4 rounded-xl hover:shadow-lg transition transform duration-200 ease-out font-semibold uppercase text-xl"
             onClick={showMoreItems}

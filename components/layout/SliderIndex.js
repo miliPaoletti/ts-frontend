@@ -24,7 +24,7 @@ export const SliderIndex = () => {
 
   return (
     <div className="slider-container group">
-      <Slider images={imagesCarousel} />
+      <Slider images={imagesCarousel} timeInterval={7000} />
     </div>
   );
 };

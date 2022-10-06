@@ -24,10 +24,11 @@ export default function DestinationInfo({ destinationNames, dataImages }) {
 
         return (
           <div key={index} className="space-y-5">
-            <TitleDestination text={destination} /> <Wrapper images={imgObjs} />
+            <TitleDestination text={destination} />{" "}
             <div className="text-justify whitespace-pre-wrap  text-base md:text-xl">
               {getDescription}
-            </div>
+            </div>{" "}
+            <Wrapper images={imgObjs} />
           </div>
         );
       })}

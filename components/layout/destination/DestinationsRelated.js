@@ -22,7 +22,7 @@ export default function DestinationsRelated({ searchResults, destination }) {
   }, [searchResults, destination]);
 
   return (
-    <div className="px-0 lg:px-5 xl:px-11 pt-32">
+    <div className="px-0 lg:px-5 xl:px-11 pt-16 md:pt-24">
       <TitlePrimary
         text={TITLE_DESTINATIONS_RELATED.text}
         text2={TITLE_DESTINATIONS_RELATED.text2}

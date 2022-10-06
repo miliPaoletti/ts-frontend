@@ -12,7 +12,7 @@ export function DropdownOrderBy({
   text,
 }) {
   return (
-    <Menu as="div" className="relative pb-3 lg:mx-5">
+    <Menu as="div" className="relative pb-3 lg:mx-5 ">
       <div>
         <Menu.Button className="inline-flex items-center  rounded-md lg:px-5 py-2 text-md font-medium text-black focus:outline-none focus-visible:ring-2 ">
           {text}

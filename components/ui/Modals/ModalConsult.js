@@ -57,7 +57,7 @@ export const ModalConsult = ({ dataForConsult, trigger, section }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden w-full md:w-1/2 2xl:w-1/4 border border-orange-950  shadow-black rounded-2xl bg-white px-6 text-center align-middle shadow-xl transition-all ">
+                <Dialog.Panel className="relative transform overflow-hidden w-full md:w-1/2 2xl:w-1/4 shadow-black rounded-2xl bg-white px-6 text-center align-middle shadow-xl transition-all ">
                   <div className="text-sm text-black">
                     <ContactForm
                       setIsOpen={setIsOpen}
@@ -67,7 +67,7 @@ export const ModalConsult = ({ dataForConsult, trigger, section }) => {
                   </div>
 
                   <div
-                    className="text-orange-950 absolute top-3 right-5 text-3xl cursor-pointer"
+                    className="text-orange-950 absolute top-3 right-3 text-3xl cursor-pointer"
                     onClick={() => closeModal()}
                   >
                     <IoMdCloseCircle />
