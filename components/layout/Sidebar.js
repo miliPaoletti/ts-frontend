@@ -65,10 +65,9 @@ const Sidebar = ({
         {promotions !== 0 && (
           <>
             <p className="font-bold text-xl">Promoción</p>
-            <Item
-              text={`2do pasajero ${promotions}% OFF`}
-              stylesItem="bg-yellow-500 text-black-950 font-bold text-lg text-center p-2 py-4 border-transparent"
-            />
+            <div className="bg-green-600 text-white font-semibold text-lg text-center p-2 py-4 font-[Rubik] rounded-md">
+              2do pasajero ${promotions}% OFF
+            </div>
           </>
         )}
 
