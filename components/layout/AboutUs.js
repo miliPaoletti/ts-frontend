@@ -42,15 +42,15 @@ const AboutUs = () => {
                 apply={true}
               />
               <SocialMediaLink
-                href={COMPANY_DATA.linkRadioEco}
-                icon={<MdRadio />}
-                text={COMPANY_DATA.radioEco}
-                apply={true}
-              />
-              <SocialMediaLink
                 href={COMPANY_DATA.linkEcoTv}
                 icon={<MdDesktopWindows />}
                 text={COMPANY_DATA.ecoTv}
+                apply={true}
+              />
+              <SocialMediaLink
+                href={COMPANY_DATA.linkRadioEco}
+                icon={<MdRadio />}
+                text={COMPANY_DATA.radioEco}
                 apply={true}
               />
 
