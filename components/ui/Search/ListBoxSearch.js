@@ -36,14 +36,16 @@ const ListBoxSearch = ({
               <p className="mx-2 text-md md:text-lg text-gray-950 w-[90px] md:w-auto remove-selection ">
                 {text}:{" "}
               </p>{" "}
-              <Combobox.Input
-                ref={inputEl}
-                onFocus={handleFocus}
-                className="border-none text-left capitalize text-md md:text-xl text-black text-ellipsis overflow-hidden whitespace-nowrap"
-                displayValue={input}
-                onChange={handleInput}
-                spellCheck="false"
-              />
+              <Combobox.Button>
+                <Combobox.Input
+                  ref={inputEl}
+                  onFocus={handleFocus}
+                  className="border-none text-left capitalize text-md md:text-xl text-black text-ellipsis overflow-hidden whitespace-nowrap"
+                  displayValue={input}
+                  onChange={handleInput}
+                  spellCheck="false"
+                />
+              </Combobox.Button>
             </div>
 
             <Combobox.Button className="">
