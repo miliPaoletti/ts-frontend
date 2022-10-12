@@ -37,6 +37,7 @@ export const useDataForConsult = () => {
           MONTHS: localStorage.getItem(MONTHS),
           DAYS: localStorage.getItem(DAYS),
         };
+
       }
     }
   }

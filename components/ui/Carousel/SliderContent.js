@@ -43,6 +43,7 @@ const SliderContent = ({
                 priority="true"
               />
             </div>
+
             <div className="slider-text-container">
               <p className="slide-title" style={{ textShadow: "0 0 2px #333" }}>
                 {slide.title}
