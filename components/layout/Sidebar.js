@@ -66,7 +66,7 @@ const Sidebar = ({
           <>
             <p className="font-bold text-xl">Promoción</p>
             <div className="bg-yellow-500 text-white font-semibold text-lg text-center p-2 py-4 font-[Rubik] rounded-md">
-              2do pasajero ${promotions}% OFF
+              2do pasajero {promotions}% OFF
             </div>
           </>
         )}
