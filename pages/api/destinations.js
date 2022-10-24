@@ -33,10 +33,7 @@ export const fetchPopularDestinations = async () => {
       return item.id;
     });
 
-    const queryByDepartures = getQueryByViews(
-      getAllIdAndData(snapshot).length,
-      ids
-    );
+    const queryByDepartures = getQueryByViews();
 
     const snapshot2 = await reFillDataFirestore(queryByDepartures, QUERY_DESTS);
 
@@ -201,7 +198,7 @@ const getQueryDepartures = (departures, title, lenSnapshot) => {
   );
 };
 
-const getQueryByViews = (lenSnapshot, ids) => {
+const getQueryByViews = () => {
   return query(
     collectionRef(PATH_DESTINATIONS),
     orderBy("views", "desc"),
