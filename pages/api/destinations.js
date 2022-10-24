@@ -28,6 +28,25 @@ export const fetchPopularDestinations = async () => {
   );
 
   const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
+  if (getAllIdAndData(snapshot).length < 6) {
+    let ids = getAllIdAndData(snapshot).map((item) => {
+      return item.id;
+    });
+
+    const queryByDepartures = getQueryByViews(
+      getAllIdAndData(snapshot).length,
+      ids
+    );
+
+    const snapshot2 = await reFillDataFirestore(queryByDepartures, QUERY_DESTS);
+
+    // unir los dos arreglos
+    let snapshot1Data = getAllIdAndData(snapshot);
+    let snapshot2Data = getAllIdAndData(snapshot2);
+    let snapshotPromotionsAndViews = snapshot1Data.concat(snapshot2Data);
+
+    return snapshotPromotionsAndViews;
+  }
 
   return getAllIdAndData(snapshot);
 };
@@ -178,6 +197,16 @@ const getQueryDepartures = (departures, title, lenSnapshot) => {
     where("title", "!=", title),
     orderBy("views", "desc"),
     limit(3 - lenSnapshot)
+  );
+};
+
+const getQueryByViews = (lenSnapshot, ids) => {
+  return query(
+    collectionRef(PATH_DESTINATIONS),
+    orderBy(documentId()),
+    orderBy("views", "desc"),
+    where(documentId(), "not-in", ids),
+    limit(6 - lenSnapshot)
   );
 };
 
