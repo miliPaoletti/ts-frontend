@@ -44,8 +44,9 @@ export const fetchPopularDestinations = async () => {
     let snapshot1Data = getAllIdAndData(snapshot);
     let snapshot2Data = getAllIdAndData(snapshot2);
     let snapshotPromotionsAndViews = snapshot1Data.concat(snapshot2Data);
+    const uniqueDestNamesAndDep = getUniques(snapshotPromotionsAndViews);
 
-    return snapshotPromotionsAndViews;
+    return uniqueDestNamesAndDep.slice(0, 6);
   }
 
   return getAllIdAndData(snapshot);
@@ -203,10 +204,8 @@ const getQueryDepartures = (departures, title, lenSnapshot) => {
 const getQueryByViews = (lenSnapshot, ids) => {
   return query(
     collectionRef(PATH_DESTINATIONS),
-    orderBy(documentId()),
     orderBy("views", "desc"),
-    where(documentId(), "not-in", ids),
-    limit(6 - lenSnapshot)
+    limit(6)
   );
 };
 
