@@ -64,7 +64,7 @@ export function MediumCard({
             {taxes && <span className="lowercase text-sm">+ imp</span>}
           </div>
         </div>
-        {days == CONSULT ? (
+        {days == CONSULT || days == -1 ? (
           ""
         ) : (
           <div className="text-lg md:text-xl mb-2 capitalize flex items-end">
@@ -84,7 +84,6 @@ export function MediumCard({
     PROVIDER: provider,
     MONTHS: months,
   };
-
 
   return img === IMG_DEFAULT ? (
     <ModalConsult

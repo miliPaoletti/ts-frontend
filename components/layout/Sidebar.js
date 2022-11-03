@@ -86,7 +86,7 @@ const Sidebar = ({
           />
         )}
 
-        {text && <Item icon={<MdWatchLater />} text={text} />}
+        {days !== -1 && text && <Item icon={<MdWatchLater />} text={text} />}
         {regimen && <Item icon={<GiMeal />} text={regimen} />}
         {listIncludes.length > 0 ? (
           <div>
