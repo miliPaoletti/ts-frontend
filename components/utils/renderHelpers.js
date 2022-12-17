@@ -163,7 +163,7 @@ export function isKeyInObject(obj, key) {
 }
 
 export function getPrice(price, currency) {
-  if (price === "0") {
+  if (price === "0" || price === undefined || price.toLowerCase() === "none") {
     return "Consultar";
   }
   return currency + price;
