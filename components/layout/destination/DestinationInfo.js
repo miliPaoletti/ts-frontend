@@ -13,7 +13,7 @@ export default function DestinationInfo({ destinationNames, dataImages }) {
         if (data) {
           getImages = data["images"];
           // transform arr to obj to get same structure of carosuel data
-          getImages.map((item) => {
+          getImages?.map((item) => {
             let obj = {};
             obj["images"] = item;
             imgObjs.push(obj);
