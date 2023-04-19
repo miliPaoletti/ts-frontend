@@ -12,7 +12,7 @@ import { collectionRef, PATH_DESTINATIONS } from "./constants";
 const TS = "ts";
 const TIME_QUERY_SERVER = "timeQueryServer";
 
-const authFirestore = async () => {
+export const authFirestore = async () => {
   const auth = getAuth();
   await signInAnonymously(auth);
 };
@@ -64,7 +64,7 @@ export const reFillDataFirestore = async (q, queryForServer) => {
   } catch {
     window.location.href = "/500";
   }
-
+  
   const snapshot = await getDocsFromCache(q);
   const lenSnapshot = snapshot.docs.length;
 
