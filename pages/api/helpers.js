@@ -12,7 +12,7 @@ import { collectionRef, PATH_DESTINATIONS } from "./constants";
 const TS = "ts";
 const TIME_QUERY_SERVER = "timeQueryServer";
 
-const authFirestore = async () => {
+export const authFirestore = async () => {
   const auth = getAuth();
   await signInAnonymously(auth);
 };
@@ -35,6 +35,7 @@ const lastTimeQueryServer = () => {
 const getBiggestTsFromServer = async () => {
   const q2 = query(
     collectionRef(PATH_DESTINATIONS),
+    where("visibility", "==", true),
     orderBy(TS, "desc"),
     limit(1)
   );
@@ -47,6 +48,7 @@ const isTimestampUpdated = async (dateTs) => {
   const q3 = query(
     collectionRef(PATH_DESTINATIONS),
     where("timestamp", ">", dateTs),
+    where("visibility", "==", true),
     limit(1)
   );
 
