@@ -1,13 +1,13 @@
-import { fetchAllDestinations } from "pages/api/destinations";
 import Destination from "./Destination";
 import { useCallback, useEffect, useState } from "react";
+import { fetchAllDestinationsAdmin } from "pages/api/login";
 
 const ControlPanel = () => {
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
     // get months and destinations to show in searchbar
-    fetchAllDestinations().then((allDest) => {
+    fetchAllDestinationsAdmin().then((allDest) => {
       setDestinations(allDest);
     });
   }, []);

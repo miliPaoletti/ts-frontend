@@ -9,7 +9,7 @@ import {
 } from "./constants";
 import { getUniques, reFillDataFirestore } from "./helpers";
 
-const getAllIdAndData = (snapshot) => {
+export const getAllIdAndData = (snapshot) => {
   let ret = snapshot.docs.map((doc) => {
     let obj = {};
     obj["id"] = doc.id;
@@ -22,6 +22,7 @@ const getAllIdAndData = (snapshot) => {
 export const fetchPopularDestinations = async () => {
   const q = query(
     collectionRef(PATH_DESTINATIONS),
+    where("visibility", "==", true),
     orderBy("promotions", "asc"),
     orderBy("views", "desc"),
     limit(6)
@@ -51,7 +52,11 @@ export const fetchPopularDestinations = async () => {
 
 export const fetchAllDestinations = async () => {
   // get all destinations from firestore
-  const q = query(collectionRef(PATH_DESTINATIONS));
+  // const q = query(collectionRef(PATH_DESTINATIONS));
+  const q = query(
+    collectionRef(PATH_DESTINATIONS),
+    where("visibility", "==", true)
+  );
   const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
 
   return getAllIdAndData(snapshot);
@@ -113,7 +118,11 @@ export const getSpecificDestination = async (month, destination) => {
   if (month === undefined || destination === undefined) {
     return ret;
   } else if (month === ALL && destination === ALL) {
-    const q = query(collectionRef(PATH_DESTINATIONS));
+    // const q = query(collectionRef(PATH_DESTINATIONS));
+    const q = query(
+      collectionRef(PATH_DESTINATIONS),
+      where("visibility", "==", true)
+    );
     snapshot = await reFillDataFirestore(q, QUERY_DESTS);
 
     ret = getAllIdAndData(snapshot);
@@ -121,7 +130,8 @@ export const getSpecificDestination = async (month, destination) => {
     if (month !== undefined) {
       const q = query(
         collectionRef(PATH_DESTINATIONS),
-        where("departures", "array-contains", month)
+        where("departures", "array-contains", month),
+        where("visibility", "==", true)
       );
 
       const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
@@ -145,7 +155,8 @@ export const getSpecificDestination = async (month, destination) => {
     if (month !== undefined) {
       const q = query(
         collectionRef(PATH_DESTINATIONS),
-        where("departures", "array-contains", month)
+        where("departures", "array-contains", month),
+        where("visibility", "==", true)
       );
       const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
       ret = getAllIdAndData(snapshot);
@@ -154,7 +165,8 @@ export const getSpecificDestination = async (month, destination) => {
     if (destination !== ALL) {
       const q = query(
         collectionRef(PATH_DESTINATIONS),
-        where("destinations_names", "array-contains", destination)
+        where("destinations_names", "array-contains", destination),
+        where("visibility", "==", true)
       );
       const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
       ret = getAllIdAndData(snapshot);
@@ -167,7 +179,8 @@ export const fetchDestDocumentId = async (title) => {
   if (title.length !== 0) {
     const q = query(
       collectionRef(PATH_DESTINATIONS),
-      where(documentId(), "==", title)
+      where(documentId(), "==", title),
+      where("visibility", "==", true)
     );
 
     const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
@@ -182,6 +195,7 @@ const getQueryDestinationsNames = (destinationsNames, title) => {
     orderBy("title", "desc"),
     where("destinations_names", "array-contains-any", destinationsNames),
     where("title", "!=", title),
+    where("visibility", "==", true),
     orderBy("views", "desc"),
     limit(3)
   );
@@ -193,6 +207,7 @@ const getQueryDepartures = (departures, title, lenSnapshot) => {
     orderBy("title", "desc"),
     where("departures", "array-contains-any", departures),
     where("title", "!=", title),
+    where("visibility", "==", true),
     orderBy("views", "desc"),
     limit(3 - lenSnapshot)
   );
@@ -201,6 +216,7 @@ const getQueryDepartures = (departures, title, lenSnapshot) => {
 const getQueryByViews = () => {
   return query(
     collectionRef(PATH_DESTINATIONS),
+    where("visibility", "==", true),
     orderBy("views", "desc"),
     limit(6)
   );
@@ -213,6 +229,7 @@ const getQueryByPromotionsAndViews = (title) => {
     where("title", "!=", title),
     orderBy("promotions", "asc"),
     orderBy("views", "desc"),
+    where("visibility", "==", true),
     limit(3)
   );
 };

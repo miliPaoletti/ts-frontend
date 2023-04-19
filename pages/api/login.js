@@ -1,7 +1,12 @@
 import { doc, getDocsFromServer, query, updateDoc } from "firebase/firestore";
-import { PATH_CREDENTIALS, collectionRef} from "./constants";
-import { authFirestore, reFillDataFirestore } from "./helpers";
+import {
+  PATH_CREDENTIALS,
+  PATH_DESTINATIONS,
+  collectionRef,
+} from "./constants";
+import { authFirestore } from "./helpers";
 import { getFirebase } from "../../firebase/initFirebase";
+import { getAllIdAndData } from "./destinations";
 
 export const getCredentials = async () => {
   try {
@@ -17,11 +22,21 @@ export const getCredentials = async () => {
   return ret;
 };
 
-
-
 export const updateDestinations = async (id, visibility) => {
   const { database } = getFirebase();
   await updateDoc(doc(database, "destinations", id), {
     visibility: visibility,
   });
+};
+
+export const fetchAllDestinationsAdmin = async () => {
+  // get all destinations from firestore
+  try {
+    await authFirestore();
+  } catch {
+    window.location.href = "/500";
+  }
+  const q = query(collectionRef(PATH_DESTINATIONS));
+  const snapshot = await getDocsFromServer(q);
+  return getAllIdAndData(snapshot);
 };
