@@ -4,6 +4,11 @@
 const nextConfig = {
   reactStrictMode: false,
   trailingSlash: true,
+  images: {
+    loader: "akamai",
+    path: "",
+    domains: ["cdn.kimkim.com"],
+  },
   basePath:
     process.env.NEXT_PUBLIC_BASE_PATH === "turismoSerrano"
       ? ""
