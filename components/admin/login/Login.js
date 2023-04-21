@@ -25,17 +25,21 @@ const Login = ({ setIsLogged }) => {
     });
   }, []);
 
-  const loginButton = useCallback(() => {
-    if (credentials.username === user && credentials.password === password) {
-      setIsLogged(true);
-    } else {
-      setIncorrectCred(true);
-    }
-  }, [password, user, setIsLogged, credentials]);
+  const loginButton = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (credentials.username === user && credentials.password === password) {
+        setIsLogged(true);
+      } else {
+        setIncorrectCred(true);
+      }
+    },
+    [password, user, setIsLogged, credentials]
+  );
   return (
     <div className="flex items-center justify-center h-screen text-white bg-gray-950 flex-col">
       <p className="text-xl">Bienvenido al panel de admin</p>
-      <div className="space-y-5 mt-5 text-black-900">
+      <form className="space-y-5 mt-5 text-black-900" onSubmit={loginButton}>
         <input value={user} placeholder="usuario" onChange={handleUserInput} />
         <input
           type="password"
@@ -45,7 +49,7 @@ const Login = ({ setIsLogged }) => {
         />
         <button
           type="submit"
-          className="bg-orange-950 w-full py-3 rounded text-white"
+          className="bg-orange-950 w-full py-3 rounded text-white font-bold"
           onClick={loginButton}
         >
           Ingresar
@@ -56,7 +60,7 @@ const Login = ({ setIsLogged }) => {
             Lucho
           </p>
         )}
-      </div>
+      </form>
     </div>
   );
 };
