@@ -44,7 +44,7 @@ const Login = ({ setIsLogged }) => {
           onChange={handlePasswordInput}
         />
         <button
-          type="button"
+          type="submit"
           className="bg-orange-950 w-full py-3 rounded text-white"
           onClick={loginButton}
         >
