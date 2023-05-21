@@ -14,11 +14,14 @@ export const SliderIndex = () => {
           process.env.NEXT_PUBLIC_BASE_PATH === undefined
             ? `${SEARCH_IMG}`
             : `${process.env.NEXT_PUBLIC_BASE_PATH}/${SEARCH_IMG}`
-
         }`;
         setImagesCarousel([obj]);
       } else {
-        setImagesCarousel(images);
+        // Avoid showing carousel entry if the image was updated incorrectly.
+        const imagesWithoutNull = images.filter(
+          (image) => image.images !== null
+        );
+        setImagesCarousel(imagesWithoutNull);
       }
     });
   }, []);
