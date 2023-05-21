@@ -126,6 +126,13 @@ export const DROPDOWN = {
   desc: "Precio desc",
 };
 
+export const DROPDOWN_ADMIN = {
+  orderBy: "Ordenar por",
+  visibility_true: "Mostrar",
+  visibility_false: "No mostrar",
+  name: "Nombre",
+};
+
 export const FORM_DATA = {
   title: "  Consultanos sobre tu próximo destino",
   name: "Nombre",

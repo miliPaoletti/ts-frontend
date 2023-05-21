@@ -197,3 +197,39 @@ export const getBoarding = (boarding) => {
 
   return ["Tandil y zona", true];
 };
+
+export const sortByVisibilityTrue = (list_destinations) => {
+  return list_destinations?.sort((a, b) => {
+    if (a.data.visibility === b.data.visibility) {
+      return 0;
+    } else if (a.data.visibility === true) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+};
+
+export const sortByVisibilityFalse = (list_destinations) => {
+  return list_destinations?.sort((a, b) => {
+    if (a.data.visibility === b.data.visibility) {
+      return 0;
+    } else if (a.data.visibility === false) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+};
+
+export const sortByName = (list_destinations) => {
+  return list_destinations?.sort((a, b) => {
+    if (a.data.title < b.data.title) {
+      return -1;
+    } else if (a.data.title > b.data.title) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+};
