@@ -8,7 +8,6 @@ export const SliderIndex = () => {
   useEffect(() => {
     // get the images for the carousel
     getImgsCarousel().then((images) => {
-      console.log(images);
       if (images.length < 1) {
         let obj = {};
         obj["images"] = `${
