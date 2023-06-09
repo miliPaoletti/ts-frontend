@@ -41,7 +41,10 @@ function Footer() {
           </div>
           <div>{COMPANY_DATA.legajo}</div>
           <div className="pt-8">
-            <ModalCookies trigger={<button>Configurar Cookies</button>} />
+            <ModalCookies
+              trigger={<button>Configurar Cookies</button>}
+              isFooter={true}
+            />
           </div>
         </div>
 
