@@ -1,10 +1,14 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import { NotificationProvider } from "context/NotificationContext";
 import MainContent from "./MainContent";
 import { MixpanelProvider } from "components/tracker/MixPanelProvider";
+import { setVersionLocalStorage } from "./index/utils";
 
 const Template = ({ content, title }) => {
+  useEffect(() => {
+    setVersionLocalStorage();
+  }, []);
   return (
     <div>
       <Head>

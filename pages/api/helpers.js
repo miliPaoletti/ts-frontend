@@ -10,7 +10,7 @@ import {
 import { collectionRef, PATH_DESTINATIONS } from "./constants";
 
 const TS = "ts";
-const TIME_QUERY_SERVER = "timeQueryServer";
+export const TIME_QUERY_SERVER = "timeQueryServer";
 
 export const authFirestore = async () => {
   const auth = getAuth();
