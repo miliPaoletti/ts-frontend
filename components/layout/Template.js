@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { NotificationProvider } from "context/NotificationContext";
 import MainContent from "./MainContent";
+import { MixpanelProvider } from "components/tracker/MixPanelProvider";
 
 const Template = ({ content, title }) => {
   return (
@@ -18,7 +19,12 @@ const Template = ({ content, title }) => {
         />
       </Head>
       <NotificationProvider>
-        <MainContent content={content} />
+        <MixpanelProvider
+          token={process.env.NEXT_PUBLIC_TRACKER_TOKEN}
+          config={{}}
+        >
+          <MainContent content={content} />
+        </MixpanelProvider>
       </NotificationProvider>
     </div>
   );

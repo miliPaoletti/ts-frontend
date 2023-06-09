@@ -18,6 +18,11 @@ import { FORM_DATA } from "components/utils/constants";
 
 import Whatsapp from "components/ui/Links/Whatsapp";
 import Link from "next/link";
+import {
+  CLICK_SEND_BUTTON,
+  CLICK_WHATSAPP_BUTTON_CONTANT_MODAL,
+} from "components/tracker/constants";
+import { useTracker } from "components/tracker/useTracker";
 
 function validateEmail(value) {
   let error;
@@ -72,6 +77,10 @@ const initialValues = {
 export default function ContactForm({ setIsOpen, dataForConsult, section }) {
   const { setNotification } = useContext(NotificationContext);
 
+  const { handlePreClickAction: clickSend } = useTracker(CLICK_SEND_BUTTON);
+  const { handlePreClickAction: clickWsp } = useTracker(
+    CLICK_WHATSAPP_BUTTON_CONTANT_MODAL
+  );
   return (
     <>
       <Formik
@@ -85,9 +94,11 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
           return registerForm(values, dataForConsult)
             .then(() => {
               setNotification(SUCCESS);
+              clickSend({ status: "success" });
             })
             .catch((e) => {
               setNotification(FAIL);
+              clickSend({ status: "fail", error: e });
               console.log(e);
             });
         }}
@@ -195,11 +206,22 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
 
             <div className="flex items-center text-left space-x-3 ">
               <Link href={URL_WHATSAPP}>
-                <a rel="noreferrer" target="_blank">
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  onClick={() => {
+                    clickWsp();
+                  }}
+                >
                   <p className="text-base">{INFO_WHATSAPP}</p>
                 </a>
               </Link>
-              <Whatsapp page={FORM} />
+              <Whatsapp
+                page={FORM}
+                onClick={() => {
+                  clickWsp();
+                }}
+              />
             </div>
           </Form>
         )}

@@ -1,20 +1,13 @@
 import SmallText from "components/ui/Titles/SmallText";
 import { MdWatchLater } from "react-icons/md";
 import Link from "next/link";
-import {
-  CONSULT,
-  DAYS,
-  DESTINATION,
-  IMG_DEFAULT,
-  MEDIUM_CARD,
-  MONTHS,
-  PRICE,
-  PROVIDER,
-} from "components/utils/constants";
+import { CONSULT, IMG_DEFAULT, MEDIUM_CARD } from "components/utils/constants";
 import { ModalConsult } from "../Modals/ModalConsult";
 import { updateViews } from "pages/api/updateViews";
 import Image from "next/image";
 import { getPrice } from "components/utils/renderHelpers";
+import { CLICK_DESTINATION_CARD } from "components/tracker/constants";
+import { useTracker } from "components/tracker/useTracker";
 export function MediumCard({
   img,
   title,
@@ -28,6 +21,9 @@ export function MediumCard({
   provider,
   taxes,
 }) {
+  const { handlePreClickAction: clickCard } = useTracker(
+    CLICK_DESTINATION_CARD
+  );
   let content = (
     <>
       {promotions !== 0 ? (
@@ -85,6 +81,14 @@ export function MediumCard({
     MONTHS: months,
   };
 
+  const monthsToTrack = () => {
+    return months.map((month) => {
+      if (month.props.children[0] !== undefined) {
+        return month.props.children[0];
+      }
+    });
+  };
+
   return img === IMG_DEFAULT ? (
     <ModalConsult
       dataForConsult={dataForConsult}
@@ -99,6 +103,11 @@ export function MediumCard({
         className="medium-card"
         onClick={() => {
           updateViews(destinationId);
+          clickCard({
+            destinationName: title,
+            months: monthsToTrack().toString(),
+            promotion: promotions !== 0 ? promotions : "without promotion",
+          });
         }}
       >
         {content}

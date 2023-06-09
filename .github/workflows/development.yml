@@ -5,17 +5,17 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "development" ]
+    branches: ["development"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     env:
       NEXT_PUBLIC_BASE_PATH: ${{ secrets.BASE_PATH }}
-      NEXT_PUBLIC_FIREBASE_CREDENTIALS: '${{ secrets.FIREBASE_CONFIG_DEV }}'
+      NEXT_PUBLIC_FIREBASE_CREDENTIALS: "${{ secrets.FIREBASE_CONFIG_DEV }}"
       NEXT_PUBLIC_MAILROUTE: ${{ secrets.MAILROUTE_DEV }}
+      NEXT_PUBLIC_TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN_DEV }}
 
     strategy:
       matrix:
@@ -23,26 +23,26 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - run: |
-        if [ -e yarn.lock ]; then
-        yarn install --frozen-lockfile
-        elif [ -e package-lock.json ]; then
-        npm ci
-        else
-        npm i
-        fi
-        npm run build
-        npm run export
-    - name: Add .nojekyll file
-      run: touch ./out/.nojekyll
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-          branch: dev-turismo-serrano 
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
+          npm run build
+          npm run export
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: dev-turismo-serrano
           folder: out # The folder the action should deploy.
