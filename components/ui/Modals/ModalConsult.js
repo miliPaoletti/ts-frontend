@@ -1,5 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import ContactForm from "components/contact/ContactFormik";
+import { CLICK_CONTACT_BUTTON } from "components/tracker/constants";
+import { useTracker } from "components/tracker/useTracker";
 import { MEDIUM_CARD } from "components/utils/constants";
 import { Fragment, useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
@@ -14,12 +16,18 @@ export const ModalConsult = ({ dataForConsult, trigger, section }) => {
     setIsOpen(true);
   }
 
+  const { handlePreClickAction: clickContact } =
+    useTracker(CLICK_CONTACT_BUTTON);
+
   return (
     <>
       <div
         className={`${section === MEDIUM_CARD ? "medium-card" : ""}`}
         // className={`about-us-container ${href ? " cursor-pointer" : ""} `}
-        onClick={openModal}
+        onClick={() => {
+          openModal();
+          clickContact();
+        }}
       >
         {trigger}
       </div>

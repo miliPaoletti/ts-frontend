@@ -11,6 +11,8 @@ import { GoCalendar } from "react-icons/go";
 import InputContainer from "components/ui/Search/InputContainer";
 import ListBoxSearch from "components/ui/Search/ListBoxSearch";
 import Link from "next/link";
+import { CLICK_BUTTON_SEARCH } from "components/tracker/constants";
+import { useTracker } from "components/tracker/useTracker";
 
 const getDestinationNames = (destinations) => {
   return Object.keys(destinations);
@@ -50,6 +52,8 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
     }
   }, [selectedDestination, months, destinationsNames]);
 
+  const { handlePreClickAction: clickSearch } = useTracker(CLICK_BUTTON_SEARCH);
+
   return (
     <div className="search-bar-container">
       <div className="search-bar-container-input">
@@ -84,7 +88,17 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
           }}
         >
           <a className="relative overflow-hidden z-30 w-full md:w-auto">
-            <div className="button-search">{BUSCAR}</div>
+            <div
+              onClick={() => {
+                clickSearch({
+                  destination: selectedDestination,
+                  month: selectedMonth,
+                });
+              }}
+              className="button-search"
+            >
+              {BUSCAR}
+            </div>
           </a>
         </Link>
       </div>

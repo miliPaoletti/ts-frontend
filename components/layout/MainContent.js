@@ -7,11 +7,16 @@ import Header from "./Header";
 import NotificationContext from "context/NotificationContext";
 import { useContext } from "react";
 import { FAIL, LOADING, SUCCESS } from "components/utils/constants";
+
+import { useTracker } from "components/tracker/useTracker";
+import { CLICK_WHATSAPP_BUTTON } from "components/tracker/constants";
+import { ModalCookies } from "components/cookies/ModalCookies";
 export default function MainContent({ content }) {
   const { notification } = useContext(NotificationContext);
-
+  const { handlePreClickAction } = useTracker(CLICK_WHATSAPP_BUTTON);
   return (
     <div className="page-container">
+      <ModalCookies />
       {notification === LOADING ? <NotificationLoading /> : ""}
       {notification === SUCCESS ? <NotificationSucess /> : ""}
       {notification === FAIL ? <NotificationFail /> : ""}
@@ -21,7 +26,11 @@ export default function MainContent({ content }) {
         {content}
       </main>
       <Footer />
-      <Whatsapp />
+      <Whatsapp
+        onClick={() => {
+          handlePreClickAction();
+        }}
+      />
     </div>
   );
 }
