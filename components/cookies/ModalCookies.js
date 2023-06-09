@@ -4,7 +4,7 @@ import { TRACKER_LOCALSTORAGE, getTrackerLocalStorage } from "./helpers";
 import { useTracker } from "components/tracker/useTracker";
 import { TRACKER } from "components/tracker/constants";
 
-export const ModalCookies = ({ trigger }) => {
+export const ModalCookies = ({ trigger, isFooter }) => {
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
@@ -14,11 +14,16 @@ export const ModalCookies = ({ trigger }) => {
     setIsOpen(true);
   }
 
+  // add isFooter so we don't render two times the modalCookies if
+  //  trackerlocalstorage is null
   useEffect(() => {
-    if (getTrackerLocalStorage(TRACKER_LOCALSTORAGE) === null) {
+    if (
+      getTrackerLocalStorage(TRACKER_LOCALSTORAGE) === null &&
+      isFooter !== true
+    ) {
       openModal();
     }
-  }, []);
+  }, [isFooter]);
 
   const { disableMixpanel, enableMixpanel } = useTracker(TRACKER);
 
