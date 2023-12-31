@@ -410,6 +410,9 @@ input {
     animation: rotation 0.5s linear infinite reverse;
   }
 
+
+  
+  
     @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -418,6 +421,7 @@ input {
         transform: rotate(360deg);
     }
     } 
+  
  
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
@@ -425,6 +429,7 @@ input {
     margin: 0;
     }
   input[type=number] { -moz-appearance:textfield; }
+  
   
   @keyframes move {
     0% {
@@ -434,7 +439,143 @@ input {
       transform: translate3d(0, 0px, 0px) scale(1.1, 1.1);
     }
   }
+  
+  .section-slider {
+    timeline-scope: --carousel;
+  }
+  
+  .markers li:nth-child(1) {
+    --i: 1;
+  }
+  
+  .markers li:nth-child(2) {
+    --i: 2;
+  }
+  
+  .markers li:nth-child(3) {
+    --i: 3;
+  }
+  
+  .markers li:nth-child(4) {
+    --i: 4;
+  }
+  .markers li:nth-child(5) {
+    --i: 5;
+  }
+  
+  .markers li:nth-child(6) {
+    --i: 6;
+  }
+  
+  .markers li:nth-child(7) {
+    --i: 7;
+  }
+  
+  .markers li:nth-child(9) {
+    --i: 9;
+  }
+  .markers li:nth-child(10) {
+    --i: 10;
+  }
+  .markers li:nth-child(11) {
+    --i: 11;
+  }
+  .markers li:nth-child(12) {
+    --i: 12;
+  }
+  
+  .slider {
+    position: relative;
+    scroll-timeline: --carousel x;
+    display: flex;
+    flex-direction: row;
+    border-radius: 4px;
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: 300px;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+  
+    overflow-x:auto;
+    overflow-y: hidden;
+  
+    box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, .1);
+  }
+  
+  .markers a {
+    display: block;
+    width: 16px;
+    aspect-ratio: 1;
+    background: white;
+    /* opacity: .7; */
+    border-radius: 50%;
+  
+    animation: activate linear;
+    animation-timeline: --carousel;
+    animation-range: calc((var(--i) - 1) * 25%) calc(var(--i) * 25% + 1px);
+  }
+
+  .slider a div h1, slider a div p {
+    opacity: 0;
+    animation: activate2 linear;
+    animation-timeline: --carousel;
+    animation-range: calc((var(--i) - 1) * 25%) calc(var(--i) * 25% + 1px);
+  }
+  
+  @keyframes activate2 {
+    0%,
+    100% {
+
+      opacity: 1;
+    }
+  }
+  
+  @keyframes activate {
+    0%,
+    100% {
+      background: #ff7700;
+      opacity: 1;
+    }
+  }
+  
+  .slider a {
+    flex: 0 0 100%;
+    width: 100%;
+
+    scroll-snap-align: center;
+  }
+  
+  .slider img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%
+  }
+  
+  .markers {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25em;
+    list-style: none;
+    font-size: 2em;
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    translate: -50% 0;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
 }
 
 
 
+  /* For Webkit-based browsers (Chrome, Safari and Opera) */
+ 
