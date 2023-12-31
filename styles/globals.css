@@ -483,6 +483,9 @@ input {
   .markers li:nth-child(12) {
     --i: 12;
   }
+  html {
+    scroll-padding-top: 5rem;
+  }
   
   .slider {
     position: relative;
@@ -494,9 +497,8 @@ input {
     aspect-ratio: 16/9;
     height: 300px;
     scroll-snap-type: x mandatory;
-    overscroll-behavior: contain;
+    overscroll-behavior-x: contain;
     scroll-behavior: smooth;
-  
     overflow-x:auto;
     overflow-y: hidden;
   
@@ -508,7 +510,6 @@ input {
     width: 16px;
     aspect-ratio: 1;
     background: white;
-    /* opacity: .7; */
     border-radius: 50%;
   
     animation: activate linear;
