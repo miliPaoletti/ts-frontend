@@ -15,7 +15,7 @@ export const useDataForConsult = () => {
   let dataForConsult = "";
 
   useEffect(() => {
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
       setUrl(window.location.href);
     }
   }, []);
@@ -37,7 +37,6 @@ export const useDataForConsult = () => {
           MONTHS: localStorage.getItem(MONTHS),
           DAYS: localStorage.getItem(DAYS),
         };
-
       }
     }
   }

@@ -82,150 +82,148 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
     CLICK_WHATSAPP_BUTTON_CONTANT_MODAL
   );
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        validateOnChange={false}
-        validateOnBlur={false}
-        onSubmit={(values) => {
-          setIsOpen(false);
-          setNotification(LOADING);
+    <Formik
+      initialValues={initialValues}
+      validateOnChange={false}
+      validateOnBlur={false}
+      onSubmit={(values) => {
+        setIsOpen(false);
+        setNotification(LOADING);
 
-          return registerForm(values, dataForConsult)
-            .then(() => {
-              setNotification(SUCCESS);
-              clickSend({ status: "success" });
-            })
-            .catch((e) => {
-              setNotification(FAIL);
-              clickSend({ status: "fail", error: e });
-              console.log(e);
-            });
-        }}
-      >
-        {({ errors, isSubmitting, touched }) => (
-          <Form className="form space-y-3 my-7">
-            <div className="text-center text-2xl font-medium">
-              {FORM_DATA.title}
+        return registerForm(values, dataForConsult)
+          .then(() => {
+            setNotification(SUCCESS);
+            clickSend({ status: "success" });
+          })
+          .catch((e) => {
+            setNotification(FAIL);
+            clickSend({ status: "fail", error: e });
+            console.log(e);
+          });
+      }}
+    >
+      {({ errors, isSubmitting, touched }) => (
+        <Form className="form space-y-3 my-7">
+          <div className="text-center text-2xl font-medium">
+            {FORM_DATA.title}
+          </div>
+          {section === MEDIUM_CARD && <div>{INFO_NOT_UPLOADED}</div>}
+          <ItemContact
+            text={
+              <Field
+                className={errors.name ? "error" : ""}
+                name="name"
+                placeholder={`${FORM_DATA.name} * `}
+                validate={validateName}
+              />
+            }
+            error={
+              errors.name &&
+              touched.name && (
+                <small className="form-error">{errors.name}</small>
+              )
+            }
+          />
+
+          <ItemContact
+            text={
+              <Field
+                className={errors.phoneNumber ? "error" : ""}
+                name="phoneNumber"
+                placeholder={`${FORM_DATA.phone} * `}
+                type="text"
+                validate={validatePhoneNumber}
+              />
+            }
+            error={
+              errors.phoneNumber &&
+              touched.phoneNumber && (
+                <small className="form-error">{errors.phoneNumber}</small>
+              )
+            }
+          />
+
+          <ItemContact
+            text={
+              <Field
+                className={errors.passengers ? "error" : ""}
+                name="passengers"
+                placeholder={`${FORM_DATA.passengers} * `}
+                type="number"
+                validate={validatePassengers}
+              />
+            }
+            error={
+              errors.passengers &&
+              touched.passengers && (
+                <small className="form-error">{errors.passengers}</small>
+              )
+            }
+          />
+
+          <ItemContact
+            text={
+              <Field
+                className={errors.email ? "error" : ""}
+                name="email"
+                placeholder={`${FORM_DATA.email} * `}
+                type="text"
+                validate={validateEmail}
+              />
+            }
+            error={
+              errors.email &&
+              touched.email && (
+                <small className="form-error">{errors.email}</small>
+              )
+            }
+          />
+          <div className="">
+            <div className="flex items-top ">
+              <Field
+                className={errors.consult ? "error text-lg" : "text-lg"}
+                name="consult"
+                placeholder={`${FORM_DATA.consult} * `}
+                type="text"
+                as="textarea"
+                rows="4"
+                validate={validateConsult}
+              />{" "}
             </div>
-            {section === MEDIUM_CARD && <div>{INFO_NOT_UPLOADED}</div>}
-            <ItemContact
-              text={
-                <Field
-                  className={errors.name ? "error" : ""}
-                  name="name"
-                  placeholder={`${FORM_DATA.name} * `}
-                  validate={validateName}
-                />
-              }
-              error={
-                errors.name &&
-                touched.name && (
-                  <small className="form-error">{errors.name}</small>
-                )
-              }
-            />
+            {errors.consult && touched.consult && (
+              <small className="form-error">{errors.consult}</small>
+            )}
+          </div>
 
-            <ItemContact
-              text={
-                <Field
-                  className={errors.phoneNumber ? "error" : ""}
-                  name="phoneNumber"
-                  placeholder={`${FORM_DATA.phone} * `}
-                  type="text"
-                  validate={validatePhoneNumber}
-                />
-              }
-              error={
-                errors.phoneNumber &&
-                touched.phoneNumber && (
-                  <small className="form-error">{errors.phoneNumber}</small>
-                )
-              }
-            />
+          <button
+            type="submit"
+            className="button-primary w-full"
+            disabled={isSubmitting}
+          >
+            {FORM_DATA.send}
+          </button>
 
-            <ItemContact
-              text={
-                <Field
-                  className={errors.passengers ? "error" : ""}
-                  name="passengers"
-                  placeholder={`${FORM_DATA.passengers} * `}
-                  type="number"
-                  validate={validatePassengers}
-                />
-              }
-              error={
-                errors.passengers &&
-                touched.passengers && (
-                  <small className="form-error">{errors.passengers}</small>
-                )
-              }
-            />
-
-            <ItemContact
-              text={
-                <Field
-                  className={errors.email ? "error" : ""}
-                  name="email"
-                  placeholder={`${FORM_DATA.email} * `}
-                  type="text"
-                  validate={validateEmail}
-                />
-              }
-              error={
-                errors.email &&
-                touched.email && (
-                  <small className="form-error">{errors.email}</small>
-                )
-              }
-            />
-            <div className="">
-              <div className="flex items-top ">
-                <Field
-                  className={errors.consult ? "error text-lg" : "text-lg"}
-                  name="consult"
-                  placeholder={`${FORM_DATA.consult} * `}
-                  type="text"
-                  as="textarea"
-                  rows="4"
-                  validate={validateConsult}
-                />{" "}
-              </div>
-              {errors.consult && touched.consult && (
-                <small className="form-error">{errors.consult}</small>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              className="button-primary w-full"
-              disabled={isSubmitting}
-            >
-              {FORM_DATA.send}
-            </button>
-
-            <div className="flex items-center text-left space-x-3 ">
-              <Link href={URL_WHATSAPP}>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  onClick={() => {
-                    clickWsp();
-                  }}
-                >
-                  <p className="text-base">{INFO_WHATSAPP}</p>
-                </a>
-              </Link>
-              <Whatsapp
-                page={FORM}
+          <div className="flex items-center text-left space-x-3 ">
+            <Link href={URL_WHATSAPP}>
+              <a
+                rel="noreferrer"
+                target="_blank"
                 onClick={() => {
                   clickWsp();
                 }}
-              />
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </>
+              >
+                <p className="text-base">{INFO_WHATSAPP}</p>
+              </a>
+            </Link>
+            <Whatsapp
+              page={FORM}
+              onClick={() => {
+                clickWsp();
+              }}
+            />
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 }
