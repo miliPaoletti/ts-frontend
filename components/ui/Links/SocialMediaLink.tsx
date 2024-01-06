@@ -1,6 +1,16 @@
 import Link from "next/link";
 import React from "react";
 
+type SocialMediaProps = {
+  href: string;
+  text: string;
+  icon: React.ReactNode;
+  own_style?: string;
+  footer?: boolean;
+  apply: boolean;
+  onClick: () => void;
+};
+
 const SocialMediaLink = ({
   href,
   text,
@@ -9,7 +19,7 @@ const SocialMediaLink = ({
   footer,
   apply,
   onClick,
-}) => {
+}: SocialMediaProps) => {
   return (
     <Link
       href={href}
