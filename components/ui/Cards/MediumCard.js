@@ -96,22 +96,23 @@ export function MediumCard({
       section={MEDIUM_CARD}
     />
   ) : (
+    //   {/* TODO: check if data is undefined */}
     <Link
-      href={{ pathname: pathname, query: { destinationId: destinationId } }}
+      href={{
+        pathname: pathname ?? "",
+        query: { destinationId: destinationId ?? "" },
+      }}
+      className="medium-card"
+      onClick={() => {
+        updateViews(destinationId);
+        clickCard({
+          destinationName: title,
+          months: monthsToTrack().toString(),
+          promotion: promotions !== 0 ? promotions : "without promotion",
+        });
+      }}
     >
-      <a
-        className="medium-card"
-        onClick={() => {
-          updateViews(destinationId);
-          clickCard({
-            destinationName: title,
-            months: monthsToTrack().toString(),
-            promotion: promotions !== 0 ? promotions : "without promotion",
-          });
-        }}
-      >
-        {content}
-      </a>
+      {content}
     </Link>
   );
 }

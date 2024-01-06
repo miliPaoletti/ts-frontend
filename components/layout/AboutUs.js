@@ -15,7 +15,7 @@ import {
 } from "components/tracker/constants";
 import { useTracker } from "components/tracker/useTracker";
 
-const AboutUs = () => {
+export const AboutUs = () => {
   const { handlePreClickAction: clickIg } = useTracker(CLICK_IG_LINK);
   const { handlePreClickAction: clickFb } = useTracker(CLICK_FB_LINK);
   const { handlePreClickAction: clickRadio } = useTracker(CLICK_RADIO_LINK);
@@ -108,5 +108,3 @@ const AboutUs = () => {
     </section>
   );
 };
-
-export default AboutUs;

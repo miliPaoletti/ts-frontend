@@ -81,25 +81,28 @@ const SearchBar = ({ destinationsNames, months, destination, month }) => {
             />
           }
         />
+        {/* TODO: check if data is undefined */}
         <Link
           href={{
             pathname: PATHNAMES.search,
-            query: { destination: selectedDestination, month: selectedMonth },
+            query: {
+              destination: selectedDestination ?? "",
+              month: selectedMonth ?? "",
+            },
           }}
+          className="relative overflow-hidden z-30 w-full md:w-auto"
         >
-          <a className="relative overflow-hidden z-30 w-full md:w-auto">
-            <div
-              onClick={() => {
-                clickSearch({
-                  destination: selectedDestination,
-                  month: selectedMonth,
-                });
-              }}
-              className="button-search"
-            >
-              {BUSCAR}
-            </div>
-          </a>
+          <div
+            onClick={() => {
+              clickSearch({
+                destination: selectedDestination,
+                month: selectedMonth,
+              });
+            }}
+            className="button-search"
+          >
+            {BUSCAR}
+          </div>
         </Link>
       </div>
     </div>

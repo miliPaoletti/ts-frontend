@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const SocialMediaLink = ({
@@ -10,7 +11,7 @@ const SocialMediaLink = ({
   onClick,
 }) => {
   return (
-    <a
+    <Link
       href={href}
       rel="noreferrer"
       target={apply ? "_blank" : ""}
@@ -19,7 +20,7 @@ const SocialMediaLink = ({
     >
       <div className={`about-us-icons ${own_style}`}>{icon}</div>
       {!footer && <span className="about-us-text">{text}</span>}
-    </a>
+    </Link>
   );
 };
 

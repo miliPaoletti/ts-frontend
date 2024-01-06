@@ -34,9 +34,7 @@ function Footer() {
         <div className="flex flex-col justify-center items-center space-y-2 ">
           <div className="flex px-3 sm:px-12 ">
             <Link href={PATHNAMES.home}>
-              <a>
-                <Logo className="logo" />
-              </a>
+              <Logo className="logo" />
             </Link>
           </div>
           <div>{COMPANY_DATA.legajo}</div>

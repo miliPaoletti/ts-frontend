@@ -18,39 +18,34 @@ function Header() {
   return (
     <header>
       <div className="header">
-        <Link href={PATHNAMES.home}>
-          <a
-            onClick={() => {
-              clickLogo();
-            }}
-          >
-            <Logo />
-          </a>
+        <Link
+          href={PATHNAMES.home}
+          onClick={() => {
+            clickLogo();
+          }}
+        >
+          <Logo />
         </Link>
         <div className="text-black-950">
           <ul className="flex space-x-6 text-sm sm:text-lg font-bold">
-            <Link href={PATHNAMES.home}>
-              <a
-                onClick={() => {
-                  clickHome();
-                }}
-              >
-                <li className="hidden sm:block">{HEADER.home}</li>
-              </a>
+            <Link
+              href={PATHNAMES.home}
+              onClick={() => {
+                clickHome();
+              }}
+            >
+              <li className="hidden sm:block">{HEADER.home}</li>
             </Link>
             <Link
+              onClick={() => {
+                clickSearch();
+              }}
               href={{
                 pathname: PATHNAMES.search,
                 query: { destination: ALL, month: ALL },
               }}
             >
-              <a
-                onClick={() => {
-                  clickSearch();
-                }}
-              >
-                <li>{HEADER.search}</li>
-              </a>
+              <li>{HEADER.search}</li>
             </Link>
             <ModalConsult
               dataForConsult={dataForConsult}

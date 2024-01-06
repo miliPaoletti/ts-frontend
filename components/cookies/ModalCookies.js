@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import { TRACKER_LOCALSTORAGE, getTrackerLocalStorage } from "./helpers";
 import { useTracker } from "components/tracker/useTracker";
 import { TRACKER } from "components/tracker/constants";
+import Link from "next/link";
 
 export const ModalCookies = ({ trigger, isFooter }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -83,14 +84,14 @@ export const ModalCookies = ({ trigger, isFooter }) => {
                       Usamos las cookies para mejorar tu experiencia y analizar
                       nuestro tráfico. Haciendo click en <b>Aceptar</b>, aceptas
                       nuestra{" "}
-                      <a
+                      <Link
                         href="https://www.iubenda.com/privacy-policy/80159442/cookie-policy"
                         target="_blank"
                         rel="noreferrer"
                         className="cursor-pointer underline "
                       >
                         política de cookies
-                      </a>
+                      </Link>
                       .
                     </p>
                     <div className="mt-3 space-x-4 flex items-center justify-center">

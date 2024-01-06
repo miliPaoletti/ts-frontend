@@ -7,6 +7,7 @@ const nextConfig = {
   images: {
     loader: "akamai",
     path: "",
+    remotePatterns: [{ hostname: "storage.googleapis.com" }],
   },
   basePath:
     process.env.NEXT_PUBLIC_BASE_PATH === "turismoSerrano"

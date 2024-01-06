@@ -205,16 +205,15 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
             </button>
 
             <div className="flex items-center text-left space-x-3 ">
-              <Link href={URL_WHATSAPP}>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  onClick={() => {
-                    clickWsp();
-                  }}
-                >
-                  <p className="text-base">{INFO_WHATSAPP}</p>
-                </a>
+              <Link
+                rel="noreferrer"
+                target="_blank"
+                onClick={() => {
+                  clickWsp();
+                }}
+                href={URL_WHATSAPP}
+              >
+                <p className="text-base">{INFO_WHATSAPP}</p>
               </Link>
               <Whatsapp
                 page={FORM}

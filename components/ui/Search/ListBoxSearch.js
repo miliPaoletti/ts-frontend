@@ -26,6 +26,7 @@ const ListBoxSearch = ({
     inputEl.current.select();
   }
   const { input, handleInput } = useInput("");
+  const filteredData = getFilteredData(input, data);
   return (
     <div className="w-full md:w-72 lg:w-96 md:bg-white md:mx-1 py-3 rounded-md ">
       <Combobox value={selected} onChange={onChangeSetSelected}>
@@ -64,7 +65,7 @@ const ListBoxSearch = ({
             leaveTo="opacity-0"
           >
             <Combobox.Options className="z-[40] capitalize absolute w-full py-1 mt-1 overflow-auto text-md md:text-base lg:text-lg bg-white top-[29px]  md:top-[31px] shadow-lg max-h-60  focus:outline-none sm:text-lg">
-              {getFilteredData(input, data)?.map((destinationName, index) => (
+              {filteredData?.map((destinationName, index) => (
                 <Combobox.Option
                   key={index}
                   className={({ active }) =>
