@@ -1,7 +1,7 @@
 import MediumCard from "components/ui/Cards/MediumCard";
 import { CONSULT, IMG_DEFAULT, months, PATHNAMES } from "./constants";
-
-export const getCurrency = (currency) => {
+import { Destinations, customInfo } from "./types";
+export const getCurrency = (currency: string) => {
   let local_currency = "";
   if (currency == "pesos") {
     local_currency = "$";
@@ -11,7 +11,7 @@ export const getCurrency = (currency) => {
   return local_currency;
 };
 
-export const getFirstCardImage = (image) => {
+export const getFirstCardImage = (image: customInfo) => {
   if (image !== undefined) {
     if (image["card_image"] !== null) {
       return image["card_image"];
@@ -20,26 +20,28 @@ export const getFirstCardImage = (image) => {
   return IMG_DEFAULT;
 };
 
-export const getDuration = (duration) => {
+export const getDuration = (
+  duration: { days: number; nights: number } | undefined
+): string | number => {
   if (duration !== undefined) {
     return duration.days;
   }
   return CONSULT;
 };
 
-export const getMediumCards = (destinations) => {
+export const getMediumCards = (destinations: Destinations[]) => {
   let listDestinations = [];
 
   for (let destination in destinations) {
     const dest = destinations[destination];
+    // TODO: check if this is necessary
+    if (dest === undefined) continue;
     const destino = dest["data"];
     const key = dest["id"];
     const imageCard = destino["custom_info"];
-    const durationDest = destino.duration;
+    const durationDest = getDuration(destino.duration);
     const promotionDest = destino.promotions;
-
     let firstImage = getFirstCardImage(imageCard);
-    let duration = getDuration(durationDest);
     let months_local = sortByMonth(destino.departures);
     let months = getStyledData(months_local);
 
@@ -53,23 +55,15 @@ export const getMediumCards = (destinations) => {
         currency={getCurrency(destino.lowest_price["currency"])}
         price={destino.lowest_price["price"]}
         taxes={destino.lowest_price["taxes"]}
-        days={duration}
-        cover={destino.includes}
-        additional_insurance={destino.additional_insurance}
-        boarding={destino.boarding}
-        departures={destino.departures}
-        meal_regimen={destino.meal_regimen}
-        hotels={destino.hotel}
+        days={durationDest}
         pathname={`/${PATHNAMES.destination}`}
         destinationId={key}
         provider={destino.provider}
-        views={destino.views}
       />
     );
   }
   return listDestinations;
 };
-
 export const sortByMonth = (arr) => {
   // sort months (January, February ... December)
   arr?.sort(function (a, b) {

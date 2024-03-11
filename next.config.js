@@ -4,6 +4,11 @@
 const nextConfig = {
   reactStrictMode: false,
   trailingSlash: true,
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   images: {
     loader: "akamai",
     path: "",

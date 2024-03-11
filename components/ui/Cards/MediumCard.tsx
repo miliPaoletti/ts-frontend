@@ -8,7 +8,21 @@ import Image from "next/image";
 import { getPrice } from "components/utils/renderHelpers";
 import { CLICK_DESTINATION_CARD } from "components/tracker/constants";
 import { useTracker } from "components/tracker/useTracker";
-export function MediumCard({
+
+type MediumCardProps = {
+  img: string;
+  title: string;
+  months: string[];
+  days: number | string;
+  price: string;
+  promotions: number;
+  currency: string;
+  pathname: string;
+  destinationId: string;
+  provider: string;
+  taxes: string | undefined;
+};
+export const MediumCard = ({
   img,
   title,
   months,
@@ -20,7 +34,7 @@ export function MediumCard({
   destinationId,
   provider,
   taxes,
-}) {
+}: MediumCardProps) => {
   const { handlePreClickAction: clickCard } = useTracker(
     CLICK_DESTINATION_CARD
   );
@@ -75,7 +89,7 @@ export function MediumCard({
 
   const dataForConsult = {
     DESTINATION: title,
-    PRICE: currency - price,
+    PRICE: currency + ` - ` + price,
     DAYS: days,
     PROVIDER: provider,
     MONTHS: months,
@@ -115,6 +129,6 @@ export function MediumCard({
       {content}
     </Link>
   );
-}
+};
 
 export default MediumCard;

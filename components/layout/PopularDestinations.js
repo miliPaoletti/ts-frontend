@@ -11,7 +11,7 @@ export const PopularDestinations = () => {
     // get popular destinations
     fetchPopularDestinations().then(setPopularDest);
   }, []);
-
+  console.log("popularDest", popularDest);
   return (
     <div className="bg-gray-100">
       <div className="container-general md:pt-11">
