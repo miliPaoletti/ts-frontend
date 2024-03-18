@@ -148,6 +148,9 @@ export const getPromotionsValue = (promotionDest) => {
       let amount = promotionDest.split(" ")[3].slice(0, -1);
       promotion = 100 - amount;
     }
+    if (promotionDest.includes("default_promotion")) {
+      promotion = -1;
+    }
   }
   return promotion;
 };
@@ -163,7 +166,12 @@ export function isKeyInObject(obj, key) {
 }
 
 export function getPrice(price, currency) {
-  if (price === "0" || price === undefined || price.toLowerCase() === "none") {
+  if (
+    price === "0" ||
+    price === "-1" ||
+    price === undefined ||
+    price.toLowerCase() === "none"
+  ) {
     return "Consultar";
   }
   return currency + price;

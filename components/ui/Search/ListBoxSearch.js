@@ -36,7 +36,7 @@ const ListBoxSearch = ({
               <p className="mx-2 text-md md:text-lg text-gray-950 w-[90px] md:w-auto remove-selection ">
                 {text}:{" "}
               </p>{" "}
-              <Combobox.Button>
+              <Combobox.Button as="div">
                 <Combobox.Input
                   ref={inputEl}
                   onFocus={handleFocus}

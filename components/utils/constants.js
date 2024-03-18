@@ -80,6 +80,7 @@ export const COMPANY_DATA = {
   fb: "Turismo Serrano (E.V.T)",
   legajo: "Legajo 7320",
   openHours: "Atención al Público Lun a Vie: 10 a 17hs",
+  workWithUs: "Trabaja con nosotros",
   email: email,
   linkLocation:
     "https://www.google.com/maps/dir//turismo+serrano/@1.1965479,-71.241989,3z/data=!4m8!4m7!1m0!1m5!1m1!1s0x95911f9bdb035e47:0x9efcc38df263ae10!2m2!1d-59.1425245!2d-37.3284937",
@@ -141,5 +142,24 @@ export const FORM_DATA = {
     phoneRequired: "Número de teléfono requerido",
     passengersRequired: "Cantidad de pasajeros requerida",
     consultRequired: "Por favor, escriba su consulta",
+  },
+};
+
+export const FORM_WORK_WITH_US_DATA = {
+  title: "Trabaja con nosotros!",
+  name: "Nombre",
+  email: "Correo electrónico",
+  consult: "Cuentanos por que te queres unir a nuestro equipo",
+  cv: "Adjuntar Curriculum",
+  position: "Posición",
+  other_position: "Indique el puesto",
+  send: "Enviar",
+  validations: {
+    emailRequired: "Email requerido",
+    emailInvalid: "Dirección de correo inválida",
+    nameRequired: "Nombre requerido",
+    cvRequired: "CV requerido",
+    positionRequired: "Puesto requerida",
+    otherPositionRequired: "Especifique el puesto",
   },
 };

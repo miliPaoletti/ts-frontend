@@ -8,6 +8,7 @@ import Image from "next/image";
 import { getPrice } from "components/utils/renderHelpers";
 import { CLICK_DESTINATION_CARD } from "components/tracker/constants";
 import { useTracker } from "components/tracker/useTracker";
+import { Promotion } from "./Promotion";
 export function MediumCard({
   img,
   title,
@@ -26,16 +27,7 @@ export function MediumCard({
   );
   let content = (
     <>
-      {promotions !== 0 ? (
-        <div className="shadow-md z-10 absolute right-[15px]  bg-yellow-500 text-white rounded-b-lg py-2 px-4 text-center font-[Rubik]">
-          <div className="font-bold text-lg">
-            {promotions}% <span className="text-base font-bold">OFF</span>
-          </div>
-          <div className="text-[11px] font-bold">2do pasajero</div>
-        </div>
-      ) : (
-        ""
-      )}
+      <Promotion promotion={promotions} component="card" />
       <Image
         src={img}
         layout="responsive"
