@@ -4,6 +4,7 @@ import { MdWatchLater } from "react-icons/md";
 import { FaFacebookSquare } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { BsInstagram } from "react-icons/bs";
+import { MdWork } from "react-icons/md";
 import Contact from "components/ui/Footer/Contact";
 import TitleFooter from "components/ui/Titles/TitleFooter";
 import SocialMediaLink from "components/ui/Links/SocialMediaLink";
@@ -80,6 +81,11 @@ function Footer() {
               clickEmail();
             }}
           />
+          {/* <Contact
+            href="/trabaja-con-nosotros"
+            icon={<MdWork />}
+            text={COMPANY_DATA.workWithUs}
+          /> */}
 
           <div className="flex space-x-4 pt-3 ">
             <SocialMediaLink

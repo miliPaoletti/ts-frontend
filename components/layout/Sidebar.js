@@ -6,6 +6,7 @@ import { GiMeal } from "react-icons/gi";
 import { ModalConsult } from "components/ui/Modals/ModalConsult";
 import { ButtonPrimary } from "components/ui/Buttons/ButtonPrimary";
 import { getPrice } from "components/utils/renderHelpers";
+import { Promotion } from "components/ui/Cards/Promotion";
 
 const Sidebar = ({
   days,
@@ -65,9 +66,7 @@ const Sidebar = ({
         {promotions !== 0 && (
           <>
             <p className="font-bold text-xl">Promoción</p>
-            <div className="bg-yellow-500 text-white font-semibold text-lg text-center p-2 py-4 font-[Rubik] rounded-md">
-              2do pasajero {promotions}% OFF
-            </div>
+            <Promotion promotion={promotions} component="sidebar" />
           </>
         )}
 
