@@ -1,4 +1,7 @@
 export const Promotion = ({ promotion, component }) => {
+  if (promotion === 0) {
+    return;
+  }
   if (promotion === -1) {
     return (
       <div
