@@ -34,7 +34,7 @@ export const INFO_NOT_UPLOADED =
 export const FORM = "FORM";
 export const INFO_WHATSAPP = "O consultanos por ";
 export const URL_MAIL_DEV = "https://ts-contact-us-app-dev.onrender.com";
-
+export const STATIC_FORMS_URL_DEV = "";
 export const DESTINATION = "DESTINATION";
 export const URL = "URL";
 export const PRICE = "PRICE";
