@@ -31,10 +31,11 @@ export const FormTest = () => {
           <select
             type="select"
             name="position"
+            defaultValue={""}
             required
             className="w-full focus-visible:outline-0"
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Elige una opción
             </option>
             <option value="Ventas">Ventas</option>
