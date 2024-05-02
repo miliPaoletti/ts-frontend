@@ -39,22 +39,6 @@ function validateName(value) {
   return error;
 }
 
-function validatePhoneNumber(value) {
-  let error;
-  if (!value) {
-    error = FORM_DATA.validations.phoneRequired;
-  }
-  return error;
-}
-
-function validatePassengers(value) {
-  let error;
-  if (!value) {
-    error = FORM_DATA.validations.passengersRequired;
-  }
-  return error;
-}
-
 function validateConsult(value) {
   let error;
   if (!value) {
@@ -128,16 +112,9 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.phoneNumber ? "error" : ""}
                   name="phoneNumber"
-                  placeholder={`${FORM_DATA.phone} * `}
+                  placeholder={`${FORM_DATA.phone} `}
                   type="text"
-                  validate={validatePhoneNumber}
                 />
-              }
-              error={
-                errors.phoneNumber &&
-                touched.phoneNumber && (
-                  <small className="form-error">{errors.phoneNumber}</small>
-                )
               }
             />
 
@@ -146,16 +123,9 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.passengers ? "error" : ""}
                   name="passengers"
-                  placeholder={`${FORM_DATA.passengers} * `}
+                  placeholder={`${FORM_DATA.passengers} `}
                   type="number"
-                  validate={validatePassengers}
                 />
-              }
-              error={
-                errors.passengers &&
-                touched.passengers && (
-                  <small className="form-error">{errors.passengers}</small>
-                )
               }
             />
 

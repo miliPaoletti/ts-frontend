@@ -5,7 +5,6 @@ const MAIL_ROUTE = `${
     ? URL_MAIL_DEV
     : `${process.env.NEXT_PUBLIC_MAILROUTE}`
 }`;
-
 export default async function registerCV({
   name,
   cv,
@@ -14,30 +13,23 @@ export default async function registerCV({
   email,
   consult,
 }) {
-  const data = {
-    nombre: name,
-    attachments: cv,
-    posicion: `${position} - ${other_position}`,
-    email: email,
-    consulta: consult,
-    accessKey: "d8da0cbe-c64d-4388-86a6-b78acdabd109",
-  };
-
   const formData = new FormData();
 
-  formData.append("file", cv);
-  formData.append(data);
-  const data1 = new URLSearchParams(formData);
-  // formData.append("test", "StringValueTest");
+  formData.append("attachment", cv);
+  formData.append("name", name);
+  formData.append("mail", email);
+  formData.append("position", `${position} - ${other_position}`);
 
-  // return true;
-  const res = await fetch("https://formsubmit.co/milagros.paoletti@gmail.com", {
+  formData.append("token", process.env.NEXT_PUBLIC_EMAIL_TOKEN ?? "");
+  if (consult !== "") {
+    formData.append("request", consult);
+  }
+  return fetch(`${MAIL_ROUTE}/sendMailWithAttachments`, {
     method: "POST",
-    body: data1,
+    body: formData,
     headers: { "Content-Type": "multipart/form-data" },
+  }).then((res) => {
+    if (!res.ok) throw new Error("Response is NOT ok");
+    return true;
   });
-  console.log(res);
-  const json = await res.json();
-  console.log(json);
-  return;
 }
