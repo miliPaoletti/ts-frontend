@@ -1,5 +1,5 @@
 import { URL_MAIL_DEV } from "components/utils/constants";
-//
+
 const MAIL_ROUTE = `${
   process.env.NEXT_PUBLIC_MAILROUTE === undefined
     ? URL_MAIL_DEV
