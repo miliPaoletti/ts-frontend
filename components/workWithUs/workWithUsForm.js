@@ -9,6 +9,7 @@ import { FORM_WORK_WITH_US_DATA } from "components/utils/constants";
 import { CLICK_SEND_BUTTON } from "components/tracker/constants";
 import { useTracker } from "components/tracker/useTracker";
 import registerCV from "services/sendCV";
+import { useRouter } from "next/router";
 
 function validateEmail(value) {
   let error;
@@ -29,21 +30,13 @@ function validateName(value) {
 }
 
 function validateCV(value) {
-  console.log(value);
   let error;
-  if (!value !== "") {
+  const MAX_SIZE = 1000000; // 1MB
+  if (value === "") {
     error = FORM_WORK_WITH_US_DATA.validations.cvRequired;
   }
-  const MAX_SIZE = 500000; // 500KB
-  // const validateImage = (values: { image?: File }) => {
-  // if (values.image && values.image.size > MAX_SIZE) {
-  // return { image: "Max file size exceeded." };
-  error = "Max file size exceeded.";
-  // }
-  // };
-
-  if (!value) {
-    error = FORM_WORK_WITH_US_DATA.validations.cvRequired;
+  if (value && value.size > MAX_SIZE) {
+    error = "El tamaño del archivo es muy grande. Máximo 1MB.";
   }
   return error;
 }
@@ -66,7 +59,7 @@ function validateOtherPosition(value) {
 const initialValues = {
   name: "",
   cv: "",
-  position: "Ventas",
+  position: "",
   email: "",
   consult: "",
   other_position: "",
@@ -74,7 +67,7 @@ const initialValues = {
 
 export default function WorkWithUsForm() {
   const { setNotification } = useContext(NotificationContext);
-
+  const router = useRouter();
   const { handlePreClickAction: clickSend } = useTracker(CLICK_SEND_BUTTON);
 
   return (
@@ -90,6 +83,7 @@ export default function WorkWithUsForm() {
             .then(() => {
               setNotification(SUCCESS);
               clickSend({ status: "success" });
+              router.push("/");
             })
             .catch((e) => {
               setNotification(FAIL);
@@ -99,7 +93,7 @@ export default function WorkWithUsForm() {
         }}
       >
         {({ errors, isSubmitting, touched, setFieldValue, values }) => (
-          <Form className="form space-y-3 w-1/3 bg-white rounded-2xl p-8">
+          <Form className="form space-y-3 lg:w-1/3 bg-white rounded-2xl p-8">
             <div className="text-center text-2xl font-medium">
               {FORM_WORK_WITH_US_DATA.title}
             </div>
@@ -138,13 +132,11 @@ export default function WorkWithUsForm() {
               }
               placeholder={`${FORM_WORK_WITH_US_DATA.email} * `}
             />
-
             <ItemContact
               text={
                 <Field
                   as="select"
                   name="position"
-                  // defaultValue="ventas"
                   value={values.position}
                   className={
                     errors.position
@@ -153,6 +145,9 @@ export default function WorkWithUsForm() {
                   }
                   validate={validatePosition}
                 >
+                  <option value="" disabled>
+                    Elige una opción
+                  </option>
                   <option value="ventas">Ventas</option>
                   <option value="admin">Administración</option>
                   <option value="otros">Otros</option>
@@ -194,11 +189,10 @@ export default function WorkWithUsForm() {
                   as="input"
                   type="file"
                   name="cv"
-                  accept=".pdf, .doc, .docx"
+                  accept=".pdf"
                   value={undefined}
                   onChange={(e) => {
                     if (e.currentTarget.files) {
-                      console.log(e.currentTarget.files[0].size);
                       setFieldValue("cv", e.currentTarget.files[0]);
                     }
                   }}
@@ -212,7 +206,7 @@ export default function WorkWithUsForm() {
               placeholder={`${FORM_WORK_WITH_US_DATA.cv} * `}
             />
 
-            <div className="">
+            <div>
               <div className="flex items-top ">
                 <Field
                   className={
@@ -225,7 +219,7 @@ export default function WorkWithUsForm() {
                   type="text"
                   as="textarea"
                   rows="4"
-                />{" "}
+                />
               </div>
               {errors.consult && touched.consult && (
                 <small className="form-error">{errors.consult}</small>
@@ -234,7 +228,9 @@ export default function WorkWithUsForm() {
 
             <button
               type="submit"
-              className="button-primary w-full"
+              className={`button-primary w-full ${
+                isSubmitting && "opacity-50 cursor-not-allowed"
+              } `}
               disabled={isSubmitting}
             >
               {FORM_WORK_WITH_US_DATA.send}

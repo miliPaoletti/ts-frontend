@@ -5,34 +5,32 @@ const MAIL_ROUTE = `${
     ? URL_MAIL_DEV
     : `${process.env.NEXT_PUBLIC_MAILROUTE}`
 }`;
-
 export default function registerForm(
-  { name, phoneNumber, passengers, email, consult },
+  { name, phoneNumber, passengers, email, consult, cv },
   dataForConsult
 ) {
   const data = {
     name: name,
-    phone_number: phoneNumber,
-    passengers: passengers,
     mail: email,
+    passengers: passengers === "" ? undefined : passengers,
+    phone_number: phoneNumber === "" ? undefined : phoneNumber,
     request: consult,
-    DESTINATION: dataForConsult?.DESTINATION,
-    URL: dataForConsult?.URL,
-    PRICE: dataForConsult?.PRICE,
-    NIGHTS: dataForConsult?.NIGHTS,
-    DESTINATIONS_NAMES: dataForConsult?.DESTINATIONS_NAMES,
-    REGIMEN: dataForConsult?.REGIMEN,
-    BOARDING: dataForConsult?.BOARDING,
-    PROVIDER: dataForConsult?.PROVIDER,
-    MONTHS: dataForConsult?.MONTHS,
-    DAYS: dataForConsult?.DAYS,
-
+    destination: dataForConsult?.DESTINATION,
+    cv: cv,
+    url: dataForConsult?.URL,
+    price: dataForConsult?.PRICE,
+    destination_names: dataForConsult?.DESTINATIONS_NAMES,
+    regimen: dataForConsult?.REGIMEN,
+    boarding: dataForConsult?.BOARDING,
+    provider: dataForConsult?.PROVIDER,
+    months: dataForConsult?.MONTHS,
+    days: dataForConsult?.DAYS,
+    token: process.env.NEXT_PUBLIC_EMAIL_TOKEN ?? "",
   };
-  return fetch(`${MAIL_ROUTE}`, {
+
+  return fetch(`${MAIL_ROUTE}/sendMail`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   }).then((res) => {
     if (!res.ok) throw new Error("Response is NOT ok");

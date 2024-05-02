@@ -33,8 +33,7 @@ export const INFO_NOT_UPLOADED =
   "El destino elegido aún no tiene información cargada. Envíe su consulta y le responderemos a la brevedad.";
 export const FORM = "FORM";
 export const INFO_WHATSAPP = "O consultanos por ";
-export const URL_MAIL_DEV = "https://ts-contact-us-app-dev.onrender.com";
-
+export const STATIC_FORMS_URL_DEV = "";
 export const DESTINATION = "DESTINATION";
 export const URL = "URL";
 export const PRICE = "PRICE";
@@ -159,7 +158,7 @@ export const FORM_WORK_WITH_US_DATA = {
     emailInvalid: "Dirección de correo inválida",
     nameRequired: "Nombre requerido",
     cvRequired: "CV requerido",
-    positionRequired: "Puesto requerida",
+    positionRequired: "Puesto requerido",
     otherPositionRequired: "Especifique el puesto",
   },
 };

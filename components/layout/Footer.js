@@ -81,11 +81,11 @@ function Footer() {
               clickEmail();
             }}
           />
-          {/* <Contact
+          <Contact
             href="/trabaja-con-nosotros"
             icon={<MdWork />}
             text={COMPANY_DATA.workWithUs}
-          /> */}
+          />
 
           <div className="flex space-x-4 pt-3 ">
             <SocialMediaLink

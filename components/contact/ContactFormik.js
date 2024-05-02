@@ -2,9 +2,6 @@ import React, { useContext } from "react";
 import { Formik, Form, Field } from "formik";
 import registerForm from "services/sendEmail";
 import ItemContact from "components/contact/ItemContact";
-import { FaPhoneAlt, FaUser } from "react-icons/fa";
-import { BsPeopleFill } from "react-icons/bs";
-import { MdEmail } from "react-icons/md";
 import NotificationContext from "context/NotificationContext";
 import { FAIL } from "components/utils/constants";
 import { SUCCESS } from "components/utils/constants";
@@ -38,22 +35,6 @@ function validateName(value) {
   let error;
   if (!value) {
     error = FORM_DATA.validations.nameRequired;
-  }
-  return error;
-}
-
-function validatePhoneNumber(value) {
-  let error;
-  if (!value) {
-    error = FORM_DATA.validations.phoneRequired;
-  }
-  return error;
-}
-
-function validatePassengers(value) {
-  let error;
-  if (!value) {
-    error = FORM_DATA.validations.passengersRequired;
   }
   return error;
 }
@@ -131,16 +112,9 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.phoneNumber ? "error" : ""}
                   name="phoneNumber"
-                  placeholder={`${FORM_DATA.phone} * `}
+                  placeholder={`${FORM_DATA.phone} `}
                   type="text"
-                  validate={validatePhoneNumber}
                 />
-              }
-              error={
-                errors.phoneNumber &&
-                touched.phoneNumber && (
-                  <small className="form-error">{errors.phoneNumber}</small>
-                )
               }
             />
 
@@ -149,16 +123,9 @@ export default function ContactForm({ setIsOpen, dataForConsult, section }) {
                 <Field
                   className={errors.passengers ? "error" : ""}
                   name="passengers"
-                  placeholder={`${FORM_DATA.passengers} * `}
+                  placeholder={`${FORM_DATA.passengers} `}
                   type="number"
-                  validate={validatePassengers}
                 />
-              }
-              error={
-                errors.passengers &&
-                touched.passengers && (
-                  <small className="form-error">{errors.passengers}</small>
-                )
               }
             />
 

@@ -5,8 +5,7 @@ const MAIL_ROUTE = `${
     ? URL_MAIL_DEV
     : `${process.env.NEXT_PUBLIC_MAILROUTE}`
 }`;
-
-export default function registerCV({
+export default async function registerCV({
   name,
   cv,
   position,
@@ -14,24 +13,23 @@ export default function registerCV({
   email,
   consult,
 }) {
-  const data = {
-    nombre: name,
-    cv: cv,
-    posicion: `${position} - ${other_position}`,
-    mail: email,
-    consulta: consult,
-  };
-  console.log(data);
-  return true;
-  //   return fetch(`${MAIL_ROUTE}`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/x-www-form-urlencoded",
-  //     },
-  //     body: JSON.stringify(data),
-  //   }).then((res) => {
-  //     if (!res.ok) throw new Error("Response is NOT ok");
+  const formData = new FormData();
 
-  //     return true;
-  //   });
+  formData.append("attachment", cv);
+  formData.append("name", name);
+  formData.append("mail", email);
+  formData.append("position", `${position} - ${other_position}`);
+
+  formData.append("token", process.env.NEXT_PUBLIC_EMAIL_TOKEN ?? "");
+  if (consult !== "") {
+    formData.append("request", consult);
+  }
+  return fetch(`${MAIL_ROUTE}/sendMailWithAttachments`, {
+    method: "POST",
+    body: formData,
+    headers: { "Content-Type": "multipart/form-data" },
+  }).then((res) => {
+    if (!res.ok) throw new Error("Response is NOT ok");
+    return true;
+  });
 }
