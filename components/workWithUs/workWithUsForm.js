@@ -83,6 +83,10 @@ export default function WorkWithUsForm() {
             .then(() => {
               setNotification(SUCCESS);
               clickSend({ status: "success" });
+
+              return new Promise((resolve) => setTimeout(resolve, 3000)); // Wait 3 seconds
+            })
+            .then(() => {
               router.push("/");
             })
             .catch((e) => {
