@@ -64,6 +64,8 @@ export const getMediumCards = (destinations) => {
         destinationId={key}
         provider={destino.provider}
         views={destino.views}
+        destinationNames={destino["destinations_names"]}
+        nights={destino.duration["nights"]}
       />
     );
   }
@@ -170,7 +172,7 @@ export function getPrice(price, currency) {
     price === "0" ||
     price === "-1" ||
     price === undefined ||
-    price.toLowerCase() === "none"
+    price.toString().toLowerCase() === "none"
   ) {
     return "Consultar";
   }

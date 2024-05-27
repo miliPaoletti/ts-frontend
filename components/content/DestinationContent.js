@@ -95,7 +95,6 @@ const DestinationContent = () => {
     MONTHS: departures,
   };
 
-
   localStorage.setItem(DESTINATION, title);
   localStorage.setItem(URL, window.location.href);
   localStorage.setItem(
