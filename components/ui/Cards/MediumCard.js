@@ -21,6 +21,12 @@ export function MediumCard({
   destinationId,
   provider,
   taxes,
+  regimen,
+  boarding,
+  departures,
+  meal_regimen,
+  destinationNames,
+  nights,
 }) {
   const { handlePreClickAction: clickCard } = useTracker(
     CLICK_DESTINATION_CARD
@@ -67,10 +73,16 @@ export function MediumCard({
 
   const dataForConsult = {
     DESTINATION: title,
-    PRICE: currency - price,
+    URL: window.location.href,
+    PRICE: currency + price,
+    NIGHTS: nights,
     DAYS: days,
+    DESTINATIONS_NAMES: destinationNames,
+    REGIMEN: regimen,
+    BOARDING: boarding,
     PROVIDER: provider,
-    MONTHS: months,
+    MONTHS: departures,
+    REGIMEN: meal_regimen,
   };
 
   const monthsToTrack = () => {

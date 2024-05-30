@@ -24,7 +24,7 @@ export const useDataForConsult = () => {
     let splitInterrogation = url.split("?");
     if (splitInterrogation.length > 1) {
       let page = splitInterrogation[0].split("/").pop();
-      if (page == "destination") {
+      if (page === "destination") {
         dataForConsult = {
           DESTINATION: localStorage.getItem(DESTINATION),
           URL: localStorage.getItem(URL),
@@ -37,7 +37,6 @@ export const useDataForConsult = () => {
           MONTHS: localStorage.getItem(MONTHS),
           DAYS: localStorage.getItem(DAYS),
         };
-
       }
     }
   }
