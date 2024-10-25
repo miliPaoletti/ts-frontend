@@ -171,6 +171,7 @@ export function getPrice(price, currency) {
   if (
     price === "0" ||
     price === "-1" ||
+    price === -1 ||
     price === undefined ||
     price.toString().toLowerCase() === "none"
   ) {
