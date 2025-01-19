@@ -52,10 +52,6 @@ function Header() {
                 <li>{HEADER.search}</li>
               </a>
             </Link>
-            <ModalConsult
-              dataForConsult={dataForConsult}
-              trigger={<li>{HEADER.contact}</li>}
-            />
           </ul>
         </div>
       </div>

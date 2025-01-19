@@ -3,10 +3,10 @@ import Item from "components/ui/Sidebar/Item";
 import { BsFillCalendarEventFill } from "react-icons/bs";
 import { MdDepartureBoard, MdWatchLater } from "react-icons/md";
 import { GiMeal } from "react-icons/gi";
-import { ModalConsult } from "components/ui/Modals/ModalConsult";
-import { ButtonPrimary } from "components/ui/Buttons/ButtonPrimary";
 import { getPrice } from "components/utils/renderHelpers";
 import { Promotion } from "components/ui/Cards/Promotion";
+import { createWspMessage } from "components/utils/createWspMessage";
+import Link from "next/link";
 
 const Sidebar = ({
   days,
@@ -51,6 +51,10 @@ const Sidebar = ({
   }
 
   let text = days + " dias ";
+
+  const destination = {
+    title: dataForConsult.DESTINATION,
+  };
 
   return (
     <div className="sticky top-[80px] px-0 lg:px-5 xl:px-11 pt-5 lg:pt-11 pb-0 lg:pb-11 space-y-5 ">
@@ -105,11 +109,15 @@ const Sidebar = ({
           ""
         )}
       </div>
-
-      <ModalConsult
-        dataForConsult={dataForConsult}
-        trigger={<ButtonPrimary />}
-      />
+      <Link href={createWspMessage(destination)}>
+        <a
+          className="button-primary flex w-full "
+          rel="noreferrer"
+          target="_blank"
+        >
+          Consultar
+        </a>
+      </Link>
     </div>
   );
 };
