@@ -1,14 +1,14 @@
 import SmallText from "components/ui/Titles/SmallText";
 import { MdWatchLater } from "react-icons/md";
 import Link from "next/link";
-import { CONSULT, IMG_DEFAULT, MEDIUM_CARD } from "components/utils/constants";
-import { ModalConsult } from "../Modals/ModalConsult";
+import { CONSULT, IMG_DEFAULT } from "components/utils/constants";
 import { updateViews } from "pages/api/updateViews";
 import Image from "next/image";
 import { getPrice } from "components/utils/renderHelpers";
 import { CLICK_DESTINATION_CARD } from "components/tracker/constants";
 import { useTracker } from "components/tracker/useTracker";
 import { Promotion } from "./Promotion";
+import { createWspMessage } from "components/utils/createWspMessage";
 export function MediumCard({
   img,
   title,
@@ -71,20 +71,6 @@ export function MediumCard({
     </>
   );
 
-  const dataForConsult = {
-    DESTINATION: title,
-    URL: window.location.href,
-    PRICE: currency + price,
-    NIGHTS: nights,
-    DAYS: days,
-    DESTINATIONS_NAMES: destinationNames,
-    REGIMEN: regimen,
-    BOARDING: boarding,
-    PROVIDER: provider,
-    MONTHS: departures,
-    REGIMEN: meal_regimen,
-  };
-
   const monthsToTrack = () => {
     return months.map((month) => {
       if (month.props.children[0] !== undefined) {
@@ -93,16 +79,16 @@ export function MediumCard({
     });
   };
 
-  return img === IMG_DEFAULT ? (
-    <ModalConsult
-      dataForConsult={dataForConsult}
-      trigger={content}
-      section={MEDIUM_CARD}
-    />
-  ) : (
-    <Link
-      href={{ pathname: pathname, query: { destinationId: destinationId } }}
-    >
+  // relevant info for the wsp message
+  const destination = {
+    title,
+  };
+  const redirect =
+    img === IMG_DEFAULT
+      ? createWspMessage(destination)
+      : { pathname: pathname, query: { destinationId: destinationId } };
+  return (
+    <Link href={redirect}>
       <a
         className="medium-card"
         onClick={() => {
