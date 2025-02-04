@@ -82,6 +82,7 @@ export function MediumCard({
   // relevant info for the wsp message
   const destination = {
     title,
+    url: `http://localhost:3000/destination/?destinationId=${destinationId}`,
   };
   const redirect =
     img === IMG_DEFAULT
