@@ -2,7 +2,7 @@ name: Deploy to cPanel via FTP
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   build-and-deploy:
@@ -44,3 +44,20 @@ jobs:
 
       - name: Install LFTP (FTP Client)
         run: sudo apt-get install lftp
+
+      - name: Delete all files except `.well-known`
+        run: |
+          lftp -c "
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
+          cd public_html;
+          find . -mindepth 1 ! -name '.well-known' -exec rm -rf {} +;
+          bye;
+          "
+
+      - name: Upload exported Next.js site to cPanel
+        run: |
+          lftp -c "
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
+          mirror -R --delete --verbose out public_html;
+          bye;
+          "
