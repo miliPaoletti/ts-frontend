@@ -1,48 +1,43 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node.
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions..
-
-name: Production
+name: Deploy to cPanel via FTP
 
 on:
   push:
     branches: ["master"]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     env:
       NEXT_PUBLIC_FIREBASE_CREDENTIALS: "${{ secrets.FIREBASE_CONFIG }}"
       NEXT_PUBLIC_MAILROUTE: ${{ secrets.MAILROUTE }}
       NEXT_PUBLIC_TRACKER_TOKEN: ${{ secrets.TRACKER_TOKEN }}
-      NEXT_PUBLIC_EMAIL_TOKEN: ${{ secrets.EMAIL_TOKEN}}
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+      NEXT_PUBLIC_EMAIL_TOKEN: ${{ secrets.EMAIL_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
           cache: "yarn"
-      - run: |
+
+      - name: Install dependencies and build project
+        run: |
           if [ -e yarn.lock ]; then
-          yarn install --frozen-lockfile
+            yarn install --frozen-lockfile
           elif [ -e package-lock.json ]; then
-          npm ci
+            npm ci
           else
-          npm i
+            npm i
           fi
           npm run build
           npm run export
-      - name: Add .nojekyll file
-        run: touch ./out/.nojekyll
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: turismo-serrano-prod
-          folder: out # The folder the action should deploy.
+
+      - name: Copy `noImage` file to `Search`
+        run: cp default_img.jpg out/Search/
+
+      - name: Install LFTP (FTP Client)
+        run: sudo apt-get install lftp
