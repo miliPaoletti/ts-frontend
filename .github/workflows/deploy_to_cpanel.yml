@@ -37,7 +37,7 @@ jobs:
           npm run export
 
       - name: List files in the repository
-        run: ls -al
+        run: ls -al out
 
       - name: Install LFTP (FTP Client)
         run: sudo apt-get install lftp
@@ -46,6 +46,7 @@ jobs:
         run: |
           lftp -c "
           open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
+          ls;
           cd public_html;
           find . -mindepth 1 ! -name '.well-known' -exec rm -rf {} +;
           bye;
@@ -56,5 +57,13 @@ jobs:
           lftp -c "
           open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
           mirror -R --delete --verbose out public_html;
+          bye;
+          "
+
+      - name: Upload default_img.jpg photo to cPanel
+        run: |
+          lftp -c "
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
+          mirror -R --delete --verbose public/default_img.jpg public_html/search;
           bye;
           "
