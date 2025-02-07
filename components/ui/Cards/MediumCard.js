@@ -82,14 +82,18 @@ export function MediumCard({
   // relevant info for the wsp message
   const destination = {
     title,
+    url: `http://localhost:3000/destination/?destinationId=${destinationId}`,
   };
   const redirect =
     img === IMG_DEFAULT
       ? createWspMessage(destination)
       : { pathname: pathname, query: { destinationId: destinationId } };
+  const target = img === IMG_DEFAULT ? "_blank" : "_self";
   return (
     <Link href={redirect}>
       <a
+        target={target}
+        rel="noreferrer"
         className="medium-card"
         onClick={() => {
           updateViews(destinationId);

@@ -87,7 +87,7 @@ export const COMPANY_DATA = {
 };
 
 export const HEADER = {
-  home: "home",
+  home: "inicio",
   search: "buscar",
   contact: "contacto",
 };

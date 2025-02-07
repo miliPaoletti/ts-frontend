@@ -5,7 +5,7 @@ import { BsWhatsapp } from "react-icons/bs";
 
 const Whatsapp = ({ page, onClick }) => {
   // TODO: CHECK IF WE WANT TO PUT A DEFAULT MESSAGE WHEN CLICKING ON THE WHATSAPP BUTTON
-  const mensaje = "";
+  const mensaje = "Hola! Quisiera realizar una consulta:";
   const enlace = `${URL_WHATSAPP}/?text=${encodeURIComponent(mensaje)}`;
   return (
     <div

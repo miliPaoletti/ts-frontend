@@ -54,6 +54,7 @@ const Sidebar = ({
 
   const destination = {
     title: dataForConsult.DESTINATION,
+    url: dataForConsult.URL,
   };
 
   return (
