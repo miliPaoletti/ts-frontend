@@ -45,7 +45,8 @@ jobs:
       - name: Delete all files except `.well-known`
         run: |
           lftp -c "
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}:21;
+          set ssl:verify-certificate no;
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
           ls;
           cd public_html;
           find . -mindepth 1 ! -name '.well-known' -exec rm -rf {} +;
@@ -55,7 +56,8 @@ jobs:
       - name: Upload exported Next.js site to cPanel
         run: |
           lftp -c "
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}:21;
+          set ssl:verify-certificate no;
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
           mirror -R --delete --verbose out public_html;
           bye;
           "
@@ -63,7 +65,8 @@ jobs:
       - name: Upload default_img.jpg photo to cPanel
         run: |
           lftp -c "
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}:21;
+          set ssl:verify-certificate no;
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
           mirror -R --delete --verbose public/default_img.jpg public_html/search;
           bye;
           "
