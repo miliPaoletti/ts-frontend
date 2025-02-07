@@ -39,9 +39,6 @@ jobs:
       - name: List files in the repository
         run: ls -al
 
-      - name: Copy `default_img` file to `Search`
-        run: cp public/default_img.jpg Search/
-
       - name: Install LFTP (FTP Client)
         run: sudo apt-get install lftp
 
