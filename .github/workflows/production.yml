@@ -36,8 +36,8 @@ jobs:
           npm run build
           npm run export
 
-      - name: Copy `noImage` file to `Search`
-        run: cp default_img.jpg out/Search/
+      - name: Copy `default_img` file to `Search`
+        run: cp public/default_img.jpg out/Search/
 
       - name: Install LFTP (FTP Client)
         run: sudo apt-get install lftp
