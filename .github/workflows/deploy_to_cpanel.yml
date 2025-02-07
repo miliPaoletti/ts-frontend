@@ -36,37 +36,18 @@ jobs:
           npm run build
           npm run export
 
-      - name: List files in the repository
-        run: ls -al out
+      - name: Copy default_img.jpg to search/ folder
+        run: |
+          cp public/default_img.jpg out/search/default_img.jpg
 
       - name: Install LFTP (FTP Client)
         run: sudo apt-get install lftp
 
-      - name: Delete all files except `.well-known`
-        run: |
-          lftp -c "
-          set ssl:verify-certificate no;
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
-          ls;
-          cd public_html;
-          find . -mindepth 1 ! -name '.well-known' -exec rm -rf {} +;
-          bye;
-          "
-
-      - name: Upload exported Next.js site to cPanel
+      - name: Upload site to cPanel
         run: |
           lftp -c "
           set ssl:verify-certificate no;
           open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
           mirror -R --delete --verbose out public_html;
-          bye;
-          "
-
-      - name: Upload default_img.jpg photo to cPanel
-        run: |
-          lftp -c "
-          set ssl:verify-certificate no;
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
-          mirror -R --delete --verbose public/default_img.jpg public_html/search;
           bye;
           "
