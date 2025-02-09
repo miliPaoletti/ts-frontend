@@ -7,6 +7,8 @@ import { getPrice } from "components/utils/renderHelpers";
 import { Promotion } from "components/ui/Cards/Promotion";
 import { createWspMessage } from "components/utils/createWspMessage";
 import Link from "next/link";
+import { CLICK_CONTACT_BUTTON } from "components/tracker/constants";
+import { useTracker } from "components/tracker/useTracker";
 
 const Sidebar = ({
   days,
@@ -23,6 +25,8 @@ const Sidebar = ({
   taxes,
   tours,
 }) => {
+  const { handlePreClickAction: clickContact } =
+    useTracker(CLICK_CONTACT_BUTTON);
   let listIncludes = [];
   if (includes !== undefined) {
     listIncludes = includes?.map((item) => {
@@ -115,6 +119,9 @@ const Sidebar = ({
           className="button-primary flex w-full "
           rel="noreferrer"
           target="_blank"
+          onClick={() => {
+            clickContact({ from: "sidebar" });
+          }}
         >
           Consultar
         </a>
