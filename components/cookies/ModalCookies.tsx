@@ -4,7 +4,12 @@ import { TRACKER_LOCALSTORAGE, getTrackerLocalStorage } from "./helpers";
 import { useTracker } from "components/tracker/useTracker";
 import { TRACKER } from "components/tracker/constants";
 
-export const ModalCookies = ({ trigger, isFooter }) => {
+type ModalCookiesProps = {
+  trigger?: React.ReactNode;
+  isFooter?: boolean;
+};
+
+export const ModalCookies = ({ trigger, isFooter }: ModalCookiesProps) => {
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
@@ -17,10 +22,7 @@ export const ModalCookies = ({ trigger, isFooter }) => {
   // add isFooter so we don't render two times the modalCookies if
   //  trackerlocalstorage is null
   useEffect(() => {
-    if (
-      getTrackerLocalStorage(TRACKER_LOCALSTORAGE) === null &&
-      isFooter !== true
-    ) {
+    if (getTrackerLocalStorage() === null && isFooter !== true) {
       openModal();
     }
   }, [isFooter]);
@@ -41,17 +43,8 @@ export const ModalCookies = ({ trigger, isFooter }) => {
     <>
       <div onClick={openModal}>{trigger}</div>
 
-      <Transition
-        appear
-        show={isOpen}
-        as={Fragment}
-        onClose={(_, reason) => {
-          if (reason !== "backdropClick") {
-            closeModal;
-          }
-        }}
-      >
-        <Dialog as="div" className="relative z-[999999]">
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-[999999]" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

@@ -6,7 +6,7 @@ type SocialMediaLinkProps = {
   text: string;
   icon: React.ReactNode;
   footer?: boolean;
-  apply: boolean;
+  apply?: boolean;
   onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
@@ -15,7 +15,7 @@ const SocialMediaLink = ({
   text,
   icon,
   footer = false,
-  apply,
+  apply = true,
   onClick,
 }: SocialMediaLinkProps) => {
   return (
@@ -23,11 +23,11 @@ const SocialMediaLink = ({
       <a
         target={apply ? "_blank" : "_self"}
         className={`flex items-center space-x-2 justify-start ${
-          href ? " cursor-pointer" : ""
+          href && " cursor-pointer"
         } `}
         onClick={onClick}
       >
-        <div className={"text-xl md:text-3xl"}>{icon}</div>
+        <div className="text-xl md:text-3xl">{icon}</div>
         {!footer && (
           <span className="text-sm sm:text-base xl:text-xl font-bold">
             {text}

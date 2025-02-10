@@ -3,7 +3,12 @@ import Link from "next/link";
 import React from "react";
 import { BsWhatsapp } from "react-icons/bs";
 
-const Whatsapp = ({ page, onClick }) => {
+type WhatsappProps = {
+  page?: string;
+  onClick: () => void;
+};
+
+const Whatsapp = ({ page, onClick }: WhatsappProps) => {
   // TODO: CHECK IF WE WANT TO PUT A DEFAULT MESSAGE WHEN CLICKING ON THE WHATSAPP BUTTON
   const mensaje = "Hola! Quisiera realizar una consulta:";
   const enlace = `${URL_WHATSAPP}/?text=${encodeURIComponent(mensaje)}`;

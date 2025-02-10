@@ -11,7 +11,7 @@ import { useTracker } from "components/tracker/useTracker";
 import { CLICK_WHATSAPP_BUTTON } from "components/tracker/constants";
 import { ModalCookies } from "components/cookies/ModalCookies";
 import Header from "./Header";
-export default function MainContent({ content }) {
+export default function MainContent({ content }: { content: React.ReactNode }) {
   const { notification } = useContext(NotificationContext);
   const { handlePreClickAction } = useTracker(CLICK_WHATSAPP_BUTTON);
   return (

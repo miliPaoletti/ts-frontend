@@ -92,7 +92,6 @@ function Footer() {
               href={COMPANY_DATA.linkIg}
               icon={<BsInstagram color="#ff7700" />}
               text={COMPANY_DATA.ig}
-              apply={true}
               footer={true}
               onClick={() => {
                 clickIg();
@@ -103,7 +102,6 @@ function Footer() {
               href={COMPANY_DATA.linkFb}
               icon={<FaFacebookSquare color="#42a5f5" />}
               text={COMPANY_DATA.fb}
-              apply={true}
               footer={true}
               onClick={() => {
                 clickFb();

@@ -5,7 +5,12 @@ import MainContent from "./MainContent";
 import { MixpanelProvider } from "components/tracker/MixPanelProvider";
 import { setVersionLocalStorage } from "./index/utils";
 
-const Template = ({ content, title }) => {
+type TemplateProps = {
+  content: React.ReactNode;
+  title: string;
+};
+
+const Template = ({ content, title }: TemplateProps) => {
   useEffect(() => {
     setVersionLocalStorage();
   }, []);

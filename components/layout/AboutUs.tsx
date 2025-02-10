@@ -39,7 +39,6 @@ const AboutUs = () => {
                 icon={<MdLocationOn />}
                 text={COMPANY_DATA.address}
                 href={COMPANY_DATA.linkLocation}
-                apply={true}
                 onClick={() => clickLocation()}
               />
               <SocialMediaLink
@@ -56,7 +55,6 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkRadioMega}
                 icon={<MdRadio />}
                 text={COMPANY_DATA.radioMega}
-                apply={true}
                 onClick={() => {
                   clickRadio({ radio: COMPANY_DATA.radioMega });
                 }}
@@ -65,7 +63,6 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkEcoTv}
                 icon={<MdDesktopWindows />}
                 text={COMPANY_DATA.ecoTv}
-                apply={true}
                 onClick={() => {
                   clickRadio({ radio: COMPANY_DATA.ecoTv });
                 }}
@@ -74,7 +71,6 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkRadioEco}
                 icon={<MdRadio />}
                 text={COMPANY_DATA.radioEco}
-                apply={true}
                 onClick={() => {
                   clickRadio({ radio: COMPANY_DATA.radioEco });
                 }}
@@ -84,8 +80,6 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkIg}
                 icon={<BsInstagram color="#ff7700" />}
                 text={COMPANY_DATA.ig}
-                // own_style="text-orange-950"
-                apply={true}
                 onClick={() => {
                   clickIg();
                 }}
@@ -95,7 +89,6 @@ const AboutUs = () => {
                 href={COMPANY_DATA.linkFb}
                 icon={<FaFacebookSquare color="#42a5f5" />}
                 text={COMPANY_DATA.fb}
-                apply={true}
                 onClick={() => {
                   clickFb();
                 }}
