@@ -2,13 +2,13 @@ import { ModalConsult } from "components/ui/Modals/ModalConsult";
 import { ALL, HEADER, PATHNAMES } from "components/utils/constants";
 import { useDataForConsult } from "hooks/useDataForConsult";
 import Link from "next/link";
-import Logo from "../Icons/Logo";
 import { useTracker } from "components/tracker/useTracker";
 import {
   CLICK_BUSCAR_BUTTON,
   CLICK_HOME_BUTTON,
   CLICK_LOGO,
 } from "components/tracker/constants";
+import Logo from "components/Icons/Logo";
 
 function Header() {
   const { dataForConsult } = useDataForConsult();

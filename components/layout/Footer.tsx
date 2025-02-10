@@ -8,10 +8,7 @@ import { MdWork } from "react-icons/md";
 import Contact from "components/ui/Footer/Contact";
 import TitleFooter from "components/ui/Titles/TitleFooter";
 import SocialMediaLink from "components/ui/Links/SocialMediaLink";
-import Link from "next/link";
-import Logo from "../Icons/Logo";
 import { COMPANY_DATA, FOOTER, PATHNAMES } from "components/utils/constants";
-
 import { useTracker } from "components/tracker/useTracker";
 import {
   CLICK_FB_LINK,
@@ -21,6 +18,9 @@ import {
   CLICK_EMAIL,
 } from "components/tracker/constants";
 import { ModalCookies } from "components/cookies/ModalCookies";
+import React from "react";
+import Link from "next/link";
+import Logo from "components/Icons/Logo";
 
 function Footer() {
   const { handlePreClickAction: clickFb } = useTracker(CLICK_FB_LINK);
@@ -35,9 +35,7 @@ function Footer() {
         <div className="flex flex-col justify-center items-center space-y-2 ">
           <div className="flex px-3 sm:px-12 ">
             <Link href={PATHNAMES.home}>
-              <a>
-                <Logo className="logo" />
-              </a>
+              <Logo className="cursor-pointer h-fit w-[250px]" />
             </Link>
           </div>
           <div>{COMPANY_DATA.legajo}</div>
@@ -51,11 +49,11 @@ function Footer() {
 
         <div className="flex flex-col space-y-2 items-center lg:items-start justify-end ">
           <TitleFooter text={FOOTER.title} />
+
           <Contact
             text={COMPANY_DATA.address}
             icon={<MdLocationOn className="icon-footer" />}
             href={COMPANY_DATA.linkLocation}
-            apply={true}
             onClick={() => {
               clickLocation();
             }}
@@ -63,6 +61,7 @@ function Footer() {
           <Contact
             text={COMPANY_DATA.openHours}
             icon={<MdWatchLater className="icon-footer" />}
+            apply={false}
           />
           <Contact
             text={COMPANY_DATA.number}
@@ -87,12 +86,12 @@ function Footer() {
             text={COMPANY_DATA.workWithUs}
           />
 
+          {/* TODO: add typescript to social  media */}
           <div className="flex space-x-4 pt-3 ">
             <SocialMediaLink
               href={COMPANY_DATA.linkIg}
-              icon={<BsInstagram />}
+              icon={<BsInstagram color="#ff7700" />}
               text={COMPANY_DATA.ig}
-              own_style="text-orange-950"
               apply={true}
               footer={true}
               onClick={() => {
@@ -102,9 +101,8 @@ function Footer() {
 
             <SocialMediaLink
               href={COMPANY_DATA.linkFb}
-              icon={<FaFacebookSquare />}
+              icon={<FaFacebookSquare color="#42a5f5" />}
               text={COMPANY_DATA.fb}
-              own_style="text-blue-400"
               apply={true}
               footer={true}
               onClick={() => {

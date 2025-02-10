@@ -82,9 +82,9 @@ const AboutUs = () => {
 
               <SocialMediaLink
                 href={COMPANY_DATA.linkIg}
-                icon={<BsInstagram />}
+                icon={<BsInstagram color="#ff7700" />}
                 text={COMPANY_DATA.ig}
-                own_style="text-orange-950"
+                // own_style="text-orange-950"
                 apply={true}
                 onClick={() => {
                   clickIg();
@@ -93,9 +93,8 @@ const AboutUs = () => {
 
               <SocialMediaLink
                 href={COMPANY_DATA.linkFb}
-                icon={<FaFacebookSquare />}
+                icon={<FaFacebookSquare color="#42a5f5" />}
                 text={COMPANY_DATA.fb}
-                own_style="text-blue-400"
                 apply={true}
                 onClick={() => {
                   clickFb();
