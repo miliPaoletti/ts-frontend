@@ -15,7 +15,11 @@ export default function DestinationsRelated({ searchResults, destination }) {
         let title = destino["title"];
         let destinationsNames = destino["destinations_names"];
         fetchDestRelated(departures, title, destinationsNames).then((val) => {
-          setDestinationsRelated(val);
+          const updatedVal = val.map((item) => ({
+            ...item,
+            relatedDestination: true,
+          }));
+          setDestinationsRelated(updatedVal);
         });
       }
     }

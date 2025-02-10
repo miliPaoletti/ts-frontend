@@ -5,7 +5,10 @@ import { CONSULT, IMG_DEFAULT } from "components/utils/constants";
 import { updateViews } from "pages/api/updateViews";
 import Image from "next/image";
 import { getPrice } from "components/utils/renderHelpers";
-import { CLICK_DESTINATION_CARD } from "components/tracker/constants";
+import {
+  CLICK_CONTACT_BUTTON,
+  CLICK_DESTINATION_CARD,
+} from "components/tracker/constants";
 import { useTracker } from "components/tracker/useTracker";
 import { Promotion } from "./Promotion";
 import { createWspMessage } from "components/utils/createWspMessage";
@@ -19,18 +22,14 @@ export function MediumCard({
   currency,
   pathname,
   destinationId,
-  provider,
+  relatedDestination,
   taxes,
-  regimen,
-  boarding,
-  departures,
-  meal_regimen,
-  destinationNames,
-  nights,
 }) {
   const { handlePreClickAction: clickCard } = useTracker(
     CLICK_DESTINATION_CARD
   );
+  const { handlePreClickAction: clickContact } =
+    useTracker(CLICK_CONTACT_BUTTON);
   let content = (
     <>
       <Promotion promotion={promotions} component="card" />
@@ -101,7 +100,11 @@ export function MediumCard({
             destinationName: title,
             months: monthsToTrack().toString(),
             promotion: promotions !== 0 ? promotions : "without promotion",
+            relatedDestination,
           });
+          if (img === IMG_DEFAULT) {
+            clickContact({ from: "card_with_no_image" });
+          }
         }}
       >
         {content}

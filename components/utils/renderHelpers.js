@@ -66,6 +66,7 @@ export const getMediumCards = (destinations) => {
         views={destino.views}
         destinationNames={destino["destinations_names"]}
         nights={destino.duration["nights"]}
+        relatedDestination={dest.relatedDestination ?? false}
       />
     );
   }
