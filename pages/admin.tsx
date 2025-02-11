@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { getCredentials } from "./api/login";
+import { useState } from "react";
 import Login from "components/admin/login/Login";
 import ControlPanel from "components/admin";
 

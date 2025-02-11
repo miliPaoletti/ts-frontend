@@ -1,10 +1,10 @@
 import Destination from "./Destination";
 import { useCallback, useEffect, useState } from "react";
 import { fetchAllDestinationsAdmin } from "pages/api/login";
+import { DestinationType } from "types";
 
 const ControlPanel = () => {
-  const [destinations, setDestinations] = useState([]);
-
+  const [destinations, setDestinations] = useState<DestinationType[]>([]);
   useEffect(() => {
     // get months and destinations to show in searchbar
     fetchAllDestinationsAdmin().then((allDest) => {
@@ -14,7 +14,7 @@ const ControlPanel = () => {
 
   const drawDest = useCallback(() => {
     return destinations.map((item) => {
-      return <Destination key={item.id} item={item} />;
+      return <Destination key={item.id} {...item} />;
     });
   }, [destinations]);
   return (

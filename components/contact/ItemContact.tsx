@@ -1,7 +1,10 @@
-import { FORM_WORK_WITH_US_DATA } from "components/utils/constants";
-import React from "react";
+type ItemContactProps = {
+  text: string | React.ReactNode;
+  error?: string | React.ReactNode;
+  placeholder: string;
+};
 
-const ItemContact = ({ text, error, placeholder }) => {
+const ItemContact = ({ text, error, placeholder }: ItemContactProps) => {
   return (
     <div>
       <label className="text-xs">{placeholder}</label>

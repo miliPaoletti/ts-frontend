@@ -1,4 +1,3 @@
-import { ModalConsult } from "components/ui/Modals/ModalConsult";
 import { ALL, HEADER, PATHNAMES } from "components/utils/constants";
 import { useDataForConsult } from "hooks/useDataForConsult";
 import Link from "next/link";
@@ -11,7 +10,6 @@ import {
 import Logo from "components/Icons/Logo";
 
 function Header() {
-  const { dataForConsult } = useDataForConsult();
   const { handlePreClickAction: clickLogo } = useTracker(CLICK_LOGO);
   const { handlePreClickAction: clickHome } = useTracker(CLICK_HOME_BUTTON);
   const { handlePreClickAction: clickSearch } = useTracker(CLICK_BUSCAR_BUTTON);

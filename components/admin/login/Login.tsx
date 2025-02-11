@@ -1,7 +1,11 @@
 import { getCredentials } from "pages/api/login";
 import { useCallback, useEffect, useState } from "react";
 
-const Login = ({ setIsLogged }) => {
+type LoginProps = {
+  setIsLogged: (isLogged: boolean) => void;
+};
+
+const Login = ({ setIsLogged }: LoginProps) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [credentials, setCredentials] = useState({
@@ -9,24 +13,34 @@ const Login = ({ setIsLogged }) => {
     password: "",
   });
   const [incorrectCred, setIncorrectCred] = useState(false);
-  const handleUserInput = useCallback((e) => {
-    setUser(e.target.value);
-    setIncorrectCred(false);
-  }, []);
 
-  const handlePasswordInput = useCallback((e) => {
-    setPassword(e.target.value);
-    setIncorrectCred(false);
-  }, []);
+  const handleUserInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setUser(e.target.value);
+      setIncorrectCred(false);
+    },
+    []
+  );
+
+  const handlePasswordInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(e.target.value);
+      setIncorrectCred(false);
+    },
+    []
+  );
 
   useEffect(() => {
     getCredentials().then((cred) => {
-      setCredentials(cred[0]);
+      setCredentials({
+        username: cred[0].username || "",
+        password: cred[0].password || "",
+      });
     });
   }, []);
 
   const loginButton = useCallback(
-    (e) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (credentials.username === user && credentials.password === password) {
         setIsLogged(true);
@@ -50,7 +64,6 @@ const Login = ({ setIsLogged }) => {
         <button
           type="submit"
           className="bg-orange-950 w-full py-3 rounded text-white font-bold"
-          onClick={loginButton}
         >
           Ingresar
         </button>

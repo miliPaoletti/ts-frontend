@@ -1,10 +1,10 @@
 import { updateDestinations } from "pages/api/login";
 import { useCallback, useState } from "react";
-
-const Destination = ({ item }) => {
+import { DestinationType } from "types";
+const Destination = (item: DestinationType) => {
   const [active, setActive] = useState(item?.data?.visibility || false);
   const handleChange = useCallback(
-    (event) => {
+    (event: React.ChangeEvent<HTMLInputElement>) => {
       setActive(event.target.checked);
       updateDestinations(item.id, event.target.checked);
     },
