@@ -82,7 +82,7 @@ function Footer() {
             }}
           />
           <Contact
-            href="/trabaja-con-nosotros"
+            href={COMPANY_DATA.linkEmail}
             icon={<MdWork />}
             text={COMPANY_DATA.workWithUs}
           />
