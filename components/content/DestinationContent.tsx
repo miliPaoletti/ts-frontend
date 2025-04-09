@@ -6,7 +6,6 @@ import {
   getPromotionsValue,
   getStyledData,
 } from "components/utils/renderHelpers";
-
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchDestDocumentId } from "pages/api/destinations";
@@ -29,27 +28,32 @@ import Banner from "components/layout/destination/Banner";
 import DestinationInfo from "components/layout/destination/DestinationInfo";
 import DestinationsRelated from "components/layout/destination/DestinationsRelated";
 import Head from "next/head";
+import { DestinationType } from "types";
 
 const DestinationContent = () => {
   const { query, isReady } = useRouter();
   const router = useRouter();
   const [destination, setDestination] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<DestinationType[]>([]);
 
   useEffect(() => {
     if (!isReady) return;
     else {
       if (query.destinationId !== "") {
-        fetchDestDocumentId(query.destinationId).then((values) => {
-          if (values !== undefined) {
-            if (values.length === 0) {
-              router.push(`/${PATHNAMES.error404}`);
-            } else {
-              setSearchResults(values);
-              setDestination(query.destinationId);
+        if (typeof query.destinationId === "string") {
+          fetchDestDocumentId(query.destinationId).then((values) => {
+            if (values !== undefined) {
+              if (values.length === 0) {
+                router.push(`/${PATHNAMES.error404}`);
+              } else {
+                setSearchResults(values);
+                if (typeof query.destinationId === "string") {
+                  setDestination(query.destinationId);
+                }
+              }
             }
-          }
-        });
+          });
+        }
       }
     }
   }, [isReady, query.destinationId, router]);
@@ -62,7 +66,10 @@ const DestinationContent = () => {
   let destinationNames = destino["destinations_names"];
 
   let firstImage = IMG_DEFAULT;
-  if (destino["custom_info"] !== undefined) {
+  if (
+    destino["custom_info"] !== undefined &&
+    destino.custom_info.carousel_image !== null
+  ) {
     firstImage = destino["custom_info"]["carousel_image"];
   }
   let dataImages = destino["custom_info"];
@@ -101,14 +108,14 @@ const DestinationContent = () => {
     PRICE,
     destino["lowest_price"]["currency"] + destino["lowest_price"]["price"]
   );
-  localStorage.setItem(NIGHTS, destino["duration"]["nights"]);
-  localStorage.setItem(DAYS, days);
+  localStorage.setItem(NIGHTS, destino["duration"]["nights"].toString());
+  localStorage.setItem(DAYS, days.toString());
 
-  localStorage.setItem(DESTINATIONS_NAMES, destinationNames);
+  localStorage.setItem(DESTINATIONS_NAMES, destinationNames.toString());
   localStorage.setItem(REGIMEN, regimen);
-  localStorage.setItem(BOARDING, boarding);
+  localStorage.setItem(BOARDING, boarding.toString());
   localStorage.setItem(PROVIDER, provider);
-  localStorage.setItem(MONTHS, departures);
+  localStorage.setItem(MONTHS, departures.toString());
 
   let boardingLocal = getBoarding(boarding);
 
@@ -131,11 +138,11 @@ const DestinationContent = () => {
                 currency={getCurrency(destino["lowest_price"]["currency"])}
                 price={destino["lowest_price"]["price"]}
                 departures={getDeparturesOrder(departures)}
-                textBoarding={boardingLocal[0]}
+                textBoarding={boardingLocal[0] as string}
                 boarding={getStyledData(boarding)}
                 includes={includes}
                 dataForConsult={dataForConsult}
-                listBoarding={boardingLocal[1]}
+                listBoarding={boardingLocal[1] as boolean}
                 promotions={getPromotionsValue(promotion)}
                 taxes={destino["lowest_price"]["taxes"]}
                 tours={tours}

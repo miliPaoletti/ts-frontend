@@ -8,6 +8,25 @@ import { Promotion } from "components/ui/Cards/Promotion";
 import { createWspMessage } from "components/utils/createWspMessage";
 import Link from "next/link";
 
+type SidebarProps = {
+  days: number;
+  regimen: string;
+  currency: string;
+  price: string;
+  textBoarding: string;
+  boarding: string | React.JSX.Element[];
+  departures: React.ReactNode[];
+  includes: string[];
+  dataForConsult: {
+    DESTINATION: string;
+    URL: string;
+  };
+  listBoarding: boolean;
+  promotions: number;
+  taxes: string;
+  tours: string[] | null | undefined;
+};
+
 const Sidebar = ({
   days,
   regimen,
@@ -22,8 +41,8 @@ const Sidebar = ({
   promotions,
   taxes,
   tours,
-}) => {
-  let listIncludes = [];
+}: SidebarProps) => {
+  let listIncludes: React.ReactNode[] = [];
   if (includes !== undefined) {
     listIncludes = includes?.map((item) => {
       return (
@@ -36,9 +55,9 @@ const Sidebar = ({
       );
     });
   }
-  let listTours = [];
-  if (tours !== undefined) {
-    listTours = tours?.map((item) => {
+  let listTours: React.ReactNode[] = [];
+  if (tours !== undefined && tours !== null) {
+    listTours = tours.map((item) => {
       return (
         <p
           key={item}

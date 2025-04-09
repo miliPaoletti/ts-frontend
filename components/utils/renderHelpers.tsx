@@ -1,7 +1,8 @@
 import MediumCard from "components/ui/Cards/MediumCard";
 import { CONSULT, IMG_DEFAULT, months, PATHNAMES } from "./constants";
+import { CustomInfo, DestinationType, duration } from "types";
 
-export const getCurrency = (currency) => {
+export const getCurrency = (currency: string) => {
   let local_currency = "";
   if (currency == "pesos") {
     local_currency = "$";
@@ -11,7 +12,7 @@ export const getCurrency = (currency) => {
   return local_currency;
 };
 
-export const getFirstCardImage = (image) => {
+export const getFirstCardImage = (image: CustomInfo) => {
   if (image !== undefined) {
     if (image["card_image"] !== null) {
       return image["card_image"];
@@ -20,14 +21,14 @@ export const getFirstCardImage = (image) => {
   return IMG_DEFAULT;
 };
 
-export const getDuration = (duration) => {
+export const getDuration = (duration: duration) => {
   if (duration !== undefined) {
     return duration.days;
   }
   return CONSULT;
 };
 
-export const getMediumCards = (destinations) => {
+export const getMediumCards = (destinations: DestinationType[]) => {
   let listDestinations = [];
 
   for (let destination in destinations) {
@@ -72,7 +73,7 @@ export const getMediumCards = (destinations) => {
   return listDestinations;
 };
 
-export const sortByMonth = (arr) => {
+export const sortByMonth = (arr: string[]) => {
   // sort months (January, February ... December)
   arr?.sort(function (a, b) {
     return months.indexOf(a.toLowerCase()) - months.indexOf(b.toLowerCase());
@@ -80,10 +81,10 @@ export const sortByMonth = (arr) => {
   return arr;
 };
 
-export const orderObject = (object_to_sort) => {
+export const orderObject = (object_to_sort: Record<string, any>) => {
   const sorted = Object.keys(object_to_sort)
     .sort()
-    .reduce((accumulator, key) => {
+    .reduce((accumulator: Record<string, any>, key) => {
       accumulator[key] = object_to_sort[key];
 
       return accumulator;
@@ -92,7 +93,7 @@ export const orderObject = (object_to_sort) => {
   return sorted;
 };
 
-export const getStyledData = (data) => {
+export const getStyledData = (data: string[]) => {
   let len = data?.length - 1;
 
   let dataStyled = data?.map((item, index) => (
@@ -105,9 +106,9 @@ export const getStyledData = (data) => {
   return dataStyled;
 };
 
-export const getDeparturesOrder = (departures) => {
+export const getDeparturesOrder = (departures: string[]) => {
   let sorted = sortByMonth(departures);
-  let abrev = sorted.map((departure) => {
+  let abrev = sorted.map((departure: string) => {
     return departure.substring(0, 3);
   });
   return getStyledData(abrev);
@@ -143,12 +144,12 @@ export const filterListDestPesos = (list_destinations) => {
   return list_destinations.filter((dest) => dest.props["currency"] === "$");
 };
 
-export const getPromotionsValue = (promotionDest) => {
+export const getPromotionsValue = (promotionDest: string) => {
   let promotion = 0;
   if (promotionDest !== undefined) {
     if (promotionDest.includes("segundo pasajero")) {
-      let amount = promotionDest.split(" ")[3].slice(0, -1);
-      promotion = 100 - amount;
+      let amount: string = promotionDest.split(" ")[3].slice(0, -1);
+      promotion = 100 - Number(amount);
     }
     if (promotionDest.includes("default_promotion")) {
       promotion = -1;
@@ -157,7 +158,7 @@ export const getPromotionsValue = (promotionDest) => {
   return promotion;
 };
 
-export function isKeyInObject(obj, key) {
+export function isKeyInObject(obj: Record<string, any>, key: string) {
   let val = {};
   Object.keys(obj).some((v) => {
     if (v == key) {
@@ -167,7 +168,7 @@ export function isKeyInObject(obj, key) {
   return val;
 }
 
-export function getPrice(price, currency) {
+export function getPrice(price: string | number | undefined, currency: string) {
   if (
     price === "0" ||
     price === "-1" ||
@@ -180,7 +181,7 @@ export function getPrice(price, currency) {
   return currency + price;
 }
 
-export const getFilteredData = (input, list) => {
+export const getFilteredData = (input: string, list: string[]) => {
   //create a new array by filtering the original array
   let data = list?.filter((el) => {
     let val = el;
@@ -197,7 +198,7 @@ export const getFilteredData = (input, list) => {
   return data;
 };
 
-export const getBoarding = (boarding) => {
+export const getBoarding = (boarding: string[]) => {
   if (boarding.includes("mar del plata y zona")) {
     return ["Mar del Plata y zona", false];
   } else if (boarding.includes("aeroparque")) {

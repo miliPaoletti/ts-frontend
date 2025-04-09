@@ -9,11 +9,17 @@ import {
 } from "./constants";
 import { getUniques, reFillDataFirestore } from "./helpers";
 
-export const getAllIdAndData = (snapshot) => {
+import { QuerySnapshot } from "firebase/firestore";
+import { DESTINATION_PROPS, DestinationType, INIT_DATA } from "types";
+
+export const getAllIdAndData = (snapshot: QuerySnapshot) => {
   let ret = snapshot.docs.map((doc) => {
-    let obj = {};
+    let obj: { id: string; data: DESTINATION_PROPS } = {
+      id: "",
+      data: INIT_DATA,
+    };
     obj["id"] = doc.id;
-    obj["data"] = doc.data();
+    obj["data"] = doc.data() as DESTINATION_PROPS;
     return obj;
   });
   return ret;
@@ -62,10 +68,10 @@ export const fetchAllDestinations = async () => {
   return getAllIdAndData(snapshot);
 };
 
-export const getMonths = (destinations) => {
+export const getMonths = (destinations: DestinationType[]) => {
   // from all the destinations available, returns
   // an array with all the months (Order as: january ... december)
-  let arrMonths = [];
+  let arrMonths: string[] = [];
 
   destinations.map((destination) => {
     let departures = destination["data"]["departures"];
@@ -84,12 +90,14 @@ export const getMonths = (destinations) => {
   return arrMonths;
 };
 
-export const getDestinationsNamesAndMonths = (destinations) => {
+export const getDestinationsNamesAndMonths = (
+  destinations: DestinationType[]
+) => {
   // obj with all the destinations and months related to those dest.
-  let obj = {};
+  let obj: { [key: string]: string[] } = {};
   destinations?.map((destination) => {
     let destinations_names = destination["data"]["destinations_names"];
-    let months = [];
+    let months: string[] = [];
     let departures = destination["data"]["departures"];
     if (departures !== undefined) {
       months = departures;
@@ -112,9 +120,12 @@ export const getDestinationsNamesAndMonths = (destinations) => {
   return orderObject(obj);
 };
 
-export const getSpecificDestination = async (month, destination) => {
-  let snapshot = [];
-  let ret = [];
+export const getSpecificDestination = async (
+  month: string,
+  destination: string
+) => {
+  let snapshot: QuerySnapshot;
+  let ret: { id: string; data: DESTINATION_PROPS }[] = [];
   if (month === undefined || destination === undefined) {
     return ret;
   } else if (month === ALL && destination === ALL) {
@@ -136,14 +147,17 @@ export const getSpecificDestination = async (month, destination) => {
 
       const snapshot = await reFillDataFirestore(q, QUERY_DESTS);
 
-      let resultado_final = [];
+      let resultado_final: { id: string; data: DESTINATION_PROPS }[] = [];
       snapshot.docs.map((doc) => {
         let destinationsNames = doc.data()["destinations_names"];
 
         if (destinationsNames.includes(destination.toLowerCase())) {
-          let obj = {};
+          let obj: { id: string; data: DESTINATION_PROPS } = {
+            id: "",
+            data: INIT_DATA,
+          };
           obj["id"] = doc.id;
-          obj["data"] = doc.data();
+          obj["data"] = doc.data() as DESTINATION_PROPS;
           resultado_final.push(obj);
         }
 
@@ -175,7 +189,7 @@ export const getSpecificDestination = async (month, destination) => {
   return ret;
 };
 
-export const fetchDestDocumentId = async (title) => {
+export const fetchDestDocumentId = async (title: string) => {
   if (title.length !== 0) {
     const q = query(
       collectionRef(PATH_DESTINATIONS),
@@ -189,7 +203,10 @@ export const fetchDestDocumentId = async (title) => {
   }
 };
 
-const getQueryDestinationsNames = (destinationsNames, title) => {
+const getQueryDestinationsNames = (
+  destinationsNames: string[],
+  title: string
+) => {
   return query(
     collectionRef(PATH_DESTINATIONS),
     orderBy("title", "desc"),
@@ -201,7 +218,11 @@ const getQueryDestinationsNames = (destinationsNames, title) => {
   );
 };
 
-const getQueryDepartures = (departures, title, lenSnapshot) => {
+const getQueryDepartures = (
+  departures: string[],
+  title: string,
+  lenSnapshot: number
+) => {
   return query(
     collectionRef(PATH_DESTINATIONS),
     orderBy("title", "desc"),
@@ -222,7 +243,7 @@ const getQueryByViews = () => {
   );
 };
 
-const getQueryByPromotionsAndViews = (title) => {
+const getQueryByPromotionsAndViews = (title: string) => {
   return query(
     collectionRef(PATH_DESTINATIONS),
     orderBy("title", "desc"),
@@ -234,18 +255,18 @@ const getQueryByPromotionsAndViews = (title) => {
   );
 };
 
-const getDestWithoutRepeat = (snapshot) => {
+const getDestWithoutRepeat = (snapshot: QuerySnapshot) => {
   // return unique destinations: it checks with the name
   // of the destinations. If there are more, only returns 1 of those.
-  let obj = {};
-  let destWithoutRep = [];
+  let obj: { [key: string]: number } = {};
+  let destWithoutRep: { id: string; data: any }[] = [];
   snapshot.docs.map((doc) => {
     let title = doc.data().title;
 
     if (obj[title] === undefined) {
       obj[title] = 0;
 
-      let objRet = {};
+      let objRet: { id: string; data: any } = { id: "", data: {} };
       objRet["id"] = doc.id;
       objRet["data"] = doc.data();
       destWithoutRep.push(objRet);
@@ -255,9 +276,9 @@ const getDestWithoutRepeat = (snapshot) => {
 };
 
 export const fetchDestRelated = async (
-  departures,
-  title,
-  destinationsNames
+  departures: string[],
+  title: string,
+  destinationsNames: string[]
 ) => {
   if (departures.length !== 0 && title !== undefined) {
     // get destinations related for the same destinations names

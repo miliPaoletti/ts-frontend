@@ -3,10 +3,12 @@ import { createContext, useState } from "react";
 export const Context = createContext({
   notification: "",
   // set ntification will receive a string as a parameter
-  setNotification: (notification) => {},
+  setNotification: (notification: string) => {},
 });
 
-export function NotificationProvider({ children }) {
+import { ReactNode } from "react";
+
+export function NotificationProvider({ children }: { children: ReactNode }) {
   const [notification, setNotification] = useState("");
 
   return (
